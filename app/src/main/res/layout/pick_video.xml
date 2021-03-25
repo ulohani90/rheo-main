@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.videoUpload.VideoUploadViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:showIn="@layout/pick_video">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:contentInsetEnd="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
+                app:titleTextColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/margin_8"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_arrow_back_white_42dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_12"
+                        android:paddingRight="@dimen/margin_12"
+                        android:text="Upload Video"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_18" />
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/text_16"
+                    android:text="Enter a title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16" />
+
+                <EditText
+                    android:id="@+id/headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:padding="@dimen/margin_8"
+                    android:hint="eg. Pubg"
+                    android:background="@drawable/edittext_ligh_grey_bg" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/text_16"
+                    android:paddingLeft="@dimen/text_16"
+                    android:text="Select Game"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16" />
+
+                <Spinner
+                    android:id="@+id/ClipGameSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:padding="@dimen/margin_4"
+                    android:minHeight="@dimen/size_48"
+                    android:background="#e1dfdf"
+                    android:inputType="text"
+                    android:overlapAnchor="false"
+                    android:spinnerMode="dropdown" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/text_16"
+                    android:paddingLeft="@dimen/text_16"
+                    android:text="Upload a video"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16" />
+
+                <RelativeLayout
+                    android:id="@+id/videoPlaceholderRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8">
+
+                    <ImageView
+                        android:id="@+id/imageUploadView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/margin_8"
+                        android:background="@color/white"
+                        android:src="@drawable/upload_cloud"
+                        android:visibility="visible" />
+
+                    <VideoView
+                        android:id="@+id/uploadVideoView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="240dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:padding="32dp"
+                        android:scaleType="fitXY"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/uploadProgressRL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/color_accent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:max="100"
+                        android:minWidth="50dp"
+                        android:minHeight="50dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:progress="1" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:padding="@dimen/margin_12">
+
+                    <CheckBox
+                        android:id="@+id/clip_terms_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/terms_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/clip_terms_checkbox"
+                        android:layout_toEndOf="@id/clip_terms_checkbox"
+                        android:text="@string/read_terms_text"
+                        android:textColor="@color/white" />
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/upl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/scratch_start_gradient"
+                    android:text="@string/submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

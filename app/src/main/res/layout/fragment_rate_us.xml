@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragments.RateUsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_less_semi_transparent">
+
+        <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_24"
+        android:layout_marginEnd="@dimen/margin_24"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/margin_8"
+        app:cardBackgroundColor="@color/streamer_card_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true">
+
+                <View
+                    android:id="@+id/gradient_holder_view"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/avd_background_streakbonus"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintBottom_toTopOf="@id/rate_question_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enjoying_rheo_tv"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_20"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gradient_holder_view" />
+
+                <TextView
+                    android:id="@+id/rate_question_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:text="@string/rating_question"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/smile_rating"
+                    app:layout_constraintEnd_toEndOf="@id/title_text_view"
+                    app:layout_constraintStart_toStartOf="@id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/title_text_view"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="@string/rating_question" />
+
+                <com.rheotv.android.ui.customViews.smileRating.SmileRating
+                    android:id="@+id/smile_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    app:layout_constraintBottom_toTopOf="@id/feedback_edit_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rate_question_text_view" />
+
+                <EditText
+                    android:id="@+id/feedback_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_120"
+                    android:layout_margin="@dimen/margin_20"
+                    android:layout_weight="1"
+                    android:background="@color/game_tag_bg_color"
+                    android:hint="@string/rating_feedback_hint"
+                    android:textColorHint="@color/color_edit_text_hint"
+                    android:gravity="start"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="225"
+                    android:padding="@dimen/margin_12"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_action_button_top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/smile_rating"
+                    tools:text="@string/rating_feedback_hint" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    android:layout_marginEnd="8dp"
+                    app:backgroundTint="@color/color_progress_background"
+                    app:cornerRadius="@dimen/size_18"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintBottom_toBottomOf="@id/barrier_action_button_bottom"
+                    app:layout_constraintEnd_toStartOf="@id/barrier_action_button_start"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/barrier_action_button_top" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_action_button_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="top"
+                    app:constraint_referenced_ids="play_store_button,submit_button" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_action_button_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="start"
+                    app:constraint_referenced_ids="play_store_button,submit_button" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_action_button_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    android:layout_marginTop="@dimen/size_24"
+                    app:constraint_referenced_ids="play_store_button,submit_button" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/submit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:layout_marginBottom="@dimen/margin_30"
+                    android:text="@string/submit"
+                    app:backgroundTint="@color/color_accent"
+                    app:cornerRadius="@dimen/size_18"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/feedback_edit_text"
+                    tools:text="@string/submit" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/play_store_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:layout_marginBottom="@dimen/margin_36"
+                    android:text="@string/rate_us_on_play_store"
+                    app:backgroundTint="@color/color_accent"
+                    app:cornerRadius="@dimen/size_18"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/feedback_edit_text"
+                    tools:text="@string/rate_us_on_play_store" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

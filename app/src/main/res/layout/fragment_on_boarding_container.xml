@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.rheotv.android.utils.CommonUtils" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewState"
+            type="androidx.databinding.ObservableField&lt;com.rheotv.android.utils.Status&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--        <HorizontalScrollView-->
+        <!--            android:id="@+id/scroll_view"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:scaleX="1.5"-->
+        <!--            android:scaleY="1.5"-->
+        <!--            android:clipToPadding="false"-->
+        <!--            android:scrollbars="none"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/top_image_view_bg"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:alpha="0.91"-->
+        <!--                android:clipToPadding="false"-->
+        <!--                android:scaleType="centerCrop"-->
+        <!--                android:src="@drawable/ic_bg"-->
+        <!--                android:visibility="visible" />-->
+        <!--        </HorizontalScrollView>-->
+
+
+        <ImageView
+            android:id="@+id/top_image_view_bg"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:alpha="0.91"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_header_bg"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.rheotv.android.ui.customViews.RheoVideoView
+            android:id="@+id/demo_video_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleWhen="@{CommonUtils.isOnBoardClipEnabled()}" />
+
+        <View
+            android:id="@+id/demo_protector_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#55000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleWhen="@{CommonUtils.isOnBoardClipEnabled()}" />
+
+        <com.rheotv.android.ui.activities.onboarding.v2.view.fragment.OnBoardingViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_40"
+            android:layout_marginTop="@dimen/margin_48"
+            android:src="@drawable/ic_back_arrow_thin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/next_button"
+            android:layout_width="@dimen/size_48"
+            android:layout_height="@dimen/size_48"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:background="@color/transparent"
+            android:elevation="16dp"
+            android:enabled="false"
+            android:src="@drawable/ic_next_arrow_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{viewState == Status.LOADING ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/color_accent" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

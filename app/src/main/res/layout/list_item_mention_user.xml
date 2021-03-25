@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="username"
+            type="String" />
+
+        <variable
+            name="showIndicator"
+            type="Boolean" />
+
+        <variable
+            name="isMuted"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_4"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/margin_4">
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/hollow_ring"
+            android:backgroundTint="#effd43"
+            android:visibility="gone"
+            android:id="@+id/game_selected_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="@dimen/margin_4"
+            android:background="@drawable/red_dot_bg"
+            android:backgroundTint="#54CBD1DB"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@id/author_name_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_add_user_dark" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/mute_indicator_view"
+            android:src="@drawable/avd_mic_mute"
+            android:visibility="@{isMuted ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+            app:layout_constraintEnd_toEndOf="@id/user_avatar"
+            app:layout_constraintStart_toStartOf="@id/user_avatar"
+            app:layout_constraintTop_toTopOf="@id/user_avatar"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/speaking_indicator_view"
+            android:layout_width="@dimen/size_18"
+            android:layout_height="@dimen/size_18"
+            android:background="@drawable/round"
+            android:backgroundTint="@color/color_bottom_sheet_background"
+            android:padding="@dimen/margin_2"
+            android:src="@drawable/avd_unmute"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+            app:layout_constraintEnd_toEndOf="@id/user_avatar"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/author_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="2dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@{username}"
+            android:textColor="@color/white_text_color"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_avatar"
+            tools:text="ReplaysReplaysReplays" />
+
+        <ImageView
+            android:id="@+id/indicator_image_view"
+            android:layout_width="@dimen/size_16"
+            android:layout_height="@dimen/size_16"
+            android:contentDescription="@null"
+            android:visibility="@{showIndicator ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+            app:layout_constraintEnd_toEndOf="@id/user_avatar"
+            app:layout_constraintVertical_bias="1"
+            tools:src="@drawable/avd_correct" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

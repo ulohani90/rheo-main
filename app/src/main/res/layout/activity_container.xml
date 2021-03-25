@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- tools:context="live.gamies.android.ui.activities.tabcontainer.BottomNavigationActivityCo!-->
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.TabContainerViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/update_strip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                tool:shimmer_base_alpha="1"
+                tool:shimmer_clip_to_children="true"
+                tool:shimmer_direction="left_to_right"
+                tool:shimmer_duration="2000"
+                tool:shimmer_highlight_alpha="0.8"
+                tool:shimmer_highlight_color="@color/musturd"
+                tool:shimmer_repeat_mode="reverse"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_musturd"
+                    android:gravity="center"
+                    android:onClick="@{viewModel::handleUpdateClicked}"
+                    android:text="@string/update_message"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:elevation="@dimen/margin_16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/toolbarHeading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update_message"
+                            android:textSize="20sp"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:layout_width="@dimen/margin_42"
+                            android:layout_height="42dp"
+                            android:scaleType="centerInside"
+                            android:visibility="gone"
+                            tool:srcCompat="@drawable/ic_app_logo_transparent_bg_42" />
+
+                        <LinearLayout
+                            android:id="@+id/district_option"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/selected_district"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/size_30"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:onClick="@{viewModel::districtFragmentButtonClicked}"
+                                android:padding="2dp"
+                                android:text="@{viewModel.districtHeader}"
+                                android:textColor="@color/blue_black_dark"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/trending_heading"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/size_30"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/toolbarImage"
+                                android:layout_width="12dp"
+                                android:layout_height="21dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="4dp"
+                                android:gravity="center"
+                                android:onClick="@{viewModel::districtFragmentButtonClicked}"
+                                android:src="@drawable/ic_home_dropdown" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="@dimen/margin_4"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_weight="1"
+                        android:onClick="@{viewModel::onRewardStreakClick}">
+
+                        <TextView
+                            android:id="@+id/streak_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text='@{viewModel.loginStreak.daysCompleted + "/" + viewModel.loginStreak.totalDays + " Days"}'
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_12"
+                            android:textStyle="normal"
+                            tool:layout_constraintStart_toStartOf="parent"
+                            tool:layout_constraintTop_toTopOf="parent"
+                            tools:text="3/7 DAYS" />
+
+                        <ProgressBar
+                            android:id="@+id/reward_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/size_5"
+                            android:layout_marginTop="@dimen/margin_4"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:maxWidth="100dp"
+                            android:minWidth="80dp"
+                            android:progress="@{viewModel.loginStreak.progressPercent()}"
+                            android:progressDrawable="@drawable/linear_gradient_progress"
+                            tool:layout_constraintBottom_toBottomOf="parent"
+                            tool:layout_constraintEnd_toEndOf="parent"
+                            tool:layout_constraintHorizontal_bias="0"
+                            tool:layout_constraintStart_toStartOf="parent"
+                            tool:layout_constraintTop_toBottomOf="@id/streak_text_view"
+                            tool:layout_constraintVertical_bias="0"
+                            tools:progress="80" />
+
+                        <ImageView
+                            android:layout_width="@dimen/size_30"
+                            android:layout_height="@dimen/size_30"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_marginStart="@dimen/margin_12"
+                            android:paddingTop="@dimen/margin_3"
+                            android:src="@{viewModel.loginStreak.progressPercent() == 100 ? @drawable/avd_gift_box_color : @drawable/avd_gift_box, default=@drawable/avd_gift_box}"
+                            tool:layout_constraintBottom_toBottomOf="@id/reward_progress_bar"
+                            tool:layout_constraintStart_toEndOf="@id/reward_progress_bar"
+                            tool:layout_constraintTop_toTopOf="@+id/streak_text_view" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="end">
+
+                        <LinearLayout
+                            android:id="@+id/total_coins_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="start|center_vertical"
+                            android:onClick="@{viewModel::viewTotalCoins}">
+
+                            <ImageView
+                                android:layout_width="@dimen/size_26"
+                                android:layout_height="@dimen/size_26"
+                                android:src="@drawable/avd_rheo_coin" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/margin_8"
+                                android:layout_marginEnd="@dimen/margin_4"
+                                android:fontFamily="sans-serif-medium"
+                                android:gravity="center_horizontal"
+                                android:paddingEnd="@dimen/margin_2"
+                                android:text="@{viewModel.totalCoins}"
+                                android:textColor="@color/white_text_color"
+                                android:textSize="@dimen/text_16"
+                                android:textStyle="normal"
+                                android:visibility="@{viewModel.shouldShowCoins ? View.VISIBLE : View.GONE}"
+                                tools:text="500" />
+
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_12">
+
+                            <ImageView
+                                android:id="@+id/leader_board_btn"
+                                android:layout_width="@dimen/size_26"
+                                android:layout_height="@dimen/size_26"
+                                android:layout_gravity="center"
+                                android:onClick="@{(v) -> viewModel.viewLeaderClick(v)}"
+                                android:src="@drawable/avd_leaderboard"
+                                tool:tint="@color/white" />
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_4">
+
+                            <ImageView
+                                android:id="@+id/clips_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_8"
+                                android:layout_marginEnd="@dimen/margin_8"
+                                android:background="@drawable/ic_clips_btn"
+                                android:onClick="@{(v) -> viewModel.viewClipsClick(v)}"
+                                android:visibility="gone" />
+
+                            <View
+                                android:id="@+id/new_clips_indicator"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_gravity="end"
+                                android:background="@drawable/red_dot_bg"
+                                android:visibility="gone" />
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/go_live_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/button_transparent_white_border"
+                            android:gravity="center"
+                            android:onClick="@{viewModel::goLiveClick}"
+                            android:orientation="horizontal"
+                            android:paddingStart="@dimen/margin_6"
+                            android:paddingTop="@dimen/margin_4"
+                            android:paddingEnd="@dimen/margin_6"
+                            android:paddingBottom="@dimen/margin_4"
+                            android:visibility="gone">
+
+
+                            <ImageView
+                                android:id="@+id/share_app_icon"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="@dimen/margin_8"
+                                android:src="@drawable/live_icon" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="GO LIVE"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <FrameLayout
+                android:id="@+id/drop_down_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/margin_64"
+                android:background="@color/colorPrimaryDark">
+                <!--inside the drop down container to manage as a separate layer-->
+
+                <FrameLayout
+                    android:id="@+id/frame_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/app_background_color"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:background="@drawable/header_shadow"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/go_live_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="37dp"
+            android:elevation="10dp"
+            android:src="@drawable/ic_go_live_img" />
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_30"
+            android:layout_marginRight="@dimen/margin_30"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:background="@drawable/bottom_bar_rounded_corner_bg"
+            android:elevation="4dp"
+            android:theme="@style/Widget.BottomNavigationView"
+            tool:itemBackground="@android:color/transparent"
+            tool:itemIconTint="@drawable/navigation_item_color"
+            tool:itemTextColor="@drawable/navigation_item_color"
+            tool:labelVisibilityMode="unlabeled"
+            tool:menu="@menu/navigation" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_130"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_bar_gradient_bg" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/noDataTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No Data Available!"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="streamer"
+            type="com.rheotv.android.data.network.models.postlisting.responses.SearchItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/streamer_thumbnail_image_view"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:elevation="6dp"
+            android:visibility="visible"
+            app:civ_border="true"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/avd_avatar" />
+
+        <TextView
+            android:id="@+id/streamer_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{streamer.title}"
+            android:paddingStart="@dimen/margin_4"
+            android:paddingEnd="@dimen/margin_4"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/follower_count_text_view"
+            app:layout_constraintEnd_toStartOf="@id/follow_button"
+            app:layout_constraintStart_toEndOf="@id/streamer_thumbnail_image_view"
+            app:layout_constraintTop_toTopOf="@id/streamer_thumbnail_image_view"
+            tools:text="Dreamleague" />
+
+        <TextView
+            android:id="@+id/follower_count_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="@dimen/margin_4"
+            android:paddingEnd="@dimen/margin_4"
+            android:text="@{streamer.subtitle}"
+            android:textColor="#aeaeb2"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/streamer_title_text_view"
+            app:layout_constraintStart_toStartOf="@id/streamer_title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/streamer_title_text_view"
+            tools:text="144K Follower" />
+
+        <TextView
+            android:id="@+id/follow_button"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingLeft="@dimen/margin_12"
+            android:paddingTop="@dimen/margin_4"
+            android:paddingRight="@dimen/margin_12"
+            android:paddingBottom="@dimen/margin_4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/streamer_thumbnail_image_view"
+            tools:text="@string/follow"
+            tools:background="@drawable/follow_normal_bg"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4">
+
+        <TextView
+            android:id="@+id/achievement_type_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="DaysDaysDaysDaysDaysDaysDaysDaysDaysDays" />
+
+        <ProgressBar
+            android:id="@+id/streak_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_4"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="@dimen/margin_8"
+            android:progressDrawable="@drawable/linear_progress"
+            app:layout_constraintEnd_toStartOf="@+id/progress_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/achievement_type_text_view"
+            tools:progress="45" />
+
+        <TextView
+            android:id="@+id/progress_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            tools:text="0/100"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="@dimen/text_13"
+            android:textColor="@color/white_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/streak_progress_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/streak_progress_bar"
+            app:layout_constraintTop_toTopOf="@+id/streak_progress_bar" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/progress_barrier"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="streak_progress_bar,progress_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="#8e8e93"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_barrier"
+            tools:text="Stream for 8 valid days out of 15 days." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

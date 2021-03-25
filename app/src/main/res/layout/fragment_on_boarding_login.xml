@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/top_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0.91"
+            android:src="@drawable/ic_bg"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_40"
+            android:layout_marginEnd="@dimen/margin_40"
+            android:fontFamily="sans-serif"
+            android:text="5K+ Gamers are Watching Live Now"
+            android:textColor="#f5ffd0"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_image_view" />
+
+        <TextView
+            android:id="@+id/message_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_40"
+            android:layout_marginTop="@dimen/margin_18"
+            android:layout_marginEnd="@dimen/margin_40"
+            android:fontFamily="sans-serif"
+            android:text="Login to Watch &amp; Chat with them"
+            android:textColor="#fbfbfb"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_text_view" />
+
+        <ImageView
+            android:id="@+id/background_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0.79"
+            android:scaleType="centerCrop"
+            android:src="@drawable/login_bg"
+            app:layout_constraintBottom_toBottomOf="@id/login_with_google_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/login_with_google_btn" />
+
+        <TextView
+            android:id="@+id/login_with_google_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_40"
+            android:layout_marginBottom="@dimen/margin_36"
+            android:background="@drawable/white_rounded_corner_r_20dp"
+            android:drawableStart="@drawable/ic_google_logo_18dp"
+            android:drawablePadding="@dimen/margin_12"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            android:paddingStart="@dimen/margin_14"
+            android:paddingTop="@dimen/margin_12"
+            android:paddingEnd="@dimen/margin_16"
+            android:paddingBottom="@dimen/margin_12"
+            android:text="Login with Google"
+            android:textColor="#8a000000"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toTopOf="@id/wave_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_text_view"
+            app:layout_constraintVertical_bias="1.0"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/wave_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_wave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_36"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="By creating an account I accept Terms &amp; Conditions"
+            android:textColor="#a8a8af"
+            android:textSize="10sp"
+            android:id="@+id/terms_and_condition_text_view"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

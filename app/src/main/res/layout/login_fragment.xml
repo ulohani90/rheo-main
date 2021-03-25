@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_back"
+    app:cardCornerRadius="@dimen/margin_8"
+    app:cardElevation="@dimen/margin_8">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup_back">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#8C000000" />
+
+        <TextView
+            android:id="@+id/chat_live_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/cancelButton"
+            android:padding="@dimen/margin_10"
+            android:text="Chat and Live Stream NOW!"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_24" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:paddingEnd="@dimen/margin_12"
+            android:paddingBottom="@dimen/margin_12">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/g_login_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#4d4d4d"
+                app:cardCornerRadius="@dimen/margin_6"
+                app:cardElevation="@dimen/margin_6">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#4d4d4d"
+                    android:padding="@dimen/margin_6"
+                    android:paddingStart="@dimen/margin_12">
+
+                    <ImageView
+                        android:id="@+id/gIcon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:background="@drawable/g_login" />
+
+                    <TextView
+                        android:id="@+id/buttonId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/margin_6"
+                        android:text="Login with Google"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_18" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/loadingSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="2dp"
+                android:indeterminateDrawable="@drawable/progress_dark"
+
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/logging_wating_message"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/new_reward_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/new_reward_message"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_22"
+            android:visibility="gone" />
+
+
+        <RelativeLayout
+            android:id="@+id/userNameLLContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/margin_16"
+            android:layout_marginRight="@dimen/margin_24"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/margin_16"
+                android:hint="@string/name_hint"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white_dull"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:id="@+id/signup_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nameEditText"
+                android:layout_marginBottom="8dp"
+                android:text="@string/signup_screen_message"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/mobileNumberButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:background="@drawable/card_view_lighter_bck"
+                android:gravity="center"
+                android:text="@string/all_good"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/loginLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/displayIV"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/profile_default"
+                android:padding="8dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/loginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/displayIV"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="@string/login_screen_message"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <RelativeLayout
+                android:id="@+id/contentSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/loginText"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <!--<RelativeLayout-->
+                <!--android:id="@+id/userNameLLContainer"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
+
+                <!--<EditText-->
+                <!--android:id="@+id/nameEditText"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="@string/name_hint"-->
+                <!--android:inputType="text"-->
+                <!--android:lines="1"-->
+                <!--android:maxLines="1"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="@dimen/text_16" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/signup_message"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/nameEditText"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:text="@string/signup_screen_message"-->
+                <!--android:textColor="@color/red"-->
+                <!--android:textSize="12sp"-->
+                <!--android:visibility="visible" />-->
+
+                <!--<Button-->
+                <!--android:id="@+id/mobileNumberButton"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:background="@drawable/button_rheotv_dark_round"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/all_good"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="@dimen/text_18"-->
+                <!--android:textStyle="bold"-->
+                <!--android:visibility="visible" />-->
+
+                <!--</RelativeLayout>-->
+
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/loadingSection"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
+
+                <!--<ProgressBar-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:elevation="2dp"-->
+                <!--android:indeterminateDrawable="@drawable/progress_dark"-->
+
+                <!--/>-->
+
+
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_margin="16dp"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:text="@string/logging_wating_message"-->
+                <!--android:textSize="12sp" />-->
+
+                <!--</LinearLayout>-->
+
+
+                <RelativeLayout
+                    android:id="@+id/googleSignInRL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="@dimen/margin_16">
+
+                    <com.google.android.gms.common.SignInButton
+                        android:id="@+id/google_sign_in_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/cancelButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/margin_12"
+            android:src="@drawable/ic_close_white" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="profilePicUrl"
+            type="String" />
+
+        <variable
+            name="winner"
+            type="Boolean" />
+
+        <variable
+            name="username"
+            type="String" />
+
+        <variable
+            name="gameUserName"
+            type="String" />
+
+        <variable
+            name="isFollowed"
+            type="Boolean" />
+
+        <variable
+            name="followerCount"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_constraintGuide_percent="0.65" />
+
+        <View
+            android:id="@+id/rank_indicator_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_leaderboard"
+            app:layout_constraintBottom_toBottomOf="@id/profile_image_view"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="@id/profile_image_view"
+            app:layout_constraintTop_toTopOf="@id/profile_image_view" />
+
+        <ImageView
+            android:id="@+id/profile_image_view"
+            android:layout_width="@dimen/size_48"
+            android:layout_height="@dimen/size_48"
+            android:layout_marginStart="@dimen/margin_4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundImageUri="@{profilePicUrl}"
+            app:textDrawable="@{username}"
+            tools:src="@tools:sample/avatars" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/username_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@{gameUserName}"
+            android:textColor="#fbfbfb"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/follower_count_text_view"
+            app:layout_constraintEnd_toStartOf="@id/follow_button"
+            app:layout_constraintStart_toEndOf="@id/profile_image_view"
+            app:layout_constraintTop_toTopOf="@id/profile_image_view"
+            tools:text="@tools:sample/first_names"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/follower_count_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{followerCount!=null ? followerCount : ``}"
+            android:textColor="#D5D5D8"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            android:visibility="@{followerCount == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/profile_image_view"
+            app:layout_constraintEnd_toEndOf="@id/username_text_view"
+            app:layout_constraintStart_toStartOf="@id/username_text_view"
+            app:layout_constraintTop_toBottomOf="@id/username_text_view"
+            tools:text="12K followers"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/follow_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_6"
+            android:backgroundTint="@color/transparent"
+            android:enabled="@{!isFollowed}"
+            android:padding="@dimen/margin_6"
+            android:src="@{isFollowed ? @drawable/ic_added_user : @drawable/ic_add_user,default=@drawable/ic_add_user }"
+            android:tint="@{isFollowed ? @color/color_text_secondary : @color/white_text_color,default=@color/white_text_color }"
+            app:layout_constraintBottom_toBottomOf="@id/profile_image_view"
+            app:layout_constraintEnd_toStartOf="@id/winner_text_view"
+            app:layout_constraintStart_toEndOf="@id/username_text_view"
+            app:layout_constraintTop_toTopOf="@id/profile_image_view"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/winner_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:background="@drawable/green_rounded_corner_bg"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingStart="@dimen/margin_12"
+            android:paddingEnd="@dimen/margin_12"
+            android:text="Winner"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_12"
+            android:textStyle="normal"
+            android:visibility="@{winner ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/profile_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/follow_button"
+            app:layout_constraintTop_toTopOf="@id/profile_image_view"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_14"
+            android:visibility="gone"
+            app:backgroundTint="@color/color_progress_background"
+            app:cornerRadius="@dimen/size_15"
+            app:layout_constraintBottom_toBottomOf="@+id/winner_button"
+            app:layout_constraintEnd_toStartOf="@+id/winner_button"
+            app:layout_constraintTop_toTopOf="@+id/winner_button"
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/winner_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:text="@string/winner"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:backgroundTint="@color/submit_green_color"
+            app:cornerRadius="@dimen/size_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image_view"
+            tools:text="@string/winner"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

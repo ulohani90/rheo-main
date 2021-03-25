@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="maxAmount"
+            type="Float" />
+
+        <variable
+            name="loaderVisibility"
+            type="androidx.databinding.ObservableField&lt;Boolean&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_sheet_backdrop"
+        tools:context=".ui.activities.tabcontainer.profile.wallet.WalletDetailsInputActivity">
+
+        <TextView
+            android:id="@+id/redeem_amount_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{`Total Redeem Amount = ₹ ` + (maxAmount &lt; 0? `0` : maxAmount)}"
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_15"
+            app:layout_constraintBottom_toTopOf="@+id/mobile_number_edit_text"
+            app:layout_constraintEnd_toEndOf="@+id/mobile_number_edit_text"
+            app:layout_constraintStart_toStartOf="@+id/mobile_number_edit_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/mobile_number_edit_text"
+            style="@style/EditTextStyle.Base"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_32"
+            android:fontFamily="sans-serif"
+            android:hint="Mobile number"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textColor="#fbfbfb"
+            android:textColorHint="#fbfbfb"
+            android:textSize="@dimen/text_15"
+            app:layout_constraintBottom_toTopOf="@+id/upi_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/redeem_amount_text_view" />
+
+        <EditText
+            android:id="@+id/upi_edit_text"
+            style="@style/EditTextStyle.Base"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_32"
+            android:fontFamily="sans-serif"
+            android:hint="UPI ID"
+            android:inputType="text"
+            android:textColor="#fbfbfb"
+            android:textColorHint="#fbfbfb"
+            android:textSize="@dimen/text_15"
+            app:layout_constraintBottom_toTopOf="@+id/submit_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mobile_number_edit_text"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit_button"
+            style="@style/BaseButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_36"
+            android:layout_marginTop="@dimen/margin_32"
+            android:backgroundTint="@color/follow_btn_normal_color"
+            android:fontFamily="sans-serif-medium"
+            android:text="Submit"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upi_edit_text"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <FrameLayout
+            android:id="@+id/loader"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/black_overlay"
+            android:visibility="@{loaderVisibility ? View.VISIBLE : View.GONE ,default = gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/color_accent"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

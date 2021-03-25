@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Asheesh Sharma on 1st January 2019.
+  ~  * Copyright (c) January 2019 . All rights reserved.
+  ~  * Last modified 20/7/18 1:23 AM
+  ~  */
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_feeds"
+        android:icon="@drawable/avd_home"
+        android:title="@string/bottom_nav_feed" />
+
+    <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/avd_search"
+        android:title="@string/bottom_nav_search">
+
+    </item>
+
+    <item
+        android:id="@+id/navigation_go_live"
+        android:icon="@null"
+        android:title="@string/bottom_nav_search"/>
+
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_clips"-->
+<!--        android:icon="@drawable/avd_clips"-->
+<!--        android:title="@string/clips" />-->
+
+    <item
+        android:id="@+id/navigation_community"
+        android:icon="@drawable/avd_community"
+        android:title="@string/community" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/avd_user"
+        android:title="@string/bottom_nav_profile" />
+
+</menu>

@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.rheotv.android.data.network.models.play.ResultsItem" />
+
+        <variable
+            name="requiredCoin"
+            type="String" />
+
+        <variable
+            name="gamerUserName"
+            type="String" />
+
+        <variable
+            name="gameName"
+            type="String" />
+
+        <variable
+            name="hasEnoughCoins"
+            type="Boolean" />
+
+        <variable
+            name="customRoomHeading"
+            type="Boolean" />
+
+        <variable
+            name="addCustomRoomDetailsClicked"
+            type="Boolean" />
+
+        <variable
+            name="roomId"
+            type="String" />
+
+        <variable
+            name="customRoomDetailsSaved"
+            type="Boolean" />
+
+        <variable
+            name="roomPassword"
+            type="String" />
+
+        <variable
+            name="customRoomRequestAccepted"
+            type="Boolean" />
+
+        <variable
+            name="showCustomRoomRequestAccess"
+            type="Boolean" />
+
+        <variable
+            name="isEditModeOn"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{customRoomHeading?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintCircleRadius="@dimen/margin_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/request_title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:lineSpacingExtra="6sp"
+                android:text='@{hasEnoughCoins ? (@string/enter_username_message).replace("game", gameName) : @string/not_enough_coins_message}'
+                android:textColor="@color/white_text_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@id/request_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Enter your PUBG Mobile username below and request to play with \nASHISH GAMER" />
+
+            <androidx.emoji.widget.EmojiEditText
+                android:id="@+id/emojiEditText"
+                style="@style/EditTextStyle.Base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:hint="@string/username"
+                android:inputType="text"
+                android:text="@{gamerUserName}"
+                android:textSize="@dimen/text_18"
+                app:layout_constraintEnd_toStartOf="@id/request_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/request_button"
+                tools:text="@string/username" />
+
+            <LinearLayout
+                android:id="@+id/request_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8"
+                android:background="@color/follow_btn_normal_color"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:paddingStart="@dimen/margin_4"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/emojiEditText"
+                app:layout_constraintTop_toBottomOf="@+id/request_title_text_view">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_4"
+                    android:paddingStart="@dimen/margin_4"
+                    android:text="@string/request_to_join"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_13" />
+
+                <ImageView
+                    android:id="@+id/coin_image_view"
+                    android:layout_width="@dimen/size_14"
+                    android:layout_height="@dimen/size_14"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_4"
+                    android:src="@drawable/avd_rheo_coin" />
+
+                <TextView
+                    android:id="@+id/coin_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:text="@{requiredCoin}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/reward_date_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/reward_type_text_view"
+                    tools:text="2" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{customRoomRequestAccepted?View.GONE:customRoomHeading?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/add_custom_room"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:background="@color/follow_btn_normal_color"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="6sp"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_12"
+                android:text='Add Custom Room Details'
+                android:textColor="@color/white_text_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="@{showCustomRoomRequestAccess?View.GONE:(customRoomDetailsSaved?View.GONE:addCustomRoomDetailsClicked?View.GONE:View.VISIBLE),default=visible}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/custom_room_details_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enter_custom_room_details"
+                android:textColor="@color/white_text_color"
+                android:visibility="@{showCustomRoomRequestAccess?View.GONE:(addCustomRoomDetailsClicked?View.VISIBLE:View.GONE),default=gone}"
+                app:layout_constraintBottom_toTopOf="@id/custom_room_details"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <LinearLayout
+                android:id="@+id/custom_room_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:orientation="horizontal"
+                android:visibility="@{addCustomRoomDetailsClicked?View.VISIBLE:View.GONE,default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/custom_room_details_header">
+
+                <androidx.emoji.widget.EmojiEditText
+                    android:id="@+id/custom_room_id"
+                    style="@style/EditTextStyle.Base"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:layout_weight="1"
+                    android:hint="@string/custom_room_id"
+                    android:inputType="text"
+                    android:text="@{roomId}"
+                    android:textSize="@dimen/text_18"
+                    app:layout_constraintEnd_toStartOf="@id/request_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/request_button"
+                    tools:text="@string/username" />
+
+                <androidx.emoji.widget.EmojiEditText
+                    android:id="@+id/custom_room_password"
+                    style="@style/EditTextStyle.Base"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:layout_weight="1"
+                    android:hint="@string/custom_room_pass"
+                    android:inputType="textPassword"
+                    android:text="@{roomPassword}"
+                    android:textSize="@dimen/text_18"
+                    app:layout_constraintEnd_toStartOf="@id/request_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/request_button"
+                    tools:text="@string/username" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/custom_room_details">
+
+                <TextView
+                    android:id="@+id/cancel_custom_room_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:background="@color/player_grey"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="6sp"
+                    android:paddingLeft="@dimen/margin_12"
+                    android:paddingRight="@dimen/margin_12"
+                    android:text='Cancel'
+                    android:textColor="@color/white_text_color"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:visibility="@{isEditModeOn &amp;&amp; addCustomRoomDetailsClicked?View.VISIBLE:View.GONE,default=gone}"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/submit_custom_room_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@color/follow_btn_normal_color"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="6sp"
+                    android:paddingLeft="@dimen/margin_12"
+                    android:paddingRight="@dimen/margin_12"
+                    android:text='Submit'
+                    android:textColor="@color/white_text_color"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:visibility="@{addCustomRoomDetailsClicked?View.VISIBLE:View.GONE,default=gone}"
+                    tools:visibility="visible" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/custom_room_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/custom_room_details"
+                android:textColor="@color/white_text_color"
+                android:visibility="@{showCustomRoomRequestAccess?View.GONE:(customRoomDetailsSaved &amp;&amp; !addCustomRoomDetailsClicked?View.VISIBLE:View.GONE),default=gone}"
+                app:layout_constraintBottom_toTopOf="@id/custom_room_details"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/custom_room_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="@{showCustomRoomRequestAccess?View.GONE:(customRoomDetailsSaved &amp;&amp; !addCustomRoomDetailsClicked ?View.VISIBLE:View.GONE),default=gone}"
+                app:layout_constraintEnd_toEndOf="@id/custom_room_title"
+                app:layout_constraintStart_toStartOf="@id/custom_room_title"
+                app:layout_constraintTop_toBottomOf="@id/custom_room_title"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/room_id(roomId)}"
+                        android:textColor="@color/text_color_white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Password - *******"
+                        android:textColor="@color/text_color_white" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/edit_custom_room_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/follow_btn_normal_color"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="6sp"
+                    android:paddingLeft="@dimen/margin_12"
+                    android:paddingRight="@dimen/margin_12"
+                    android:text='Edit'
+                    android:textColor="@color/white_text_color"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/custom_room_details" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/add_another_custom_room"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/margin_16"
+                android:background="@drawable/blue_border_bg"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="6sp"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_12"
+                android:text='Add New Custom Room Details'
+                android:textColor="@color/follow_btn_normal_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="@{showCustomRoomRequestAccess?View.GONE:(customRoomDetailsSaved &amp;&amp; !addCustomRoomDetailsClicked ?View.VISIBLE:View.GONE),default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/custom_room_info"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/custom_room_info_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:visibility="@{showCustomRoomRequestAccess?View.VISIBLE:View.GONE,default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.emoji.widget.EmojiEditText
+                android:id="@+id/user_name_et"
+                style="@style/EditTextStyle.Base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:hint="@{@string/enter_game_username(gameName)}"
+                android:inputType="text"
+                android:textSize="@dimen/text_18"
+                android:visibility="@{showCustomRoomRequestAccess?View.VISIBLE:View.GONE,default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/custom_room_info_header"
+                tools:text="@string/username" />
+
+            <LinearLayout
+                android:id="@+id/custom_room_request_access_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/follow_btn_normal_color"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:paddingStart="@dimen/margin_4"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_8"
+                android:visibility="@{showCustomRoomRequestAccess?View.VISIBLE:View.GONE,default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_name_et"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_4"
+                    android:paddingStart="@dimen/margin_4"
+                    android:text='@{hasEnoughCoins?@string/request_access:@string/not_enough_coins}'
+                    android:textColor="@color/white"
+                    tools:text="Request access for" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:text="@{requiredCoin}"
+                    android:textColor="@color/white"
+                    android:textStyle="normal"
+                    android:visibility="@{hasEnoughCoins?View.VISIBLE:View.GONE}"
+                    tools:text="2" />
+
+                <ImageView
+                    android:layout_width="@dimen/size_14"
+                    android:layout_height="@dimen/size_14"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_4"
+                    android:src="@drawable/avd_rheo_coin"
+                    android:visibility="@{hasEnoughCoins?View.VISIBLE:View.GONE}" />
+            </LinearLayout>
+            <!--<LinearLayout
+                android:id="@+id/custom_room_request_access_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/follow_btn_normal_color"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:paddingStart="@dimen/margin_4"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_8"
+                android:visibility="@{showCustomRoomRequestAccess?View.VISIBLE:View.GONE,default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/custom_room_info_header"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_4"
+                    android:paddingStart="@dimen/margin_4"
+                    android:text='@{hasEnoughCoins?@string/request_access:@string/not_enough_coins}'
+                    android:textColor="@color/white"
+                    tools:text="Request access for" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:text="@{requiredCoin}"
+                    android:textColor="@color/white"
+                    android:textStyle="normal"
+                    android:visibility="@{hasEnoughCoins?View.VISIBLE:View.GONE}"
+                    tools:text="2" />
+
+                <ImageView
+                    android:layout_width="@dimen/size_14"
+                    android:layout_height="@dimen/size_14"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_4"
+                    android:src="@drawable/avd_rheo_coin"
+                    android:visibility="@{hasEnoughCoins?View.VISIBLE:View.GONE}" />
+            </LinearLayout>-->
+
+            <!--<TextView
+                android:id="@+id/custom_room_request_access_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/follow_btn_normal_color"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="6sp"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_12"
+                android:text='@{hasEnoughCoins?@string/not_enough_coins:@string/request_access(requiredCoin)}'
+                android:textColor="@color/white_text_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="@{showCustomRoomRequestAccess?View.VISIBLE:View.GONE,default=gone}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/custom_room_info_header" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{customRoomRequestAccepted?View.VISIBLE:View.GONE,default=gone}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/request_accepted_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/custom_room_entry_success_text"
+                android:textColor="@color/submit_green_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/room_id_text_view_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/request_accepted_header">
+
+                <TextView
+                    android:id="@+id/room_id_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:text="@{@string/room_id(roomId)}"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/copy_room_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/copy_room_id"
+                    tools:text="Room Id: 1234" />
+
+                <ImageView
+                    android:id="@+id/copy_room_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_8"
+                    android:src="@drawable/avd_copy"
+                    app:layout_constraintStart_toEndOf="@id/room_id_text_view" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/room_pass_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/room_id_text_view_layout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:text="@{@string/room_pass(roomPassword)}"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/copy_room_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_8"
+                    android:src="@drawable/avd_copy"
+                    app:layout_constraintStart_toEndOf="@id/room_id_text_view" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

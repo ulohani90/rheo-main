@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_add_moderator"
+        android:icon="@drawable/avd_add_moderator"
+        android:orderInCategory="100"
+        android:title="@string/add_moderators"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_contact_us"
+        android:icon="@drawable/avd_chat_alert_outline"
+        android:orderInCategory="100"
+        android:title="@string/contact_us"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_share_on_facebook"
+        android:icon="@drawable/ic_facebook"
+        android:orderInCategory="100"
+        android:title="@string/action_share_facebook_text"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_share_on_instagram"
+        android:icon="@drawable/ic_instagram_v2"
+        android:orderInCategory="100"
+        android:title="@string/action_share_instagram_text"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_share_on_youtube"
+        android:icon="@drawable/ic_youtube"
+        android:orderInCategory="100"
+        android:title="@string/action_share_youtube_text"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/avd_logout"
+        android:orderInCategory="100"
+        android:title="@string/logout"
+        app:showAsAction="ifRoom" />
+
+</menu>

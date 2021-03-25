@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chat_head_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shadow">
+
+    <FrameLayout
+        android:id="@+id/media_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/player_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/close_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:layout_margin="@dimen/margin_4"
+            android:background="@drawable/rounded_semi_transparent_bg"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_close_white_24dp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/maximize_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/margin_4"
+            android:background="@drawable/rounded_semi_transparent_bg"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_zoom_out_map_white_24dp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/volume_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="@dimen/margin_4"
+            android:background="@drawable/rounded_semi_transparent_bg"
+            android:padding="4dp"
+            android:src="@drawable/volume_state_selector"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:indeterminateTint="@color/color_accent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/new_reward_unlocked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/margin_30"
+            android:layout_marginRight="@dimen/margin_30"
+            android:background="#CC32425C"
+            android:drawablePadding="@dimen/margin_4"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_4"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_10"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <!--<android.support.v7.widget.RecyclerView
+        android:id="@+id/userChatRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/app_logo"
+        android:background="@color/colorPrimaryDark"
+        android:layoutAnimation="@anim/chat_item_animation"
+        android:paddingTop="@dimen/margin_4"
+        android:scrollbars="none"
+        android:visibility="gone"
+        tools:listitem="@layout/chat_item_v2" />-->
+
+</RelativeLayout>

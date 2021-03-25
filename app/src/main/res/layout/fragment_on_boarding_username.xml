@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/top_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0.91"
+            android:src="@drawable/ic_bg"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_40"
+            android:layout_marginEnd="@dimen/margin_40"
+            android:fontFamily="sans-serif"
+            android:text="Gamers on Rheo will know you by this name"
+            android:textColor="#d0e9ff"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_image_view" />
+
+        <TextView
+            android:id="@+id/message_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_40"
+            android:layout_marginTop="@dimen/margin_18"
+            android:layout_marginEnd="@dimen/margin_40"
+            android:fontFamily="sans-serif"
+            android:text="Pick a cool username 😎"
+            android:textColor="#fbfbfb"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_text_view" />
+
+        <ImageView
+            android:id="@+id/background_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha="0.79"
+            android:scaleType="centerCrop"
+            android:src="@drawable/login_bg"
+            app:layout_constraintBottom_toBottomOf="@id/username_background_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/username_background_view" />
+
+        <TextView
+            android:id="@+id/username_error_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:fontFamily="sans-serif"
+            android:text="@string/username_is_taken_text"
+            android:textColor="#ffbbb8"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/username_background_view"
+            app:layout_constraintEnd_toEndOf="@id/username_background_view"
+            app:layout_constraintStart_toStartOf="@id/username_background_view" />
+
+        <View
+            android:id="@+id/username_background_view"
+            android:layout_width="196dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="@dimen/margin_36"
+            android:background="@drawable/white_rounded_corner_r_20dp"
+            app:layout_constraintBottom_toTopOf="@id/wave_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_text_view"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/username_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="username_edit_text,username_state_image_view" />
+
+        <androidx.emoji.widget.EmojiEditText
+            android:id="@+id/username_edit_text"
+            style="@style/EditTextStyle.Base"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:background="@null"
+            android:hint="@string/enter_username_hint"
+            android:imeOptions="actionGo"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingBottom="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_2"
+            android:textColor="#8a000000"
+            app:layout_constraintBottom_toBottomOf="@id/username_background_view"
+            app:layout_constraintEnd_toStartOf="@id/username_state_image_view"
+            app:layout_constraintStart_toStartOf="@id/username_background_view"
+            app:layout_constraintTop_toTopOf="@id/username_background_view" />
+
+        <ImageView
+            android:id="@+id/username_state_image_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:alpha="0.3"
+            android:src="@drawable/avd_correct_grey"
+            app:flow_lastVerticalBias="1.0"
+            app:layout_constraintBottom_toBottomOf="@id/username_background_view"
+            app:layout_constraintEnd_toEndOf="@id/username_background_view"
+            app:layout_constraintTop_toTopOf="@id/username_background_view"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/wave_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_wave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

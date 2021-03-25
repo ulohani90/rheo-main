@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/player_controls_gradient_bg"
+    android:elevation="@dimen/margin_12"
+    android:padding="@dimen/margin_16">
+
+    <ImageView
+        android:id="@+id/minimize_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_minimize_player_white_24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/more_options_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_more_vert_white_32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/share_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_share_white_24dp"
+        app:layout_constraintEnd_toStartOf="@id/more_options_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/settings_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_settings_24dp"
+        app:layout_constraintEnd_toStartOf="@id/share_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/exo_rew"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_64"
+            android:src="@drawable/ic_rewind_white_24dp" />
+
+        <ImageView
+            android:id="@+id/exo_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_button_white_24dp" />
+
+        <ImageView
+            android:id="@+id/exo_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_pause_button_white_24dp" />
+
+        <ImageView
+            android:id="@+id/exo_ffwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_64"
+            android:src="@drawable/ic_fast_forward_white_24dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/streamer_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.rheotv.android.ui.customViews.CircularImageView
+            android:id="@+id/user_profile_image"
+            android:layout_width="@dimen/margin_36"
+            android:layout_height="@dimen/margin_36"
+            android:layout_marginRight="@dimen/margin_12"
+            android:visibility="visible"
+            app:civ_border_width="0dp"
+            app:civ_shadow="false"
+            app:civ_shadow_gravity="center"
+            app:civ_shadow_radius="0"
+            tools:background="@drawable/avd_avatar" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.emoji.widget.EmojiTextView
+                android:id="@+id/user_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_6"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_14"
+                tools:text="Shivam" />
+
+            <androidx.emoji.widget.EmojiTextView
+                android:id="@+id/user_followers_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:includeFontPadding="false"
+                android:textColor="@color/light_grey_text_color"
+                android:textSize="@dimen/text_13"
+                tools:text="23K Followers" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/follow_btn"
+            style="@style/FollowButtonStyle"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white_text_color" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/rotate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_30"
+        android:src="@drawable/ic_rotate_player_white_24dp"
+        app:layout_constraintBottom_toTopOf="@id/streamer_info_layout"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/chat_state_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_30"
+        android:src="@drawable/ic_show_chat_white_24dp"
+        app:layout_constraintBottom_toTopOf="@id/streamer_info_layout"
+        app:layout_constraintEnd_toStartOf="@id/rotate_btn" />
+
+    <LinearLayout
+        android:id="@+id/live_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_12"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/rotate_btn"
+        app:layout_constraintEnd_toStartOf="@id/chat_state_btn"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/margin_10"
+            android:layout_height="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:src="@drawable/ic_live_circle_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Live"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/live_viewers_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_weight="1"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            tools:text="4.5k Viewers" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recorded_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_12"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/rotate_btn"
+        app:layout_constraintEnd_toStartOf="@id/chat_state_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rotate_btn">
+
+        <TextView
+            android:id="@id/exo_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            tools:text="11:00" />
+
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+            android:id="@id/exo_progress"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_16"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_weight="1"
+            app:played_color="@color/bottom_bar_selected_item_color"
+            app:scrubber_enabled_size="@dimen/margin_16"
+            app:unplayed_color="@color/player_unplayed_color" />
+
+        <TextView
+            android:id="@id/exo_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            tools:text="11:00" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/go_to_live_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_12"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:background="@drawable/go_to_live_bg"
+        android:padding="@dimen/margin_6"
+        android:text="Go to live"
+        android:textAllCaps="true"
+        android:textColor="@color/white_text_color"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/rotate_btn"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/total_views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_12"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:textColor="@color/white_text_color"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintBottom_toTopOf="@id/recorded_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="2.4K views" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

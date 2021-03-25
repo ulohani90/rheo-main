@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.player.activity.newPlayer.StreamPlayerFragmentV2">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rheotv.android.utils.CommonUtils" />
+
+        <import type="android.content.res.Configuration" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.player.activity.newPlayer.StreamPlayerViewModelV2" />
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/root_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:id="@+id/backdrop_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:blurFactor="@{5}"
+            app:blurImageUri="@{viewModel.postObject.thumbnail}" />
+
+        <View
+            android:id="@+id/slide_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99050505" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_player_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.035" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_player_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.96" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.98" />
+
+            <ImageView
+                android:id="@+id/game_tag_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/margin_8"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toBottomOf="@id/game_name_text_view"
+                app:layout_constraintEnd_toStartOf="@id/stream_title_text_view"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_player_start"
+                app:layout_constraintTop_toTopOf="@id/stream_title_text_view"
+                app:srcCompat="@drawable/ic_sidebar"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/stream_title_text_view"
+                style="@style/ShadowPrimaryTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:background="?selectableItemBackgroundBorderless"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:text="@{viewModel.postObject.title}"
+                android:textSize="17sp"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toTopOf="@id/stream_description_text_view"
+                app:layout_constraintEnd_toStartOf="@id/total_coin_image_view"
+                app:layout_constraintStart_toEndOf="@id/game_tag_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Finishing fortnite 2" />
+
+            <TextView
+                android:id="@+id/stream_description_text_view"
+                style="@style/ShadowSecondaryTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:text="@{viewModel.currentPost.description}"
+                android:textSize="13sp"
+                android:visibility="@{viewModel.currentPost.description != null ? View.VISIBLE : View.GONE, default=gone}"
+                app:layout_constraintBottom_toTopOf="@id/game_name_text_view"
+                app:layout_constraintEnd_toEndOf="@id/stream_title_text_view"
+                app:layout_constraintStart_toStartOf="@id/stream_title_text_view"
+                app:layout_constraintTop_toBottomOf="@id/stream_title_text_view"
+                tools:text="Fortnite is proud to present you with an all new tournament" />
+
+            <TextView
+                android:id="@+id/game_name_text_view"
+                style="@style/GameTagStyle"
+                android:layout_marginTop="@dimen/margin_4"
+                android:includeFontPadding="false"
+                android:text="@{viewModel.postObject.game.name}"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toTopOf="@id/video_view"
+                app:layout_constraintEnd_toStartOf="@id/stream_duration_text_View"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/stream_title_text_view"
+                app:layout_constraintTop_toBottomOf="@id/stream_description_text_view"
+                tools:text="Angry birds" />
+
+            <Space
+                android:id="@+id/game_name_space"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toTopOf="@id/video_view"
+                app:layout_constraintTop_toBottomOf="@id/game_name_text_view"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/stream_duration_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_10"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.currentPost.streamingDuration}"
+                android:textColor="#aeaeb2"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toBottomOf="@id/game_name_text_view"
+                app:layout_constraintStart_toEndOf="@id/game_name_text_view"
+                app:layout_constraintTop_toTopOf="@id/game_name_text_view"
+                tools:text="Since 1h 10m" />
+
+            <ImageView
+                android:id="@+id/leader_board_button"
+                android:layout_width="@dimen/size_26"
+                android:layout_height="@dimen/size_26"
+                android:layout_gravity="center"
+                android:src="@drawable/avd_leaderboard"
+                android:visibility="@{!viewModel.iconVisibility &amp;&amp; viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toBottomOf="@id/game_name_text_view"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_player_end"
+                app:layout_constraintTop_toTopOf="@id/stream_title_text_view"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/total_coin_count_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_6"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textColor="#fbfbfb"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:visibility="@{!viewModel.iconVisibility &amp;&amp; viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toBottomOf="@id/total_coin_image_view"
+                app:layout_constraintEnd_toStartOf="@id/leader_board_button"
+                app:layout_constraintTop_toTopOf="@id/total_coin_image_view"
+                tools:text="5000" />
+
+            <ImageView
+                android:id="@+id/total_coin_image_view"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:visibility="@{!viewModel.iconVisibility &amp;&amp; viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toBottomOf="@id/leader_board_button"
+                app:layout_constraintEnd_toStartOf="@id/total_coin_count_text_view"
+                app:layout_constraintTop_toTopOf="@id/leader_board_button"
+                app:srcCompat="@drawable/avd_rheo_coin" />
+
+            <View
+                android:id="@+id/coin_clickable_area"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toBottomOf="@id/total_coin_image_view"
+                app:layout_constraintEnd_toEndOf="@id/total_coin_count_text_view"
+                app:layout_constraintStart_toStartOf="@id/total_coin_image_view"
+                app:layout_constraintTop_toTopOf="@id/total_coin_image_view" />
+
+            <com.rheotv.android.ui.customViews.streamPlayer.StreamTapPlayerView
+                android:id="@+id/video_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="false"
+                android:background="@color/app_background_color"
+                android:cropToPadding="false"
+                android:visibility="visible"
+                app:auto_show="false"
+                app:controller_layout_id="@layout/layout_exo_player_controller"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/game_name_space"
+                app:layout_constraintVertical_bias="0"
+                app:resize_mode="fill" />
+
+            <com.github.vkay94.dtpv.youtube.YouTubeOverlay
+                android:id="@+id/youtube_double_tap"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/dtp_overlay_dim"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/video_view"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/video_view"
+                app:yt_playerView="@id/video_view"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/thumbnail_image_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerCrop"
+                app:bg_color="@{`#000000`}"
+                app:gameName="@{viewModel.currentPost.game}"
+                app:imageUrl="@{viewModel.postObject.thumbnail}"
+                app:layout_constraintBottom_toBottomOf="@id/video_view"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/video_view"
+                tools:background="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/live_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:background="@drawable/button_transparent_white_border"
+                android:fontFamily="sans-serif"
+                android:paddingStart="@dimen/margin_4"
+                android:paddingEnd="@dimen/margin_4"
+                android:text="@string/live"
+                android:textAllCaps="true"
+                android:textColor="@color/white_text_color"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="@{viewModel.live &amp;&amp; viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toStartOf="@id/watching_count_text_view"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_player_start"
+                app:layout_constraintTop_toTopOf="@id/video_view" />
+
+            <TextView
+                android:id="@+id/watching_count_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_8"
+                android:background="@drawable/interest_background"
+                android:drawableStart="@drawable/avd_eye"
+                android:drawablePadding="@dimen/margin_6"
+                android:fontFamily="sans-serif"
+                android:paddingStart="@dimen/margin_8"
+                android:paddingTop="@dimen/margin_2"
+                android:paddingEnd="@dimen/margin_8"
+                android:paddingBottom="@dimen/margin_2"
+                android:text="@{viewModel.viewCount}"
+                android:textColor="@color/white_text_color"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toEndOf="@id/live_text_view"
+                app:layout_constraintTop_toTopOf="@id/video_view"
+                tools:text="29 Watching" />
+
+            <ImageView
+                android:id="@+id/settings_icon_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/margin_8"
+                android:src="@drawable/ic_settings_24dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/video_view" />
+
+            <ImageView
+                android:id="@+id/flag_icon_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/margin_8"
+                android:src="@drawable/ic_flag_white_24dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/settings_icon_button"
+                app:layout_constraintTop_toTopOf="@+id/video_view" />
+
+            <!--    loadIosGIF attribute mein dhokha hai.. dekh ke use karna....        <-->
+            <ImageView
+                android:id="@+id/progress_bar"
+                android:layout_width="@dimen/size_32"
+                android:layout_height="@dimen/size_32"
+                app:layout_constraintBottom_toBottomOf="@id/video_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/video_view"
+                app:loadIosGIF="@{@drawable/ios_loader}" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/center_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <View
+                android:id="@+id/chat_window_background_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/message_container"
+                app:layout_constraintEnd_toStartOf="@id/center_guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/chat_container" />
+
+            <com.bosphere.fadingedgelayout.FadingEdgeLayout
+                android:id="@+id/chat_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fadingEdgeLength="32dp"
+                android:requiresFadingEdge="vertical"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT || (!viewModel.isControlVisible &amp;&amp; viewModel.isChatBoxLandVisible) ? View.VISIBLE : View.GONE,default=visible}"
+                app:fel_edge="top"
+                app:fel_size_top="48dp"
+                app:layout_constraintBottom_toTopOf="@id/suggestion_container"
+                app:layout_constraintEnd_toStartOf="@id/barrier_action_buttons"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/video_view">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:descendantFocusability="afterDescendants"
+                    android:focusable="true"
+                    android:layoutAnimation="@anim/chat_item_animation"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingStart="@dimen/margin_6"
+                    android:paddingEnd="@dimen/margin_6"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="false"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/chat_item_v2" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/unread_button"
+                    style="@style/BaseButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin_36"
+                    android:layout_gravity="bottom|center"
+                    android:layout_margin="@dimen/margin_8"
+                    android:backgroundTint="@color/color_accent"
+                    android:fontFamily="sans-serif-medium"
+                    android:onClick="@{(v) -> recyclerView.smoothScrollToPosition(0)}"
+                    android:text='@{(viewModel.unreadChatCount > 99 ? "99+" : viewModel.unreadChatCount+"") + " " + (viewModel.unreadChatCount > 1 ? @string/comments : @string/comment)}'
+                    android:textSize="@dimen/text_12"
+                    android:visibility="@{viewModel.unreadChatCount > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                    tools:text="10 Comment" />
+
+            </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+            <com.bosphere.fadingedgelayout.FadingEdgeLayout
+                android:id="@+id/suggestion_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:fadingEdgeLength="32dp"
+                android:requiresFadingEdge="vertical"
+                android:visibility="@{ viewModel.askToComment &amp;&amp; (viewModel.orientation == Configuration.ORIENTATION_PORTRAIT || (!viewModel.isControlVisible &amp;&amp; viewModel.isChatBoxLandVisible)) ? View.VISIBLE : View.GONE,default=gone}"
+                app:fel_edge="right"
+                app:fel_size_right="32dp"
+                app:layout_constraintBottom_toTopOf="@id/message_container"
+                app:layout_constraintEnd_toStartOf="@id/barrier_action_buttons"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chat_container"
+                tools:visibility="visible">
+
+                <HorizontalScrollView
+                    android:id="@+id/suggestion_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/tag_chip_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/margin_12"
+                        android:paddingEnd="0dp"
+                        app:chipIconEnabled="true"
+                        app:chipSpacing="@dimen/margin_4"
+                        app:chipSpacingHorizontal="@dimen/margin_12"
+                        app:chipSpacingVertical="@dimen/margin_4"
+                        app:singleLine="true"
+                        app:singleSelection="false">
+
+                    </com.google.android.material.chip.ChipGroup>
+
+                </HorizontalScrollView>
+
+            </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+            <LinearLayout
+                android:id="@+id/git_card_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/margin_4"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_player_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_player_start"
+                app:layout_constraintTop_toTopOf="@id/chat_container"
+                tools:visibility="gone">
+
+                <include
+                    android:id="@+id/greet_pinned"
+                    layout="@layout/greet_pinned_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:postGift="@{viewModel.postGift}" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/pin_comment"
+                layout="@layout/layout_pinned_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="@{viewModel.pinnedChat != null &amp;&amp; viewModel.orientation == Configuration.ORIENTATION_PORTRAIT ? View.VISIBLE : View.GONE}"
+                app:chatItem="@{viewModel.pinnedChat}"
+                app:isPinned="@{true}"
+                app:layout_constraintEnd_toEndOf="@id/chat_container"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_player_start"
+                app:layout_constraintTop_toTopOf="@id/chat_container"
+                app:userColor="@{viewModel.pinneUserColor}"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/message_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:background="@drawable/background_border_solid_grey"
+                android:backgroundTint="#CC32425C"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_PORTRAIT || (!viewModel.isControlVisible &amp;&amp; viewModel.isChatBoxLandVisible) ? View.VISIBLE : View.GONE,default=visible}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/action_button_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/suggestion_container"
+                app:layout_constraintVertical_bias="1">
+
+                <androidx.emoji.widget.EmojiTextView
+                    android:id="@+id/message_edit_text"
+                    style="@style/EditTextStyle.Base"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin_8"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center|start"
+                    android:hint="@{@string/say_hi + ` ` + viewModel.authorUsername()}"
+                    android:imeOptions="actionSend"
+                    android:maxLines="1"
+                    android:padding="@dimen/margin_4"
+                    android:text="@={viewModel.enterComment}"
+                    android:textColorHint="@color/color_edit_text_hint" />
+
+                <ImageButton
+                    android:id="@+id/send_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:onClick="@{(v) -> viewModel.sendChat(v)}"
+                    android:padding="@dimen/margin_6"
+                    android:src="@drawable/ic_send_white_24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/message_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/message_container" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_action_buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="action_button_view" />
+
+            <!--            <androidx.constraintlayout.widget.Group-->
+            <!--                android:id="@+id/group_action_buttons"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:visibility="@{viewModel.isChatBoxVisible ? View.INVISIBLE : View.VISIBLE}"-->
+            <!--                app:constraint_referenced_ids="author_detail_view,gift_button_portrait,heart_button,heart_count_view,share_button,coin_image_view,author_avatar_image,author_name_text,follower_count_text" />-->
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="trophy_image_view,score_text_view_land"
+                tools:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/trophy_image_view"
+                android:layout_width="27dp"
+                android:layout_height="24dp"
+                android:background="@drawable/avd_trophy"
+                app:layout_constraintBottom_toTopOf="@id/score_text_view_land"
+                app:layout_constraintEnd_toEndOf="@id/score_text_view_land"
+                app:layout_constraintStart_toStartOf="@id/score_text_view_land"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/score_text_view_land"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_horizontal"
+                android:text="Scoreboard"
+                android:textColor="#fbfbfb"
+                android:textSize="@dimen/text_10"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/video_view"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_player_end"
+                app:layout_constraintVertical_bias="0"
+                tools:visibility="gone" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/action_button_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.orientation == Configuration.ORIENTATION_LANDSCAPE? View.INVISIBLE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_vertical_bottom"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_player_end"
+                app:layout_constraintStart_toStartOf="@id/barrier_action_buttons"
+                app:layout_constraintTop_toBottomOf="@id/video_view"
+                app:layout_constraintVertical_bias="1.0">
+
+                <FrameLayout
+                    android:id="@+id/heart_container"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/heart_button"
+                    app:layout_constraintEnd_toEndOf="@id/heart_button"
+                    app:layout_constraintStart_toStartOf="@id/heart_button"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/author_avatar_image"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:padding="@dimen/margin_1"
+                    app:layout_constraintBottom_toTopOf="@id/author_name_text"
+                    app:layout_constraintEnd_toEndOf="@id/author_name_text"
+                    app:layout_constraintStart_toStartOf="@id/author_name_text"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:riv_border_color="@color/white"
+                    app:riv_border_width="@dimen/margin_1"
+                    app:riv_corner_radius="24dp"
+                    app:roundImageUri="@{viewModel.postObject.author.profilePic}"
+                    app:textDrawable="@{viewModel.postObject.author.user.username}"
+                    tools:src="@drawable/avd_avatar" />
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="@dimen/margin_32"
+                    android:layout_marginBottom="@dimen/margin_30"
+                    android:src="@drawable/avd_correct_grey"
+                    android:visibility="@{viewModel.onFollowingUpdate ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/author_avatar_image"
+                    app:layout_constraintEnd_toEndOf="@id/author_avatar_image"
+                    app:layout_constraintStart_toStartOf="@id/author_avatar_image"
+                    app:layout_constraintTop_toTopOf="@id/author_avatar_image" />
+
+                <View
+                    android:id="@+id/author_detail_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/author_avatar_image"
+                    app:layout_constraintEnd_toEndOf="@id/follower_count_text"
+                    app:layout_constraintStart_toStartOf="@id/follower_count_text"
+                    app:layout_constraintTop_toTopOf="@id/author_avatar_image" />
+
+                <TextView
+                    android:id="@+id/author_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:maxEms="5"
+                    android:maxLines="1"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:text="@{viewModel.postObject.author.user.username}"
+                    android:textAlignment="gravity"
+                    android:textColor="#fbfbfb"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/follow_indicator_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="ReplaysReplaysReplaysReplays" />
+
+                <TextView
+                    android:id="@+id/follow_indicator_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_1"
+                    android:background="@drawable/rounded_corner_dialog_bg"
+                    android:backgroundTint="@{viewModel.onFollowingUpdate ? @color/grey_text_color : @color/color_accent}"
+                    android:fontFamily="sans-serif-medium"
+                    android:onClick="@{(v) -> viewModel.onFollowButtonClick()}"
+                    android:paddingStart="@dimen/margin_8"
+                    android:paddingTop="@dimen/margin_2"
+                    android:paddingEnd="@dimen/margin_8"
+                    android:paddingBottom="@dimen/margin_2"
+                    android:text="@{viewModel.onFollowingUpdate ? @string/following : @string/follow}"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="11sp"
+                    android:visibility="@{!viewModel.onFollowingUpdate ? View.VISIBLE : View.GONE,default=gone}"
+                    app:cornerRadius="@dimen/margin_16"
+                    app:layout_constraintBottom_toTopOf="@id/follower_count_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Follow"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/follower_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:fontFamily="sans-serif"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:text='@{CommonUtils.formatValue(viewModel.followCount) + " "+ @string/followers}'
+                    android:textColor="#aeaeb2"
+                    android:textSize="9sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/top_fan_rv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="1.2M Followers" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{CommonUtils.isNewTopFanIconUser() ? View.VISIBLE : View.GONE, default=gone}"
+                    app:constraint_referenced_ids="top_fan_rv,top_fan_view,top_fan_text_view" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/top_fan_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/top_fan_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true" />
+
+                <View
+                    android:id="@+id/top_fan_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/top_fan_text_view"
+                    app:layout_constraintEnd_toEndOf="@id/top_fan_rv"
+                    app:layout_constraintStart_toStartOf="@id/top_fan_rv"
+                    app:layout_constraintTop_toTopOf="@id/top_fan_rv" />
+
+                <TextView
+                    android:id="@+id/top_fan_text_view"
+                    style="@style/SecondaryTextStyle.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:text="Top Fans"
+                    android:textSize="@dimen/text_9"
+                    app:layout_constraintBottom_toTopOf="@id/request_video_call_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <View
+                    android:id="@+id/live_icon_circle_1"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/red_circle_border_bg"
+                    app:isVisible="@{viewModel.isVideoCallEnabled &amp;&amp; viewModel.live}"
+                    app:layout_constraintBottom_toBottomOf="@id/request_video_call_button"
+                    app:layout_constraintEnd_toEndOf=" @id/request_video_call_button"
+                    app:layout_constraintStart_toStartOf="@id/request_video_call_button"
+                    app:layout_constraintTop_toTopOf="@id/request_video_call_button" />
+
+                <View
+                    android:id="@+id/live_icon_circle_2"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/red_circle_border_bg"
+                    app:isVisible="@{viewModel.isVideoCallEnabled &amp;&amp; viewModel.live}"
+                    app:layout_constraintBottom_toBottomOf="@id/request_video_call_button"
+                    app:layout_constraintEnd_toEndOf=" @id/request_video_call_button"
+                    app:layout_constraintStart_toStartOf="@id/request_video_call_button"
+                    app:layout_constraintTop_toTopOf="@id/request_video_call_button" />
+
+                <ImageButton
+                    android:id="@+id/request_video_call_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_request_video_call"
+                    app:isVisible="@{viewModel.isVideoCallEnabled &amp;&amp; viewModel.live}"
+                    app:layout_constraintBottom_toTopOf="@id/top_fans_image_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/requests_count"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/red_dot_bg"
+                    android:backgroundTint="#DAE2574C"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/request_video_call_button"
+                    app:layout_constraintTop_toTopOf="@id/request_video_call_button"
+                    tools:text="50+" />
+
+                <ImageButton
+                    android:id="@+id/top_fans_image_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_top_fans"
+                    android:visibility="@{CommonUtils.isNewTopFanIconUser() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toTopOf="@id/play_request_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/play_request_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@{viewModel.isCustomRoomEnabled ? @drawable/avd_custom_room : (viewModel.isPlayRequestEnabled ? @drawable/avd_request : @drawable/avd_custom_room)}"
+                    app:isVisible="@{(viewModel.isCustomRoomEnabled || viewModel.isPlayRequestEnabled)}"
+                    app:layout_constraintBottom_toTopOf="@id/coin_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:src="@drawable/avd_custom_room"
+                    tools:visibility="visible" />
+
+                <ImageButton
+                    android:id="@+id/coin_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/margin_6"
+                    android:src="@drawable/avd_next_reward"
+                    app:isVisible="@{viewModel.isRewardIconEnabled}"
+                    app:layout_constraintBottom_toTopOf="@id/share_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/coin_image_view"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <ImageButton
+                    android:id="@+id/share_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/margin_6"
+                    android:src="@drawable/ic_share_white_24dp"
+                    app:layout_constraintBottom_toTopOf="@id/heart_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <ImageView
+                    android:id="@+id/heart_button"
+                    android:layout_width="@dimen/margin_48"
+                    android:layout_height="52dp"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/avd_heart_fill"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@id/gift_button_portrait"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:srcCompat="@drawable/avd_heart_outline" />
+
+                <TextView
+                    android:id="@+id/heart_count_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_32"
+                    android:layout_marginBottom="@dimen/margin_6"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="start"
+                    android:textColor="#aeaeb2"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/heart_button"
+                    app:layout_constraintStart_toStartOf="@id/heart_button"
+                    tools:text="100" />
+
+                <ImageButton
+                    android:id="@+id/gift_button_portrait"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/margin_6"
+                    android:src="@drawable/avd_gift_colored"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/top_arrow"
+            android:layout_width="@dimen/size_24"
+            android:layout_height="@dimen/size_24"
+            android:layout_gravity="top|center_horizontal"
+            android:src="@drawable/ic_keyboard_arrow_up_white"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/welcome_lottie_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="confetti.json" />
+
+        <TextView
+            android:id="@+id/welcome_text_view"
+            style="@style/PrimaryDisplayTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_20"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:textAlignment="gravity"
+            android:visibility="gone"
+            tools:text="@string/welcome_user_message"
+            tools:visibility="gone" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/next_video_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blur_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:blurOverlayColor="@color/translucent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/end_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="Stream has ended"
+                android:textColor="#fbfbfb"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/end_subtitle_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="Going to next live stream"
+                android:textColor="#aeaeb2"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/end_title_text_view" />
+
+            <ProgressBar
+                android:id="@+id/progress_timer"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/linear_circular_progress_bar"
+                app:layout_constraintBottom_toBottomOf="@id/next_action_button"
+                app:layout_constraintEnd_toEndOf="@id/next_action_button"
+                app:layout_constraintStart_toStartOf="@id/next_action_button"
+                app:layout_constraintTop_toTopOf="@id/next_action_button"
+                tools:progress="45" />
+
+            <ImageView
+                android:id="@+id/next_action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_32"
+                android:padding="@dimen/margin_4"
+                android:src="@drawable/avd_next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/end_subtitle_text_view" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_6"
+                android:layout_marginEnd="@dimen/margin_6"
+                android:text="@string/cancel"
+                android:textColor="@color/white_text_color"
+                app:cornerRadius="@dimen/margin_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/next_action_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</layout>

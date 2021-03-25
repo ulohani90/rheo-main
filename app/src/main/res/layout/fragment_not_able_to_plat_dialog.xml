@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.player.activity.NotAbleToPlayDialogFragment">
+
+    <data>
+
+        <variable
+            name="userName"
+            type="String" />
+
+        <variable
+            name="profileUrl"
+            type="String" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            app:cardBackgroundColor="@color/streamer_card_bg"
+            app:cardCornerRadius="@dimen/margin_8"
+            app:cardElevation="@dimen/cardview_default_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_30"
+                    android:layout_marginStart="@dimen/text_20"
+                    android:layout_marginEnd="@dimen/text_20"
+                    android:text="@string/not_able_to_play_with_user"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/alert_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:text='@{(@string/were_you_not_able_to_play).replace("user", userName), default=@string/were_you_not_able_to_play}'
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif"
+                    app:layout_constraintBottom_toTopOf="@id/yes_button"
+                    app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+                    app:layout_constraintStart_toStartOf="@+id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/title_text_view" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/no_button"
+                    app:backgroundTint="@color/color_progress_background"
+                    app:cornerRadius="@dimen/size_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_24"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:text="@string/no"
+                    app:layout_constraintBottom_toBottomOf="@id/yes_button"
+                    app:layout_constraintEnd_toStartOf="@id/yes_button"
+                    app:layout_constraintTop_toTopOf="@id/yes_button"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/yes_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:text="@string/yes"
+                    app:backgroundTint="@color/color_accent"
+                    app:cornerRadius="@dimen/size_15"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/alert_text_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+</layout>

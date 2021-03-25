@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="playerItem"
+            type="com.rheotv.android.data.network.models.score.PlayersListItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_4"
+        android:layout_marginBottom="@dimen/margin_4"
+        android:paddingTop="@dimen/margin_4"
+        android:paddingBottom="@dimen/margin_4">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            android:background="@{playerItem.isAlive ? @color/color_selected : @color/competition_bg, default=@color/color_selected}"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_image_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/avatar_image_view" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_constraintGuide_percent="0.75" />
+
+        <ImageView
+            android:id="@+id/avatar_image_view"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="@dimen/margin_14"
+            android:elevation="6dp"
+            app:grayFilter="@{playerItem.dead}"
+            app:height="@{46}"
+            app:imageUrlCircular="@{playerItem.player.profilePhoto}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:width="@{46}"
+            tools:background="@drawable/avd_avatar" />
+
+        <TextView
+            android:id="@+id/username_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_16"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxEms="8"
+            android:maxLines="1"
+            android:text="@{playerItem.player.name}"
+            android:textColor='@{playerItem.isAlive ? @color/white_text_color : @color/light_grey_text_color, default=@color/white_text_color}'
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toTopOf="@id/state_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/avatar_image_view"
+            app:layout_constraintTop_toTopOf="@id/avatar_image_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Dreamleague" />
+
+        <TextView
+            android:id="@+id/state_text_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
+            android:text='@{playerItem.isAlive ? @string/live : @string/dead}'
+            android:textColor="#aeaeb2"
+            android:textSize="@dimen/text_13"
+            app:layout_constraintBottom_toBottomOf="@+id/avatar_image_view"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/avatar_image_view"
+            app:layout_constraintStart_toStartOf="@+id/username_text_view"
+            app:layout_constraintTop_toBottomOf="@id/username_text_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Live" />
+
+        <TextView
+            android:id="@+id/kill_count_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{playerItem.kills}"
+            android:textColor='@{playerItem.isAlive ? @color/white_text_color : @color/light_grey_text_color, default=@color/white_text_color}'
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toBottomOf="@id/avatar_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/avatar_image_view"
+            tools:text="102" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

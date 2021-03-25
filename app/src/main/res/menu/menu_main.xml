@@ -1,0 +1,18 @@
+<!--
+  ~ /**
+  ~  * Created by Asheesh Sharma on 1st January 2019.
+  ~  * Copyright (c) January 2019 . All rights reserved.
+  ~  * Last modified 1/1/19 2:41 PM
+  ~  */
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rheotv.android.ui.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="ifRoom" />
+</menu>

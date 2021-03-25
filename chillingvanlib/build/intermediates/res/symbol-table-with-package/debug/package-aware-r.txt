@@ -1,0 +1,2 @@
+com.chillingvan.instantvideo
+string app_name

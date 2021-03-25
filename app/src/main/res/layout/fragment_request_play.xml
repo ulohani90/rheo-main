@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.player.activity.RequestPlayFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.player.activity.RequestPlayViewModel" />
+
+    </data>
+
+    <com.rheotv.android.ui.customViews.NestedScrollableHost
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/history_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingStart="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingEnd="@dimen/margin_14"
+                android:paddingBottom="@dimen/margin_36"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header"
+                tools:listitem="@layout/list_item_request_play" />
+
+            <TextView
+                android:id="@+id/custom_room_no_request_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_12"
+                android:layout_marginRight="@dimen/margin_12"
+                android:layout_marginBottom="96dp"
+                android:gravity="center"
+                android:padding="@dimen/margin_12"
+                android:text="@string/player_request_message"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.isCustomRoom?@string/custom_room:@string/request_to_play}"
+                android:textColor="#fbfbfb"
+                android:textSize="17sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@id/history_recycler_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Custom Room" />
+
+            <TextView
+                android:id="@+id/error_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/page_margin"
+                android:background="@drawable/follow_normal_bg"
+                android:gravity="center"
+                android:padding="@dimen/margin_12"
+                android:text="@string/player_request_message"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/follow_normal_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/margin_12"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/login_to_play_message" />
+
+            <TextView
+                android:id="@+id/info_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_18"
+                android:background="@drawable/white_rounded_corner_r_20dp"
+                android:drawablePadding="@dimen/margin_4"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/margin_8"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingEnd="@dimen/margin_8"
+                android:paddingBottom="@dimen/margin_4"
+                android:text="How to Play ?"
+                android:textColor="#32425c"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/refresh_btn"
+                style="@style/BaseButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_36"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:text="@string/refresh"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/loader"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progress"
+                    android:indeterminateTint="@color/color_accent"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.rheotv.android.ui.customViews.NestedScrollableHost>
+</layout>

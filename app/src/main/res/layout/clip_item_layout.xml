@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="result"
+            type="com.rheotv.android.db.ClipItem" />
+
+        <variable
+            name="isContentModerator"
+            type="Boolean" />
+    </data>
+
+
+    <FrameLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/default_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80050505" />
+
+        <FrameLayout
+            android:id="@+id/media_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="@dimen/margin_8"
+            android:background="@drawable/round_background_black"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_4"
+            android:paddingRight="@dimen/margin_4"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_min="40dp">
+
+            <ImageView
+                android:id="@+id/listing_iv_views"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:padding="2dp"
+                android:src="@drawable/eye_white" />
+
+            <TextView
+                android:id="@+id/clip_no_views"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="100" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/details_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/margin_8"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/margin_48">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:background="#01000000"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingTop="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_12"
+                android:paddingBottom="@dimen/margin_56">
+
+                <TextView
+                    android:id="@+id/post_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16" />
+
+                <TextView
+                    android:id="@+id/game_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:layout_marginBottom="@dimen/margin_6"
+                    android:background="@drawable/game_tag_bg"
+                    android:includeFontPadding="false"
+                    android:padding="@dimen/margin_4"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    tools:text="Angry birds" />
+
+                <include
+                    android:id="@+id/clipFollowCard"
+                    layout="@layout/clip_item_follow_card"
+                    android:visibility="gone"
+                    app:follow="@{result}"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.rheotv.android.ui.customViews.CircularImageView
+                        android:id="@+id/user_pic"
+                        android:layout_width="@dimen/size_50"
+                        android:layout_height="@dimen/size_50"
+                        android:layout_marginBottom="@dimen/margin_6"
+                        android:scaleType="centerCrop"
+                        app:civ_border="true"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="1dp"
+                        tools:src="@drawable/avd_avatar" />
+
+                    <TextView
+                        android:id="@+id/follow_btn"
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginTop="@dimen/margin_36"
+                        android:background="@drawable/avd_add_background"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/author_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLength="12"
+                    android:maxLines="1"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12" />
+
+                <TextView
+                    android:id="@+id/author_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_24"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="45"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/clap_btn"
+                    android:layout_width="28dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_24"
+                    android:drawableTop="@drawable/ic_heart_filled_white_48"
+                    android:drawablePadding="@dimen/margin_6"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/margin_48"
+                    android:text="Like"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12" />
+
+                <TextView
+                    android:id="@+id/thumbs_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_24"
+                    android:drawableTop="@drawable/ic_feedback"
+                    android:drawablePadding="@dimen/margin_6"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/margin_48"
+                    android:text="Feedback"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12"
+                    android:visibility="@{isContentModerator?View.VISIBLE:View.GONE,default=gone}" />
+
+
+                <TextView
+                    android:id="@+id/share_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_24"
+                    android:drawableTop="@drawable/ic_share_clips"
+                    android:drawablePadding="@dimen/margin_6"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/margin_48"
+                    android:text="Share"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12" />
+
+                <TextView
+                    android:id="@+id/clip_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:drawableTop="@drawable/ic_clips_more"
+                    android:drawablePadding="@dimen/margin_6"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/margin_48"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12" />
+
+                <TextView
+                    android:id="@+id/flag_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:drawableTop="@drawable/ic_flag_white_24dp"
+                    android:drawablePadding="@dimen/margin_6"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:minWidth="@dimen/margin_48"
+                    android:text="Report"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--android:onClick="@{(view) -> viewModel.startToggleFlow(view)}"
+        android:textColor="@{viewModel.isFollowing? @color/white:@color/white }"
+        android:text="@{viewModel.followButton}"
+        android:background="@{viewModel.isFollowing? @drawable/follow_selected_bg:@drawable/follow_normal_bg }"-->
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/color_accent" />
+
+    </FrameLayout>
+
+
+</layout>

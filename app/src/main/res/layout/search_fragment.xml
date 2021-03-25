@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.search.fragment.SearchFragmentViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <LinearLayout
+                    android:id="@+id/navBarContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingTop="@dimen/margin_20"
+                    android:paddingEnd="@dimen/margin_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/searchField"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/size_43"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_border_solid_grey"
+                        android:hint="Search Rheo TV"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/margin_16"
+                        android:singleLine="true"
+                        android:textColor="@color/white_text_color"
+                        android:textColorHint="@color/gray"
+                        android:visibility="gone" />
+
+                    <com.rheotv.android.ui.customViews.CustomAutoCompleteTextView
+                        android:id="@+id/search_autocomplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_48"
+                        android:background="@drawable/background_border_solid_grey"
+                        android:hint="Search Rheo"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/margin_16"
+                        android:singleLine="true"
+                        android:textColor="@color/white_text_color"
+                        android:textColorHint="@color/map_axis_line_color" />
+
+                </LinearLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    style="@style/TabLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:background="#32425c" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <FrameLayout
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_12"
+                android:padding="@dimen/margin_4"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <include layout="@layout/layout_search_shimmer" />
+
+            </FrameLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <include
+            android:id="@+id/offline_layout"
+            layout="@layout/layout_offline_mode"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

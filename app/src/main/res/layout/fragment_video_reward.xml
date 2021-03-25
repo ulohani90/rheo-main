@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.player.activity.VideoRewardFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.player.activity.VideoRewardViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
+            app:cardBackgroundColor="@color/streamer_card_bg"
+            app:cardCornerRadius="@dimen/margin_8"
+            app:cardElevation="@dimen/cardview_default_elevation">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/stream_bonus_background"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/avd_background_streakbonus"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.rheotv.android.ui.customViews.CircularIndeterminateProgressBar
+                    android:id="@+id/reward_progress_bar"
+                    android:layout_width="@dimen/size_72"
+                    android:layout_height="@dimen/size_72"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_marginEnd="@dimen/margin_24"
+                    android:layout_gravity="end|center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    android:visibility="@{viewModel.showWatchVideoReward ? View.VISIBLE : View.INVISIBLE, default=visible}"
+                    app:layout_constraintBottom_toTopOf="@id/helper_text_view" />
+
+                <ImageView
+                    android:id="@+id/reward_image_view"
+                    android:layout_width="@dimen/size_72"
+                    android:layout_height="@dimen/size_72"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_24"
+                    android:padding="@dimen/margin_16"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/avd_gift_box_color"
+                    android:visibility="@{viewModel.isLoggedIn ? View.VISIBLE : View.GONE, default=visible}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/helper_text_view" />
+
+                <ImageView
+                    android:layout_width="@dimen/size_54"
+                    android:layout_height="@dimen/size_54"
+                    android:layout_marginEnd="@dimen/margin_24"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/avd_gift_box"
+                    app:layout_constraintVertical_bias="1"
+                    android:visibility="@{viewModel.isLoggedIn ? View.GONE : View.VISIBLE, default=gone}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/helper_text_view" />
+
+                <TextView
+                    android:id="@+id/time_counter_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:text="@{viewModel.rewardTimeRemaining}"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_20"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/reward_progress_bar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stream_bonus_background"
+                    tools:text="7 Minute 42 Seconds" />
+
+                <TextView
+                    android:id="@+id/helper_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_30"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@{viewModel.rewardSubTitle}"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/reward_progress_bar"
+                    app:layout_constraintStart_toStartOf="@+id/time_counter_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/reward_progress_bar"
+                    tools:text="@string/keep_watching_video_message"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewmodel.UserProfileViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleWhen="@{viewModel.profileState == Status.SUCCESS}">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:titleEnabled="false">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/margin_12"
+                        app:layout_collapseMode="parallax">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline_vertical_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.041666668" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline_vertical_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.96" />
+
+                        <ImageView
+                            android:id="@+id/author_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/height_backdrop_image"
+                            android:scaleType="centerCrop"
+                            app:imageUrl="@{viewModel.profile.coverPic}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@tools:sample/backgrounds/scenic" />
+
+                        <ImageView
+                            android:id="@+id/authorID2"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            app:imageUrlCircular="@{viewModel.profilePicture}"
+                            app:height="@{90}"
+                            app:width="@{90}"
+                            app:layout_constraintBottom_toBottomOf="@id/author_profile"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/author_profile"
+                            tools:src="@tools:sample/avatars" />
+
+                        <ImageView
+                            android:id="@+id/moderator_tag"
+                            android:layout_width="@dimen/margin_42"
+                            android:layout_height="@dimen/margin_42"
+                            app:layout_constraintBottom_toBottomOf="@id/barrier"
+                            app:layout_constraintEnd_toEndOf="@id/authorID2"
+                            app:layout_constraintStart_toEndOf="@id/authorID2"
+                            app:srcCompat="@drawable/ic_moderator"
+                            app:visibleWhen="@{viewModel.profile.contentModerator}" />
+
+                        <ImageButton
+                            android:id="@+id/setting_image_view"
+                            style="@style/OutlineIconButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_12"
+                            android:layout_marginTop="@dimen/margin_16"
+                            android:padding="@dimen/margin_6"
+                            app:layout_constraintBottom_toBottomOf="@id/barrier"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintHorizontal_bias="1"
+                            app:layout_constraintStart_toEndOf="@id/share_button"
+                            app:layout_constraintTop_toBottomOf="@id/author_profile"
+                            app:srcCompat="@drawable/avd_settings_outline"
+                            app:visibleWhen="@{viewModel.profile.selfProfile}" />
+
+                        <ImageButton
+                            android:id="@+id/share_button"
+                            style="@style/OutlineIconButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_16"
+                            android:paddingEnd="@dimen/margin_6"
+                            app:layout_constraintBottom_toBottomOf="@id/barrier"
+                            app:layout_constraintEnd_toStartOf="@id/setting_image_view"
+                            app:layout_constraintStart_toEndOf="@id/edit_profile_button"
+                            app:layout_constraintTop_toBottomOf="@id/author_profile"
+                            app:srcCompat="@drawable/ic_share_white_24dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/edit_profile_button"
+                            style="@style/OutlineTextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="@dimen/margin_12"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:text="@string/edit_profile_text"
+                            android:textSize="@dimen/text_13"
+                            app:layout_constraintBottom_toBottomOf="@id/share_button"
+                            app:layout_constraintEnd_toStartOf="@id/share_button"
+                            app:layout_constraintStart_toEndOf="@id/follow_button"
+                            app:layout_constraintTop_toTopOf="@id/share_button"
+                            app:visibleWhen="@{viewModel.profile.selfProfile}" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/follow_button"
+                            style="@style/MaterialButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_12"
+                            android:backgroundTint="@{viewModel.isFollowed ? @color/light_grey : @color/color_accent}"
+                            android:text="@{viewModel.isFollowed ? @string/following : @string/follow}"
+                            app:layout_constraintBottom_toBottomOf="@id/share_button"
+                            app:layout_constraintEnd_toStartOf="@id/edit_profile_button"
+                            app:layout_constraintHorizontal_bias="1"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/share_button"
+                            app:visibleWhen="@{!viewModel.profile.selfProfile}"
+                            tools:visibility="gone" />
+
+                        <androidx.constraintlayout.widget.Barrier
+                            android:id="@+id/barrier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:barrierDirection="bottom"
+                            app:constraint_referenced_ids="authorID2,setting_image_view"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/authorID2"
+                            app:strokeColor="@color/color_outline_border" />
+
+                        <TextView
+                            android:id="@+id/author_name"
+                            style="@style/PrimaryTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_12"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{viewModel.profile.user.username}"
+                            app:layout_constrainedWidth="true"
+                            app:layout_constraintEnd_toStartOf="@id/verified_image_view"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/barrier"
+                            app:layout_constraintVertical_bias="0"
+                            app:layout_constraintVertical_chainStyle="packed"
+                            tools:text="@tools:sample/full_names" />
+
+                        <ImageView
+                            android:id="@+id/verified_image_view"
+                            android:layout_width="@dimen/margin_14"
+                            android:layout_height="@dimen/margin_14"
+                            android:layout_marginStart="@dimen/margin_8"
+                            app:layout_constraintBottom_toBottomOf="@+id/author_name"
+                            app:layout_constraintEnd_toStartOf="@id/live_tag_old"
+                            app:layout_constraintStart_toEndOf="@id/author_name"
+                            app:layout_constraintTop_toTopOf="@id/author_name"
+                            app:srcCompat="@drawable/avd_verified_tick"
+                            app:visibleWhen="@{viewModel.profile.verified}" />
+
+                        <TextView
+                            android:id="@+id/live_tag_old"
+                            style="@style/LiveTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:text="@string/live"
+                            android:textSize="@dimen/text_9"
+                            app:layout_constraintBottom_toBottomOf="@+id/author_name"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+                            app:layout_constraintStart_toEndOf="@+id/verified_image_view"
+                            app:layout_constraintTop_toTopOf="@+id/author_name"
+                            app:visibleWhen="@{viewModel.profile.liveStatus.live}" />
+
+                        <com.rheotv.android.ui.customViews.textView.ExpandableTextView
+                            android:id="@+id/author_intro"
+                            style="@style/PrimaryTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text="@{viewModel.profile.intro}"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="normal"
+                            app:animation_duration="300"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/author_name"
+                            app:layout_constraintVertical_bias="0"
+                            app:visibleWhen="@{viewModel.profile.intro != null}"
+                            tools:text="@tools:sample/lorem/random" />
+
+                        <androidx.constraintlayout.widget.Barrier
+                            android:id="@+id/user_matrix_top_barrier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:barrierDirection="top"
+                            app:constraint_referenced_ids="level_badge_image_view,level_badge_text_view,follower_text_view,video_text_view,views_text_view" />
+
+                        <androidx.constraintlayout.widget.Barrier
+                            android:id="@+id/user_matrix_bottom_barrier"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:barrierDirection="bottom"
+                            app:constraint_referenced_ids="level_badge_image_view,level_badge_text_view,follower_text_view,video_text_view,views_text_view" />
+
+                        <androidx.constraintlayout.widget.Group
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{viewModel.profile.showStreamerBadge() ? View.VISIBLE : View.GONE}"
+                            app:constraint_referenced_ids="level_badge_image_view,level_badge_text_view,level_badge_view" />
+
+                        <View
+                            android:id="@+id/level_badge_view"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            app:layout_constraintBottom_toBottomOf="@id/level_badge_text_view"
+                            app:layout_constraintEnd_toEndOf="@id/level_badge_text_view"
+                            app:layout_constraintStart_toStartOf="@id/level_badge_text_view"
+                            app:layout_constraintTop_toTopOf="@id/level_badge_image_view" />
+
+                        <ImageView
+                            android:id="@+id/level_badge_image_view"
+                            android:layout_width="30dp"
+                            android:layout_height="23dp"
+                            android:scaleType="centerInside"
+                            android:src="@{viewModel.profile.getProfileBadgeDrawable()}"
+                            app:layout_constraintBottom_toTopOf="@id/level_badge_text_view"
+                            app:layout_constraintEnd_toEndOf="@id/level_badge_text_view"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="@+id/level_badge_text_view"
+                            app:layout_constraintTop_toTopOf="@id/follower_text_view"
+                            app:layout_constraintVertical_chainStyle="packed"
+                            tools:src="@drawable/bronze_p" />
+
+                        <TextView
+                            android:id="@+id/level_badge_text_view"
+                            style="@style/SecondaryTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="10sp"
+                            android:text="@{viewModel.profile.getLevelType().toString()}"
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="@id/follower_text_view"
+                            app:layout_constraintEnd_toStartOf="@id/follower_text_view"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/level_badge_image_view"
+                            tools:text="Bronze" />
+
+                        <TextView
+                            android:id="@+id/follower_text_view"
+                            style="@style/SecondaryTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_16"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="@{viewModel.profile.followerMatrix}"
+                            android:textColor="@color/white"
+                            app:layout_constraintEnd_toStartOf="@id/video_text_view"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toEndOf="@id/level_badge_text_view"
+                            app:layout_constraintTop_toBottomOf="@id/author_intro"
+                            app:layout_constraintVertical_bias="1"
+                            tools:text="1.2M\n Followers" />
+
+                        <TextView
+                            android:id="@+id/video_text_view"
+                            style="@style/SecondaryTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="@{viewModel.profile.videoMatrix}"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@id/follower_text_view"
+                            app:layout_constraintEnd_toStartOf="@id/views_text_view"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toEndOf="@id/follower_text_view"
+                            app:layout_constraintTop_toTopOf="@id/follower_text_view"
+                            app:layout_constraintVertical_bias="1"
+                            tools:text="24\n Videos" />
+
+                        <TextView
+                            android:id="@+id/views_text_view"
+                            style="@style/SecondaryTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="@{viewModel.profile.viewsMatrix}"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="@id/follower_text_view"
+                            app:layout_constraintEnd_toStartOf="@id/recent_followers_button"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toEndOf="@id/video_text_view"
+                            app:layout_constraintTop_toTopOf="@id/follower_text_view"
+                            app:layout_constraintVertical_bias="1"
+                            tools:text="144k\n Views" />
+
+                        <TextView
+                            android:id="@+id/recent_followers_button"
+                            style="@style/SecondaryTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:lineSpacingMultiplier="1.3"
+                            android:padding="0dp"
+                            android:text="@{viewModel.profile.recentViewSpan}"
+                            android:textColor="@color/white"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/views_text_view"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toEndOf="@id/views_text_view"
+                            app:layout_constraintTop_toTopOf="@+id/views_text_view"
+                            app:layout_constraintVertical_bias="0.388"
+                            tools:text="Recent\n Viewers" />
+
+                        <androidx.constraintlayout.widget.Group
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:constraint_referenced_ids="who_viewed_header_text_view,recent_viewer_image_view,share_profile_text_view"
+                            app:visibleWhen="@{viewModel.profile.followersCount &lt; 100 &amp;&amp; viewModel.profile.selfProfile}"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/who_viewed_header_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_20"
+                            android:fontFamily="sans-serif"
+                            android:text="People viewed your profile"
+                            android:textColor="#aeaeb2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/user_matrix_bottom_barrier" />
+
+                        <ImageView
+                            android:id="@+id/recent_viewer_image_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_4"
+                            android:src="@drawable/group_15"
+                            app:layout_constraintEnd_toStartOf="@id/share_profile_text_view"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/who_viewed_header_text_view" />
+
+                        <TextView
+                            android:id="@+id/share_profile_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingMultiplier="1.1"
+                            android:textColor="#ffffff"
+                            android:textSize="13sp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="@id/recent_viewer_image_view"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintStart_toEndOf="@id/recent_viewer_image_view"
+                            app:layout_constraintTop_toTopOf="@id/recent_viewer_image_view"
+                            app:textSpan="@{@string/share_profile}"
+                            app:textToSpan="@{@string/reach_100_followers}"
+                            tools:text="@string/reach_100_followers" />
+
+                        <!--                        <androidx.constraintlayout.widget.Group-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:visibility="@{viewModel.profile.selfProfile || viewModel.profile.profileDetail.gameSchedule.startTime == null ? View.GONE : View.VISIBLE}"-->
+                        <!--                            app:constraint_referenced_ids="live_reminder_text_view,reminder_button" />-->
+
+                        <TextView
+                            android:id="@+id/live_reminder_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_12"
+                            android:fontFamily="sans-serif"
+                            android:text="@{viewModel.profile.getNextLiveTiming()}"
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:visibility="@{viewModel.profile.getNextLiveTiming() == null || viewModel.profile.selfProfile ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/recent_viewer_image_view"
+                            tools:text="Next Live Tomorrow at 8:30 pm"
+                            tools:visibility="visible" />
+
+                        <androidx.constraintlayout.widget.Group
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{viewModel.profile.selfProfile &amp;&amp; viewModel.streakReward != null ? View.VISIBLE : View.GONE}"
+                            app:constraint_referenced_ids="streak_bonus_label,streak_bonus_clickable_area,streak_days_text_view,streak_progress_bar,view_streak_details_button" />
+
+                        <TextView
+                            android:id="@+id/streak_bonus_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_16"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/streak_bonus_label"
+                            android:textColor="#fbfbfb"
+                            android:textSize="20sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/live_reminder_text_view"
+                            tools:text="Streak Bonus" />
+
+                        <TextView
+                            android:id="@+id/streak_days_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="8sp"
+                            android:text='@{(viewModel.streakReward.daysCompleted == null ? "0" : viewModel.streakReward.daysCompleted) + "/" + (viewModel.streakReward.totalDays == null ? "0" : viewModel.streakReward.totalDays) + " Days"}'
+                            android:textColor="#ffffff"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/streak_bonus_label"
+                            app:layout_constraintEnd_toStartOf="@id/view_streak_details_button"
+                            app:layout_constraintTop_toTopOf="@id/streak_bonus_label"
+                            tools:text="6/7 Days" />
+
+                        <View
+                            android:id="@+id/streak_bonus_clickable_area"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="@id/view_streak_details_button"
+                            app:layout_constraintEnd_toEndOf="@id/view_streak_details_button"
+                            app:layout_constraintStart_toStartOf="@id/streak_days_text_view"
+                            app:layout_constraintTop_toTopOf="@id/streak_days_text_view" />
+
+                        <ImageView
+                            android:id="@+id/view_streak_details_button"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_marginTop="@dimen/margin_3"
+                            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+                            app:layout_constraintBottom_toBottomOf="@id/streak_days_text_view"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintTop_toTopOf="@id/streak_days_text_view" />
+
+                        <ProgressBar
+                            android:id="@+id/streak_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/streak_progress_height_xlarge"
+                            android:layout_marginTop="@dimen/margin_12"
+                            android:progress="@{viewModel.streakReward.progressPercent()}"
+                            android:progressDrawable="@drawable/linear_gradient_progress"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/streak_bonus_label"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:progress="45" />
+                        <!--                        <com.google.android.material.button.MaterialButton-->
+                        <!--                            android:id="@+id/reminder_button"-->
+                        <!--                            style="@style/MaterialButton"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="@dimen/size_36"-->
+                        <!--                            android:layout_marginStart="@dimen/margin_12"-->
+                        <!--                            android:padding="0dp"-->
+                        <!--                            android:text="@{viewModel.isLiveReminderSet ? @string/reminder_add : @string/remind_me, default=@string/remind_me}"-->
+                        <!--                            android:textColor="@{viewModel.isLiveReminderSet ? @color/color_accent : @color/white}"-->
+                        <!--                            android:textSize="@dimen/text_13"-->
+                        <!--                            app:icon="@drawable/avd_notification"-->
+                        <!--                            app:iconSize="@dimen/size_15"-->
+                        <!--                            app:iconTint="@{viewModel.isLiveReminderSet ? @color/color_accent : @color/white}"-->
+                        <!--                            app:layout_constraintBottom_toBottomOf="@id/live_reminder_text_view"-->
+                        <!--                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"-->
+                        <!--                            app:layout_constraintHorizontal_chainStyle="packed"-->
+                        <!--                            app:layout_constraintStart_toEndOf="@id/live_reminder_text_view"-->
+                        <!--                            app:layout_constraintTop_toTopOf="@id/live_reminder_text_view"-->
+                        <!--                            app:layout_constraintVertical_bias="0.47" />-->
+
+                        <!-- <androidx.constraintlayout.widget.Group
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:visibility="@{viewModel.profile.selfProfile ? View.GONE : View.VISIBLE}"
+                             app:constraint_referenced_ids="user_views_layout,user_watchtime_layout" />-->
+
+                        <include
+                            android:id="@+id/user_views_layout"
+                            layout="@layout/layout_user_views"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_18"
+                            android:layout_marginEnd="@dimen/size_12"
+                            android:layout_marginBottom="@dimen/margin_8"
+                            android:visibility="@{!viewModel.profile.selfProfile &amp;&amp;viewModel.profile.profileDetail.streamerAnalyticsData!=null &amp;&amp; viewModel.profile.profileDetail.streamerAnalyticsData.get(0)!=null?View.VISIBLE:View.GONE,default=visible}"
+                            app:analytics="@{viewModel.profile.profileDetail.streamerAnalyticsData!=null &amp;&amp;viewModel.profile.profileDetail.streamerAnalyticsData.size() >=1 ?viewModel.profile.profileDetail.streamerAnalyticsData.get(0):null}"
+                            app:layout_constraintEnd_toStartOf="@id/user_watchtime_layout"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/streak_progress_bar" />
+
+                        <include
+                            android:id="@+id/user_watchtime_layout"
+                            layout="@layout/layout_user_watchtime"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{!viewModel.profile.selfProfile &amp;&amp;viewModel.profile.profileDetail.streamerAnalyticsData!=null &amp;&amp;viewModel.profile.profileDetail.streamerAnalyticsData.get(1)!=null?View.VISIBLE:View.GONE,default=visible}"
+                            app:analytics="@{viewModel.profile.profileDetail.streamerAnalyticsData!=null &amp;&amp;viewModel.profile.profileDetail.streamerAnalyticsData.size() >=2 ?viewModel.profile.profileDetail.streamerAnalyticsData.get(1):null}"
+                            app:layout_constraintBottom_toBottomOf="@id/user_views_layout"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintStart_toEndOf="@id/user_views_layout"
+                            app:layout_constraintTop_toTopOf="@id/user_views_layout" />
+
+                        <include
+                            android:id="@+id/want_to_be_moderator_layout"
+                            layout="@layout/layout_message_action"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_16"
+                            android:visibility="@{viewModel.profile.canRequestForModerator ? View.VISIBLE : View.GONE}"
+                            app:buttonColor="@{@color/color_blue_light_navy}"
+                            app:buttonText="@{@string/ask}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                            app:layout_constraintTop_toBottomOf="@id/user_views_layout"
+                            app:message="@{@string/ask_to_be_moderator}" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_70"
+                        app:contentInsetStart="0dp"
+                        app:layout_collapseMode="pin">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/margin_70"
+                            app:layout_collapseMode="pin">
+
+                            <ImageView
+                                android:id="@+id/toolbar_backdrop"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                app:imageUrl="@{viewModel.profile.coverPic}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="parent" />
+
+                            <View
+                                android:id="@+id/protector_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#66050505"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/expand_button"
+                                android:layout_width="@dimen/size_32"
+                                android:layout_height="@dimen/size_32"
+                                android:layout_marginStart="@dimen/margin_16"
+                                android:background="?selectableItemBackgroundBorderless"
+                                app:layout_constraintBottom_toBottomOf="@+id/title_text_view"
+                                app:layout_constraintEnd_toStartOf="@id/title_text_view"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="@id/toolbar_backdrop"
+                                app:layout_constraintTop_toTopOf="@+id/title_text_view"
+                                app:srcCompat="@drawable/ic_keyboard_arrow_down_white" />
+
+                            <TextView
+                                android:id="@+id/title_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_16"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="@{viewModel.profile.user.username}"
+                                android:textColor="#fbfbfb"
+                                android:textSize="16sp"
+                                android:textStyle="normal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="Umesh Lohani" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    style="@style/TabLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingEnd="@dimen/margin_16"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                    app:layout_constraintTop_toBottomOf="@id/author_intro" />
+
+                <View
+                    android:id="@+id/view_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:background="@color/color_gray_divider"
+                    app:layout_constraintBottom_toBottomOf="@id/tabLayout"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                    app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <ProgressBar
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/color_accent"
+            app:visibleWhen="@{viewModel.profileState == Status.LOADING}"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/error_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:drawableTop="@drawable/ic_refresh_white_48dp"
+            android:lineSpacingExtra="@dimen/margin_4"
+            android:text="@string/error_retry_text"
+            android:textAlignment="center"
+            android:textColor="@color/white_dull"
+            android:textSize="@dimen/text_17"
+            android:visibility="@{viewModel.profileState == Status.ERROR ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/offline_layout"
+            layout="@layout/layout_offline_mode"
+            app:layoutVisible="@{viewModel.profileState == Status.OFFLINE}"
+            tools:visibility="gone" />
+
+    </FrameLayout>
+
+</layout>

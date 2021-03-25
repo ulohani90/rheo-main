@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.videoUpload.VideoUploadViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@drawable/bottom_sheet_backdrop">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/avd_footer_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/secondary_layout"
+                app:layout_constraintVertical_bias="1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:text="@string/upload_video"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/text_16"
+                app:layout_constraintBottom_toTopOf="@id/primary_layout"
+                app:layout_constraintEnd_toStartOf="@id/cancel_button"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageView
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/avd_back_white"
+                app:layout_constraintBottom_toBottomOf="@+id/title_text_view"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toEndOf="@id/title_text_view"
+                app:layout_constraintTop_toTopOf="@+id/title_text_view" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/primary_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:visibility="@{viewModel.submitted ? View.GONE : View.VISIBLE, default=visible}"
+                app:layout_constraintBottom_toTopOf="@id/secondary_layout"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/title_text_view"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <Spinner
+                    android:id="@+id/game_spinner"
+                    style="@style/BaseSpinnerStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:inputType="text"
+                    android:overlapAnchor="false"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintBottom_toTopOf="@id/game_edit_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.emoji.widget.EmojiEditText
+                    android:id="@+id/game_edit_text"
+                    style="@style/EditTextStyle.Base"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:hint="@string/game_title"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/margin_16"
+                    android:text="@={viewModel.postTitle}"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_thumbnail_top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/game_spinner" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_thumbnail_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="top"
+                    app:constraint_referenced_ids="upload_thumbnail_holder,thumbnail_layout" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.clipAdded ? View.GONE : View.VISIBLE, default=visible}"
+                    app:constraint_referenced_ids="thumbnail_image_view,thumbnail_text_view" />
+
+                <View
+                    android:id="@+id/upload_thumbnail_holder"
+                    android:layout_width="0dp"
+                    android:layout_height="178dp"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:background="@drawable/background_solid_border_search"
+                    android:backgroundTint="@{viewModel.clipAdded ? @color/color_bottom_sheet_background : @color/clip_upload_selector_color}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/game_edit_text" />
+
+                <ImageView
+                    android:id="@+id/thumbnail_image_view"
+                    android:layout_width="@dimen/size_28"
+                    android:layout_height="@dimen/size_28"
+                    android:src="@drawable/avd_upload_thumbnail"
+                    app:layout_constraintBottom_toTopOf="@id/thumbnail_text_view"
+                    app:layout_constraintEnd_toEndOf="@id/upload_thumbnail_holder"
+                    app:layout_constraintStart_toStartOf="@id/upload_thumbnail_holder"
+                    app:layout_constraintTop_toTopOf="@id/upload_thumbnail_holder"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/thumbnail_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:text="@string/upload_video"
+                    android:textColor="@color/light_grey_text_color"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/upload_thumbnail_holder"
+                    app:layout_constraintEnd_toEndOf="@+id/thumbnail_image_view"
+                    app:layout_constraintStart_toStartOf="@+id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/thumbnail_image_view" />
+
+                <FrameLayout
+                    android:id="@+id/thumbnail_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="178dp"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:visibility="@{viewModel.clipAdded ? View.VISIBLE : View.GONE, default=gone}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/game_edit_text">
+
+                    <VideoView
+                        android:id="@+id/game_video_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop" />
+
+                </FrameLayout>
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_thumbnail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="upload_thumbnail_holder,thumbnail_layout" />
+
+                <TextView
+                    android:id="@+id/select_video_mode_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:text="Select video mode"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_15"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_thumbnail" />
+
+                <RadioGroup
+                    android:id="@+id/video_mode_rg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:theme="@style/checkBoxStyle"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/select_video_mode_tv">
+
+                    <RadioButton
+                        android:id="@+id/rg_portrait"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Portrait"
+                        android:textSize="@dimen/text_14"
+                        android:theme="@style/checkBoxStyle" />
+
+                    <RadioButton
+                        android:id="@+id/rg_landscape"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Landscape"
+                        android:textSize="@dimen/text_14" />
+
+                </RadioGroup>
+
+                <CheckBox
+                    android:id="@+id/terms_check_box"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:checked="@={viewModel.termsCondition}"
+                    android:gravity="center|start"
+                    android:text="@string/read_terms_text"
+                    android:theme="@style/checkBoxStyle"
+                    app:layout_constraintBottom_toTopOf="@id/submit_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/video_mode_rg" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/submit_button"
+                    style="@style/BaseButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_36"
+                    android:layout_marginTop="@dimen/margin_32"
+                    android:text="@string/submit"
+                    android:visibility="@{viewModel.uploadProgress >= 0 ? View.INVISIBLE : View.VISIBLE, default=invisible}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/terms_check_box" />
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    style="?android:progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/margin_32"
+                    android:max="100"
+                    android:progress="@{viewModel.uploadProgress}"
+                    android:progressTint="@color/color_accent"
+                    android:visibility="@{viewModel.uploadProgress >= 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/terms_check_box" />
+
+                <TextView
+                    android:id="@+id/progress_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.uploadProgress + `% uploaded`}"
+                    android:textColor="#aeaeb2"
+                    android:textSize="@dimen/text_15"
+                    android:textStyle="normal"
+                    android:visibility="@{viewModel.uploadProgress >= 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/progress"
+                    tools:text="100% uploaded." />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/secondary_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:visibility="@{viewModel.submitted ? View.VISIBLE : View.GONE, default=visible}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/primary_layout">
+
+                <ImageView
+                    android:id="@+id/all_done_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@drawable/avd_done"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/done_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_42"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_horizontal"
+                    android:text="@string/Awesome"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_18"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/all_done_image_view" />
+
+                <TextView
+                    android:id="@+id/done_subtitle_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:text="@string/content_uploaded_message"
+                    android:textColor="#aeaeb2"
+                    android:textSize="@dimen/text_15"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/done_title_text_view" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/done_button"
+                    style="@style/BaseButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_36"
+                    android:layout_marginTop="@dimen/margin_42"
+                    android:text="@string/done"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/done_subtitle_text_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

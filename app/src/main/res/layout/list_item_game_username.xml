@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="entryCoin"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4">
+
+        <androidx.emoji.widget.EmojiEditText
+            android:id="@+id/game_user_name_input"
+            style="@style/EditTextStyle.Base"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:hint="Game username"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/margin_4"
+            android:paddingEnd="@dimen/margin_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/request_to_play_button"
+            style="@style/BaseButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_32"
+            android:layout_marginTop="@dimen/margin_8"
+            android:backgroundTint="@color/color_accent"
+            android:drawableEnd="@drawable/avd_rheo_coin_small"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical"
+            android:letterSpacing="0.02"
+            android:text="@{`Request Entry for ` + entryCoin}"
+            android:textAlignment="gravity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_user_name_input"
+            tools:text="Request Entry for 50" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

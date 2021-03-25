@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.player.activity.StreamChatFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.player.activity.StreamPlayerViewModel" />
+    </data>
+
+    <com.rheotv.android.ui.customViews.NestedScrollableHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:focusable="true"
+            android:layoutAnimation="@anim/chat_item_animation"
+            android:nestedScrollingEnabled="false"
+            android:paddingStart="@dimen/margin_6"
+            android:paddingEnd="@dimen/margin_6"
+            android:paddingBottom="@dimen/margin_4"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="true"
+            app:stackFromEnd="false"
+            tools:itemCount="1"
+            tools:listitem="@layout/chat_item_v2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/unread_button"
+            style="@style/BaseButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_36"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="@dimen/margin_8"
+            android:backgroundTint="@color/color_accent"
+            android:fontFamily="sans-serif-medium"
+            android:onClick="@{(v) -> recyclerView.smoothScrollToPosition(0)}"
+            android:text='@{(viewModel.unreadChatCount > 99 ? "99+" : viewModel.unreadChatCount+"") + " " + (viewModel.unreadChatCount > 1 ? @string/comments : @string/comment)}'
+            android:textSize="@dimen/text_12"
+            android:visibility="@{viewModel.unreadChatCount > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            tools:text="10 Comment" />
+
+    </com.rheotv.android.ui.customViews.NestedScrollableHost>
+
+</layout>

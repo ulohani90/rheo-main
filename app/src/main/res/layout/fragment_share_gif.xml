@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.share.ShareGifFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.share.ShareViewModel" />
+
+        <variable
+            name="giphy"
+            type="com.rheotv.android.ui.activities.share.ShareViewModel.ShareContent" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_8"
+            app:cardBackgroundColor="#1d2e44"
+            app:cardCornerRadius="@dimen/size_12"
+            app:cardElevation="@dimen/size_6">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/backdrop_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:blurFactor="@{5}"
+                    app:blurImageUri="@{viewModel.backdrop}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/color_progress_background"
+                    app:gifUrl="@{giphy.url}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/title_protector_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/grey_gradient_background"
+                    android:rotation="180"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/reload_giphy" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/reload_giphy"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="76dp"
+                    android:layout_height="@dimen/size_36"
+                    android:layout_margin="@dimen/margin_8"
+                    android:paddingStart="@dimen/margin_4"
+                    android:paddingTop="@dimen/margin_1"
+                    android:paddingEnd="@dimen/margin_2"
+                    android:paddingBottom="@dimen/margin_1"
+                    android:text="@string/shuffle"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_11"
+                    app:icon="@drawable/avd_refresh"
+                    app:iconPadding="-4dp"
+                    app:iconSize="@dimen/size_16"
+                    app:iconTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:strokeColor="@color/white_text_color" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

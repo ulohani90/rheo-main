@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.profile.editprofile.view.GameTimingFragment">
+
+    <data>
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewmodel.UserProfileViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.041666668" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
+
+        <ImageButton
+            android:id="@+id/action_back"
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:background="@null"
+            android:padding="@dimen/margin_8"
+            android:src="@drawable/avd_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_textView"
+            style="@style/PrimaryTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:text="Play games from"
+            app:layout_constraintBottom_toBottomOf="@+id/action_back"
+            app:layout_constraintEnd_toStartOf="@id/save_button"
+            app:layout_constraintStart_toEndOf="@+id/action_back"
+            app:layout_constraintTop_toTopOf="@+id/action_back" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_button"
+            style="@style/PrimaryTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v) -> viewModel.onSaveGameSchedule()}"
+            android:text="@string/action_save"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/action_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/title_textView"
+            app:layout_constraintTop_toTopOf="@+id/action_back" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/day_time_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:fontFamily="sans-serif"
+            android:text="Select Day/time"
+            android:textColor="#fbfbfb"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_back" />
+
+        <HorizontalScrollView
+            android:id="@+id/day_selection_scroll_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            android:paddingStart="@dimen/margin_20"
+            android:paddingEnd="@dimen/margin_20"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_time_title_text_view">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/day_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipSpacing="@dimen/margin_4"
+                app:chipSpacingHorizontal="@dimen/margin_12"
+                app:chipSpacingVertical="@dimen/margin_4"
+                app:singleLine="true">
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipChoiceFilterStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="S"-->
+                <!--                    app:chipStartPadding="@dimen/margin_12" />-->
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipChoiceFilterStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="M"-->
+                <!--                    app:chipStartPadding="@dimen/margin_12" />-->
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipChoiceFilterStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="T"-->
+                <!--                    app:chipStartPadding="@dimen/margin_12" />-->
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipChoiceFilterStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="W"-->
+                <!--                    app:chipStartPadding="@dimen/margin_12" />-->
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipChoiceFilterStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="T"-->
+                <!--                    app:chipStartPadding="@dimen/margin_12" />-->
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipChoiceFilterStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="F"-->
+                <!--                    app:chipStartPadding="@dimen/margin_12" />-->
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipChoiceFilterStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="S"-->
+                <!--                    app:chipStartPadding="@dimen/margin_12" />-->
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        <View
+            android:id="@+id/time_mid_view"
+            android:layout_width="@dimen/margin_16"
+            android:layout_height="4dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/start_time_edit_text"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_center"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_center"
+            app:layout_constraintTop_toBottomOf="@+id/start_time_edit_text" />
+
+        <TextView
+            android:id="@+id/start_time_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_40"
+            android:background="@null"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:hint="10:00"
+            android:text="@{viewModel.playStartTime}"
+            android:textColor="#fbfbfb"
+            android:textColorHint="#aeaeb2"
+            android:textSize="44sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/time_mid_view"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+            app:layout_constraintTop_toBottomOf="@+id/day_selection_scroll_view" />
+
+        <TextView
+            android:id="@+id/end_time_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:hint="06:00"
+            android:text="@{viewModel.playEndTime}"
+            android:textColor="#fbfbfb"
+            android:textColorHint="#aeaeb2"
+            android:textSize="44sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/start_time_edit_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/time_mid_view"
+            app:layout_constraintTop_toTopOf="@+id/start_time_edit_text" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/start_time_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            app:buttonFirst="@{@id/start_am_button}"
+            app:buttonKey="@{viewModel.playStartAmPm}"
+            app:buttonSecond="@{@id/start_pm_button}"
+            app:buttonValue="@{`AM`}"
+            app:layout_constraintEnd_toStartOf="@+id/time_mid_view"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+            app:layout_constraintTop_toBottomOf="@+id/start_time_edit_text"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/start_am_button"
+                style="@style/ToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="AM" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/start_pm_button"
+                style="@style/ToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="PM" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/end_time_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            app:buttonFirst="@{@id/end_am_button}"
+            app:buttonKey="@{viewModel.playEndAmPm}"
+            app:buttonSecond="@{@id/end_pm_button}"
+            app:buttonValue="@{`AM`}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+            app:layout_constraintStart_toStartOf="@+id/end_time_edit_text"
+            app:layout_constraintTop_toBottomOf="@+id/start_time_edit_text"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/end_am_button"
+                style="@style/ToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="AM" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/end_pm_button"
+                style="@style/ToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="PM" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <FrameLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0FFFFFFF"
+            android:elevation="@dimen/margin_2"
+            android:visibility="@{viewModel.gameScheduleStatus == Status.LOADING ? View.VISIBLE : View.GONE,default=gone}">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

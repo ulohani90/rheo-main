@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.player.activity.PlayerViewModel" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_dark"
+        android:focusable="true"
+        android:fitsSystemWindows="true"
+        android:focusableInTouchMode="true"
+        android:keepScreenOn="true">
+
+        <RelativeLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/upperPart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
+
+                <!-- header with close button, share etc -->
+
+                <ProgressBar
+                    android:id="@+id/player_progress_bar"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="120dp"
+                    android:elevation="2dp" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/errorText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:text="Please wait, video will start in a while"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/text_19"-->
+<!--                    android:visibility="gone" />-->
+
+                <FrameLayout
+                    android:id="@+id/player_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/player_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.github.vkay94.dtpv.DoubleTapPlayerView
+                            android:id="@+id/video_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:animateLayoutChanges="true"
+                            android:background="@color/app_background_color"
+                            android:visibility="visible"
+                            app:auto_show="false"
+                            app:controller_layout_id="@layout/exo_playback_control_view_playeractivity"
+                            app:resize_mode="fill" />
+                    </LinearLayout>
+                    <com.github.vkay94.dtpv.youtube.YouTubeOverlay
+                        android:id="@+id/youtubeDoubleTap"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/dtp_overlay_dim"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/player_layout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/player_layout"
+                        app:yt_playerView="@+id/video_view"
+                        tools:visibility="visible" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/future_stream_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/coverPic"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#9A000000"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/margin_16"
+                                android:text="@string/will_start_in"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_18" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/layout_1_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="00"
+                                        android:textColor="@color/white"
+                                        android:textSize="28sp" />
+
+                                    <TextView
+                                        android:id="@+id/layout_1_label"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="Days"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                                <View
+                                    android:id="@+id/separator_1_2"
+                                    android:layout_width="16dp"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone" />
+
+                                <LinearLayout
+                                    android:id="@+id/layout_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/layout_2_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="00"
+                                        android:textColor="@color/white"
+                                        android:textSize="28sp" />
+
+                                    <TextView
+                                        android:id="@+id/layout_2_label"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="Days"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                                <View
+                                    android:id="@+id/separator_2_3"
+                                    android:layout_width="16dp"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone" />
+
+                                <LinearLayout
+                                    android:id="@+id/layout_3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/layout_3_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="00"
+                                        android:textColor="@color/white"
+                                        android:textSize="28sp" />
+
+                                    <TextView
+                                        android:id="@+id/layout_3_label"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="Days"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                                <View
+                                    android:id="@+id/separator_3_4"
+                                    android:layout_width="16dp"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone" />
+
+                                <LinearLayout
+                                    android:id="@+id/layout_4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/layout_4_value"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="00"
+                                        android:textColor="@color/white"
+                                        android:textSize="28sp" />
+
+                                    <TextView
+                                        android:id="@+id/layout_4_label"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="Days"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!--<FrameLayout
+                        android:id="@+id/chat_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false" />-->
+
+                    <View
+                        android:id="@+id/sticker_overlay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#55000000"
+                        android:visibility="gone" />
+
+                    <FrameLayout
+                        android:id="@+id/stickers_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@drawable/bottom_sheet_bg"
+                        android:elevation="@dimen/margin_8"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent">
+
+
+                        <ImageView
+                            android:id="@+id/close_stickers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:src="@drawable/ic_close_white_32dp"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/stickers_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:clipToPadding="false"
+                            android:padding="@dimen/margin_12" />
+
+                        <ProgressBar
+                            android:id="@+id/stickers_loading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
+                    </FrameLayout>
+                </FrameLayout>
+
+                <!--<TextView
+                    android:id="@+id/view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:background="@drawable/round_background_black"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/margin_6"
+                    android:paddingLeft="4dp"
+                    android:paddingTop="@dimen/margin_4"
+                    android:paddingEnd="@dimen/margin_6"
+                    android:paddingRight="4dp"
+                    android:paddingBottom="@dimen/margin_4"
+                    android:text="@{viewModel.totalViews}"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:text="59 Views" />
+-->
+
+                <!-- Video details-->
+                <RelativeLayout
+                    android:id="@+id/videoDetailsRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/player_container"
+                    android:background="@color/black_dark"
+                    android:padding="4dp"
+                    android:visibility="gone">
+
+                    <com.rheotv.android.ui.customViews.CircularImageView
+                        android:id="@+id/postUserProfile"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="16dp"
+                        android:visibility="visible"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="false"
+                        app:civ_shadow_gravity="center"
+                        app:civ_shadow_radius="0" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/postUserProfile"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <androidx.emoji.widget.EmojiTextView
+                                android:id="@+id/user_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{viewModel.author}"
+                                android:textColor="@color/color_primary_text"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <androidx.emoji.widget.EmojiTextView
+                            android:id="@+id/video_title_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.videoTitle}"
+                            android:textColor="@color/translucent_white"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/game_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.game}"
+                            android:textColor="@color/translucent_white"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/durationTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Streaming for "
+                            android:textColor="@color/color_secondary_text"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/follow_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/button_transparent_white_border"
+                        android:padding="8dp"
+                        android:text="FOLLOW"
+                        android:textColor="@color/color_primary_text"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/liveChatTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/upperPart"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/seperatorline1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_secondary_text"
+                    android:textSize="1dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="LIVE CHAT"
+                    android:textColor="@color/color_primary_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/seperatorline2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_secondary_text"
+                    android:textSize="1dp" />
+            </LinearLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:layout_marginRight="@dimen/margin_20"
+                android:minHeight="?actionBarSize"
+                android:visibility="gone"
+                app:tabBackground="@color/app_background_color"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/tab_selected_text_color"
+                app:tabIndicatorHeight="3dp"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/tab_selected_text_color"
+                app:tabTextAppearance="@style/CustomTabTextStyle"
+                app:tabTextColor="@color/tab_unselected_text_color" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:visibility="gone" />
+
+
+            <!--<View
+                android:id="@+id/overlayView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.2"
+                android:background="@color/colorPrimaryDark"
+                android:visibility="gone" />
+-->
+            <!--            <ImageView-->
+            <!--                android:layout_width="@dimen/size_35"-->
+            <!--                android:layout_height="@dimen/size_35"-->
+            <!--                android:id="@+id/expandIcon"-->
+            <!--                android:visibility="gone"-->
+            <!--                android:layout_marginRight="@dimen/margin_12"-->
+            <!--                android:layout_marginBottom="@dimen/margin_16"-->
+            <!--                android:layout_alignParentBottom="true"-->
+            <!--                android:layout_alignParentEnd="true"-->
+            <!--                android:src="@drawable/collapse"/>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/userChatRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/chatBoxRL"
+                android:background="#AC000000"
+                android:elevation="5dp"
+                android:scrollbars="none"
+                android:visibility="gone"
+                tools:listitem="@layout/chat_item_v2" />
+
+            <com.rheotv.android.ui.customViews.CircularIndeterminateProgressBar
+                android:id="@+id/reward_progress_bar"
+                android:layout_width="@dimen/size_48"
+                android:layout_height="@dimen/size_48"
+                android:layout_marginTop="@dimen/margin_8"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/reward_flag_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.1"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_8"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/chatBoxRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"
+                android:padding="4dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/chatboxLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black_dark"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <androidx.emoji.widget.EmojiEditText
+                        android:id="@+id/chatbox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="9"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/translucent_white" />
+
+                    <ImageView
+                        android:id="@+id/sendButton"
+                        android:layout_width="0dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/send_button_w" />
+
+                    <!--                    <ImageView-->
+                    <!--                        android:layout_width="@dimen/size_35"-->
+                    <!--                        android:layout_height="@dimen/size_35"-->
+                    <!--                        android:id="@+id/expandIcon"-->
+                    <!--                        android:layout_above="@+id/videoDetailsRL"-->
+                    <!--                        android:layout_gravity="center_vertical"-->
+                    <!--                        android:layout_marginRight="@dimen/margin_12"-->
+                    <!--                        android:layout_alignParentEnd="true"-->
+                    <!--                        android:src="@drawable/collapse_square"/>-->
+
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

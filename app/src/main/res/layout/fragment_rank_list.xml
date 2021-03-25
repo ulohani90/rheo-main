@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.rank.RankListFragment">
+
+    <data>
+
+        <variable
+            name="rewardDefinition"
+            type="String" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_reward">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_16">
+
+            <TextView
+                android:id="@+id/current_level_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:paddingBottom="@dimen/margin_24"
+                android:text="You are here!"
+                android:textColor="#04B758"
+                android:textSize="@dimen/text_20"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/level_requirement_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_stream_platform_bg"
+                android:paddingStart="@dimen/margin_8"
+                android:visibility="gone"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_8"
+                tools:visibility="visible"
+                android:paddingBottom="@dimen/margin_6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/current_level_info">
+
+                <TextView
+                    android:id="@+id/level_requirement_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Level Requirements"
+                    android:textColor="#fbfbfb"
+                    android:textSize="@dimen/text_17"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/criteria_rv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/level_requirement_header"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/list_item_rank_criteria"  />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/targets_rv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/criteria_rv"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/list_item_rank_criteria" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/level_accomplishment_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/rounded_corner_stream_platform_bg"
+                android:backgroundTint="#00FFFFFF"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/level_requirement_layout"
+                app:layout_constraintEnd_toEndOf="@+id/level_requirement_layout"
+                app:layout_constraintStart_toStartOf="@+id/level_requirement_layout"
+                app:layout_constraintTop_toTopOf="@+id/level_requirement_layout"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_accomplished_stamp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/reward_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_80"
+                android:background="@drawable/rounded_corner_stream_platform_bg"
+                android:paddingStart="@dimen/margin_8"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_8"
+                android:paddingBottom="@dimen/margin_16"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/level_requirement_layout"
+                app:layout_goneMarginTop="@dimen/margin_16"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/reward_layout_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Rewards"
+                    android:textColor="#fbfbfb"
+                    android:textSize="@dimen/text_17"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/current_watch_hour"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Current WatchHours - 18000"
+                    android:textColor="#fbfbfb"
+                    android:textSize="@dimen/text_13"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/reward_layout_header"
+                    app:layout_constraintStart_toStartOf="@+id/reward_layout_header"
+                    app:layout_constraintTop_toBottomOf="@+id/reward_layout_header"
+                    tools:visibility="visible" />
+
+                <TableLayout
+                    android:id="@+id/level_achievement_table"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="@drawable/table_bg"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/reward_layout_header"
+                    app:layout_constraintStart_toStartOf="@+id/reward_layout_header"
+                    app:layout_constraintTop_toBottomOf="@+id/current_watch_hour"
+                    tools:visibility="visible">
+
+                    <TableRow android:padding="@dimen/margin_1">
+
+                        <TextView
+                            android:id="@+id/level_achievement_title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/table_top_header_bg"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/margin_5"
+                            android:text="Level achievements"
+                            android:textAlignment="gravity"
+                            android:textColor="#fbfbfb"
+                            android:textSize="@dimen/text_13"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:paddingStart="@dimen/margin_1"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="@dimen/margin_1"
+                        android:paddingBottom="@dimen/margin_1">
+
+                        <TextView
+                            android:id="@+id/level_achievement_body"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/table_bottom_bg"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/margin_5"
+                            android:text="100 Rheo diamonds"
+                            android:textAlignment="gravity"
+                            android:textColor="#fbfbfb"
+                            android:textSize="@dimen/text_12"
+                            tools:text="100 Rheo Diamonds" />
+                    </TableRow>
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/reward_definition_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@{`Note : ` + rewardDefinition}"
+                    android:textColor="#8e8e93"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:isVisible="@{rewardDefinition!=null}"
+                    app:layout_constraintEnd_toEndOf="@+id/reward_layout_header"
+                    app:layout_constraintStart_toStartOf="@+id/reward_layout_header"
+                    app:layout_constraintTop_toBottomOf="@+id/level_achievement_table"
+                    tools:text="Note : 1 Rheo Diamond is 0.1"
+                    tools:visibility="visible" />
+
+                <TableLayout
+                    android:id="@+id/watch_hour_table"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="@drawable/table_bg"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/reward_layout_header"
+                    app:layout_constraintStart_toStartOf="@+id/reward_layout_header"
+                    app:layout_constraintTop_toBottomOf="@+id/reward_definition_text_view"
+                    tools:visibility="visible">
+
+                    <TableRow android:padding="@dimen/margin_1">
+
+                        <TextView
+                            android:id="@+id/earn_as_you_grow_title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/table_top_header_bg"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/margin_5"
+                            android:text="Earn as you Grow Plan"
+                            android:textAlignment="gravity"
+                            android:textColor="#fbfbfb"
+                            android:textSize="@dimen/text_13"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                    <TableRow
+                        android:paddingStart="@dimen/margin_1"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="@dimen/margin_1"
+                        android:paddingBottom="@dimen/margin_1">
+
+                        <TextView
+                            android:id="@+id/earn_as_you_grow_body"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/table_bottom_bg"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/margin_5"
+                            android:textAlignment="gravity"
+                            android:textColor="#fbfbfb"
+                            android:textSize="@dimen/text_12"
+                            tools:text="1 Rheo Diamond per Watch Hours" />
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:id="@+id/bonus_table"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="@drawable/table_bg"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/reward_layout_header"
+                    app:layout_constraintStart_toStartOf="@+id/reward_layout_header"
+                    app:layout_constraintTop_toBottomOf="@+id/watch_hour_table"
+                    tools:visibility="visible">
+
+                    <TableRow android:padding="@dimen/margin_1">
+
+                        <TextView
+                            android:id="@+id/bonus_plan_title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/table_top_header_bg"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:padding="5dp"
+                            android:text="Bonus plan on top of the above payment"
+                            android:textAlignment="gravity"
+                            android:textColor="#fbfbfb"
+                            android:textSize="@dimen/text_13"
+                            android:textStyle="bold" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:paddingStart="@dimen/margin_1"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="@dimen/margin_1"
+                        android:paddingBottom="@dimen/margin_1">
+
+                        <TextView
+                            android:id="@+id/column_watch_hour"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#1d2e44"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:padding="5dp"
+                            android:text="Watch Hours Milestone"
+                            android:textAlignment="gravity"
+                            android:textColor="#fbfbfb"
+                            android:textSize="@dimen/text_12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/column_bonus"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/margin_1"
+                            android:layout_weight="1"
+                            android:background="#1d2e44"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_vertical"
+                            android:padding="5dp"
+                            android:text="Bonus (Rheo Diamond)"
+                            android:textAlignment="gravity"
+                            android:textColor="#fbfbfb"
+                            android:textSize="@dimen/text_12"
+                            android:textStyle="bold" />
+
+                    </TableRow>
+                </TableLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

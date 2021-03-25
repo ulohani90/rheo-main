@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewprofile.viewmodel.UserWalletViewModel" />
+
+        <variable
+            name="wallet"
+            type="com.rheotv.android.data.network.models.useProfile.responses.WalletDetail" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingTop="@dimen/margin_20"
+            android:paddingEnd="20dp"
+            android:paddingBottom="56dp">
+
+            <ImageView
+                android:id="@+id/bronze_badge_image_view"
+                android:layout_width="74dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="15dp"
+                android:src="@{wallet.isBronze || wallet.isSilver || wallet.isGold ? @drawable/ic_bronze_selected : @drawable/ic_bronze_unselected,default=@drawable/ic_bronze_unselected}"
+                app:layout_constraintEnd_toStartOf="@+id/silver_badge_image_view"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bronze_badge_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/bronze"
+                android:textColor="@{wallet.isBronze || wallet.isSilver || wallet.isGold ? @color/bronze_badge : @color/map_axis_line_color, default=@color/map_axis_line_color}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/bronze_badge_image_view"
+                app:layout_constraintStart_toStartOf="@+id/bronze_badge_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/bronze_badge_image_view" />
+
+            <ImageView
+                android:id="@+id/silver_badge_image_view"
+                android:layout_width="74dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="16dp"
+                android:src="@{wallet.isSilver || wallet.isGold ? @drawable/ic_silver_selected : @drawable/ic_silver_unselected,default=@drawable/ic_silver_unselected}"
+                app:layout_constraintBottom_toBottomOf="@+id/bronze_badge_image_view"
+                app:layout_constraintEnd_toStartOf="@+id/gold_badge_image_view"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/bronze_badge_image_view"
+                app:layout_constraintTop_toTopOf="@+id/bronze_badge_image_view" />
+
+            <TextView
+                android:id="@+id/silver_badge_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/silver"
+                android:textColor="@{wallet.isSilver || wallet.isGold ? @color/silver_badge : @color/map_axis_line_color, default=@color/map_axis_line_color}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/silver_badge_image_view"
+                app:layout_constraintStart_toStartOf="@+id/silver_badge_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/silver_badge_image_view" />
+
+            <ImageView
+                android:id="@+id/gold_badge_image_view"
+                android:layout_width="74dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="16dp"
+                android:src="@{wallet.isGold ? @drawable/ic_gold_selected : @drawable/ic_gold_unselected,default=@drawable/ic_gold_unselected}"
+                app:layout_constraintBottom_toBottomOf="@+id/silver_badge_image_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/silver_badge_image_view"
+                app:layout_constraintTop_toTopOf="@+id/silver_badge_image_view" />
+
+            <TextView
+                android:id="@+id/gold_badge_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/gold"
+                android:textColor="@{wallet.isGold ? @color/gold_badge : @color/map_axis_line_color, default=@color/map_axis_line_color}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/gold_badge_image_view"
+                app:layout_constraintStart_toStartOf="@+id/gold_badge_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/gold_badge_image_view" />
+
+            <ImageView
+                android:id="@+id/bronze_unselected_image_view"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/circle_white_bg"
+                android:backgroundTint="#69737e"
+                app:layout_constraintEnd_toEndOf="@+id/bronze_badge_image_view"
+                app:layout_constraintStart_toStartOf="@+id/bronze_badge_image_view"
+                app:layout_constraintTop_toBottomOf="@id/bronze_badge_label" />
+
+            <ImageView
+                android:id="@+id/bronze_selected_image_view"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:elevation="1dp"
+                android:src="@drawable/avd_correct"
+                android:visibility="@{wallet.isBronze || wallet.isSilver || wallet.isGold ? View.VISIBLE : View.GONE,default=gone}"
+                app:layout_constraintBottom_toBottomOf="@+id/bronze_unselected_image_view"
+                app:layout_constraintEnd_toEndOf="@+id/bronze_unselected_image_view"
+                app:layout_constraintStart_toStartOf="@+id/bronze_unselected_image_view"
+                app:layout_constraintTop_toTopOf="@+id/bronze_unselected_image_view" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="4dp"
+                android:background="@{wallet.isSilver || wallet.isGold ? @color/accepted : @color/streamer_card_bg,default=@color/streamer_card_bg}"
+                app:layout_constraintBottom_toBottomOf="@+id/bronze_unselected_image_view"
+                app:layout_constraintEnd_toStartOf="@+id/silver_unselected_image_view"
+                app:layout_constraintStart_toEndOf="@+id/bronze_unselected_image_view"
+                app:layout_constraintTop_toTopOf="@+id/bronze_unselected_image_view" />
+
+            <ImageView
+                android:id="@+id/silver_unselected_image_view"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/circle_white_bg"
+                android:backgroundTint="#69737e"
+                app:layout_constraintEnd_toEndOf="@+id/silver_badge_image_view"
+                app:layout_constraintStart_toStartOf="@+id/silver_badge_image_view"
+                app:layout_constraintTop_toBottomOf="@id/silver_badge_label" />
+
+            <ImageView
+                android:id="@+id/silver_selected_image_view"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:elevation="1dp"
+                android:src="@drawable/avd_correct"
+                android:visibility="@{wallet.isSilver || wallet.isGold ? View.VISIBLE : View.GONE,default=gone}"
+                app:layout_constraintBottom_toBottomOf="@+id/silver_unselected_image_view"
+                app:layout_constraintEnd_toEndOf="@+id/silver_unselected_image_view"
+                app:layout_constraintStart_toStartOf="@+id/silver_unselected_image_view"
+                app:layout_constraintTop_toTopOf="@+id/silver_unselected_image_view" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginEnd="4dp"
+                android:background="@{wallet.isGold ? @color/accepted : @color/streamer_card_bg,default=@color/streamer_card_bg}"
+                app:layout_constraintBottom_toBottomOf="@id/silver_unselected_image_view"
+                app:layout_constraintEnd_toStartOf="@id/gold_unselected_image_view"
+                app:layout_constraintStart_toEndOf="@id/silver_unselected_image_view"
+                app:layout_constraintTop_toTopOf="@id/silver_unselected_image_view" />
+
+            <ImageView
+                android:id="@+id/gold_unselected_image_view"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/circle_white_bg"
+                android:backgroundTint="#69737e"
+                app:layout_constraintEnd_toEndOf="@id/gold_badge_image_view"
+                app:layout_constraintStart_toStartOf="@id/gold_badge_image_view"
+                app:layout_constraintTop_toBottomOf="@id/gold_badge_label" />
+
+            <ImageView
+                android:id="@+id/gold_selected_image_view"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:elevation="1dp"
+                android:src="@drawable/avd_correct"
+                android:visibility="@{wallet.isGold ? View.VISIBLE : View.GONE,default=gone}"
+                app:layout_constraintBottom_toBottomOf="@id/gold_unselected_image_view"
+                app:layout_constraintEnd_toEndOf="@id/gold_unselected_image_view"
+                app:layout_constraintStart_toStartOf="@id/gold_unselected_image_view"
+                app:layout_constraintTop_toTopOf="@id/gold_unselected_image_view" />
+
+            <View
+                android:id="@+id/medal_clickable_area"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/margin_16"
+                app:layout_constraintBottom_toBottomOf="@id/gold_selected_image_view"
+                app:layout_constraintEnd_toEndOf="@id/gold_badge_image_view"
+                app:layout_constraintStart_toStartOf="@id/bronze_badge_image_view"
+                app:layout_constraintTop_toTopOf="@id/bronze_badge_image_view" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/see_more_text_view"
+                style="@style/BaseButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_26"
+                android:layout_marginTop="35dp"
+                android:backgroundTint="@color/color_accent"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:paddingTop="2dp"
+                android:text="@string/check_progress"
+                android:textAlignment="center"
+                android:textColor="#fbfbfb"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:cornerRadius="13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bronze_badge_label" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/no_badge_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{!wallet.isBronze &amp;&amp; !wallet.isSilver &amp;&amp; !wallet.isGold ? View.VISIBLE : View.GONE, default=gone}"
+                app:constraint_referenced_ids="stream_now_button,no_badge_text_view,action_text_view"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/no_badge_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:fontFamily="sans-serif"
+                android:text="@string/no_badge_info"
+                android:textColor="#8e8e93"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/see_more_text_view" />
+
+            <TextView
+                android:id="@+id/action_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="#8e8e93"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/stream_now_button"
+                app:layout_constraintEnd_toStartOf="@id/stream_now_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/stream_now_button" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/stream_now_button"
+                style="@style/BaseButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_32"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/color_accent"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@string/stream_now"
+                android:textColor="#fbfbfb"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/no_badge_text_view" />
+
+            <View
+                android:id="@+id/wallet_amount_bg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin_32"
+                android:background="#32425c"
+                app:layout_constraintBottom_toBottomOf="@id/wallet_bottom_space"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stream_now_button" />
+
+            <TextView
+                android:id="@+id/wallet_amount_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_14"
+                android:fontFamily="sans-serif"
+                android:text="@string/wallet_balance"
+                android:textColor="#aeaeb2"
+                android:textSize="@dimen/text_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@id/wallet_amount_bg"
+                app:layout_constraintTop_toTopOf="@id/wallet_amount_bg" />
+
+            <TextView
+                android:id="@+id/wallet_amount_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:text="@{wallet.redeemAmount, default=`0 Rheo Diamond`}"
+                android:textColor="#fbfbfb"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/wallet_amount_header"
+                app:layout_constraintTop_toBottomOf="@id/wallet_amount_header" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/redeem_button"
+                style="@style/BaseButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_36"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:backgroundTint="@{wallet.stateColor, default=@color/color_accent}"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@string/redeem"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/wallet_amount_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/wallet_amount_text_view" />
+
+            <TextView
+                android:id="@+id/payment_redeem_date_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_15"
+                android:fontFamily="sans-serif"
+                android:text='@{wallet.conversion}'
+                android:textColor="#8e8e93"
+                android:textSize="@dimen/text_14"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@id/wallet_amount_text_view"
+                app:layout_constraintTop_toBottomOf="@id/wallet_amount_text_view" />
+
+            <TextView
+                android:id="@+id/payment_redeem_info_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_14"
+                android:fontFamily="sans-serif"
+                android:text="@string/play_info"
+                android:textColor="#8e8e93"
+                android:textSize="@dimen/text_10"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/redeem_button"
+                app:layout_constraintStart_toStartOf="@id/wallet_amount_text_view"
+                app:layout_constraintTop_toBottomOf="@id/payment_redeem_date_text_view" />
+
+            <Space
+                android:id="@+id/wallet_bottom_space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_14"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="payment_redeem_date_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payment_redeem_info_text_view" />
+
+            <ImageView
+                android:id="@+id/download_statement_image_view"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="@dimen/margin_26"
+                android:src="@drawable/ic_wallet"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wallet_amount_bg" />
+
+            <TextView
+                android:id="@+id/download_statement_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_10"
+                android:fontFamily="sans-serif"
+                android:text="@string/download_statement"
+                android:textColor="#8e8e93"
+                android:textSize="@dimen/text_12"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/download_statement_image_view"
+                app:layout_constraintStart_toEndOf="@id/download_statement_image_view"
+                app:layout_constraintTop_toTopOf="@id/download_statement_image_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transaction_recycler_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/download_statement_image_view"
+                tools:itemCount="5"
+                tools:listitem="@layout/list_item_wallet_transaction" />
+
+            <FrameLayout
+                android:id="@+id/error_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/app_background_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visibleWhen="@{viewModel.wallet.status == Status.ERROR}"
+                tools:visibility="gone">
+
+                <TextView
+                    android:id="@+id/error_text_voew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="100dp"
+                    android:text="@{viewModel.wallet.message}" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/loader"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/app_background_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visibleWhen="@{viewModel.wallet.status == Status.LOADING}"
+                tools:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="100dp" />
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

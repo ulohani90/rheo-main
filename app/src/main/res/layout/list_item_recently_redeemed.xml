@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="recentlyRedeemedObj"
+            type="com.rheotv.android.data.network.models.RecentlyRedeemedObject" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/margin_8"
+        android:paddingEnd="@dimen/margin_8">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundImageUri="@{recentlyRedeemedObj.profilePic}"
+            app:textDrawable="@{recentlyRedeemedObj.username}" />
+
+        <TextView
+            android:id="@+id/reward_type_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:text="@{recentlyRedeemedObj.username}"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_15"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/profile_pic"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/profile_pic"
+            app:layout_constraintTop_toTopOf="@id/profile_pic"
+            tools:text="Daily Login" />
+
+        <TextView
+            android:id="@+id/coin_number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:drawableLeft="@drawable/ic_rheo_coin_small"
+            android:drawablePadding="@dimen/margin_8"
+            android:gravity="center_vertical"
+            android:text='@{recentlyRedeemedObj.coins}'
+            android:textColor="@color/color_credit"
+            android:textSize="@dimen/text_15"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="+2" />
+
+        <View
+            android:id="@+id/divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="#32425c"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_pic" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

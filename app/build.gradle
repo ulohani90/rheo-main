@@ -1,0 +1,326 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
+    }
+}
+/*
+ * *
+ *  * Created by Asheesh Sharma on 1st January 2019.
+ *  * Copyright (c) January 2019 . All rights reserved.
+ *  * Last modified 1/1/19 3:35 PM
+ *
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.firebase.crashlytics'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/umeshlohani/RheoTVProjects/android-app-key/rheo_key1')
+            storePassword 'Gallant2.'
+            keyAlias = 'rheotv'
+            keyPassword 'Miracle01.'
+        }
+    }
+    compileSdkVersion rootProject.compileSdkVersion
+    defaultConfig {
+        applicationId "com.rheotv.android"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 461
+        versionName "4.6.1"
+        resConfigs "en"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+    buildTypes {
+        debug {
+//            buildConfigField("String", "BASE_URL", "\"http://230bd6c0a9d0.ngrok.io/api/\"")
+            buildConfigField("String", "BASE_URL", "\"https://rheotv.com/api/\"")
+
+            //buildConfigField("String", "BASE_URL", "\"http://44c50f42a655.ngrok.io/api/\"")
+
+//            buildConfigField("String", "BASE_URL", "\"http://15.207.86.63:8000/api/\"")
+//            buildConfigField("String", "BASE_URL", "\"http://0552d6cd43ed.ngrok.io/api/\"")
+            //buildConfigField("String", "BASE_URL", "\"http://13.232.157.233/api/\"")
+            buildConfigField("String", "EVENTS_URL", "\"https://events.rheotv.com/\"")
+            buildConfigField("String", "CHAT_URL", "\"gochat.rheotv.com\"")
+            buildConfigField("int", "CHAT_PORT", "80")
+            //buildConfigField("String", "CHAT_URL", "\"192.168.0.102\"")
+            //buildConfigField("int", "CHAT_PORT", "8000")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+            buildConfigField("String", "CLIENT_ID", "\"QBW6sbfve5ZIXgiZEdCsRz2Q1EfYHhNF9gXSwWfp\"")
+            buildConfigField("String", "CLIENT_SECRET", "\"NU9w9pA77P2bnAqKza4OU7x5Ud94PFxXOATcwNCffQyYPIDXDHNGYZg1I7MHnQeTWQh4rKgkC6zPg6eRsQpIO7UsrEIQOZsIHOb2ToabrTknLmb7Svbjc3DURzlGBIMc\"")
+            buildConfigField("String", "MIXPANEL_TOKEN", "\"eb9e847a63e525faf74dd90ad83d784f\"")
+            buildConfigField("String", "GIPHY_API_KEY", "\"TkTdY3i3LPi3xGHfNDZV1XA9HQnEz3DB\"")
+            buildConfigField("String", "TENOR_API_KEY", "\"3595T2OVGC80\"")
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField("String", "BASE_URL", "\"https://rheotv.com/api/\"")
+//            buildConfigField("String", "BASE_URL", "\"http://13.127.209.208:8000/api/\"")
+            //buildConfigField("String", "BASE_URL", "\"http://44c50f42a655.ngrok.io/api/\"")
+            buildConfigField("String", "EVENTS_URL", "\"https://events.rheotv.com/\"")
+            buildConfigField("String", "CHAT_URL", "\"gochat.rheotv.com\"")
+            buildConfigField("int", "CHAT_PORT", "80")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+            buildConfigField("String", "CLIENT_ID", "\"QBW6sbfve5ZIXgiZEdCsRz2Q1EfYHhNF9gXSwWfp\"")
+            buildConfigField("String", "CLIENT_SECRET", "\"NU9w9pA77P2bnAqKza4OU7x5Ud94PFxXOATcwNCffQyYPIDXDHNGYZg1I7MHnQeTWQh4rKgkC6zPg6eRsQpIO7UsrEIQOZsIHOb2ToabrTknLmb7Svbjc3DURzlGBIMc\"")
+            buildConfigField("String", "MIXPANEL_TOKEN", "\"eb9e847a63e525faf74dd90ad83d784f\"")
+            buildConfigField("String", "GIPHY_API_KEY", "\"TkTdY3i3LPi3xGHfNDZV1XA9HQnEz3DB\"")
+            buildConfigField("String", "TENOR_API_KEY", "\"3595T2OVGC80\"")
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    configurations {
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+protobuf {
+    protoc { artifact = 'com.google.protobuf:protoc:3.7.1' }
+    plugins {
+        javalite { artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0" }
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.21.0'
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src/generated"
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                javalite {}
+                grpc {
+                    option 'lite'
+                }
+            }
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':story')
+    implementation project(':doubletapplayerview')
+    implementation project(':ffmpeg')
+
+    // android support libraries
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.emoji:emoji:1.1.0'
+    kapt "com.android.databinding:compiler:3.1.4"
+
+    // json converter
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
+    // network
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggerVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    // database
+//    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
+
+    implementation "androidx.room:room-runtime:$rootProject.room_version"
+    kapt "androidx.room:room-compiler:$rootProject.room_version"
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
+
+    // font
+//    implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
+
+    // story
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // debug database
+//    debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
+
+    // dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.retrofitRxjavaVersion"
+
+    // logger
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    // view model
+    implementation "androidx.lifecycle:lifecycle-common:2.2.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0"
+//    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+
+    //facebook
+    implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
+
+    //exo
+    implementation "com.google.android.exoplayer:exoplayer-core:$rootProject.exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-dash:$rootProject.exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-hls:$rootProject.exoPlayer"
+    implementation "com.google.android.exoplayer:exoplayer-ui:$rootProject.exoPlayer"
+
+
+    //circle imageview
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.3'
+
+    implementation 'com.mikhaellopez:circularimageview:3.2.0'
+
+    implementation 'com.stepstone.apprating:app-rating:2.3.0'
+
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
+
+    implementation 'com.google.firebase:firebase-core:17.5.1'
+
+    implementation 'com.google.firebase:firebase-dynamic-links:19.1.1'
+    implementation 'com.google.firebase:firebase-analytics:17.6.0'
+    implementation 'com.android.installreferrer:installreferrer:2.1'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.google.firebase:firebase-messaging:20.3.0'
+
+    implementation('com.google.firebase:firebase-config:19.2.0', {
+        // protobuf-lite that firebase depends on.
+        exclude group: 'com.google.protobuf'
+    })
+
+    implementation 'joda-time:joda-time:2.9.6'
+
+    implementation 'com.facebook.shimmer:shimmer:0.4.0'
+
+//    implementation 'com.google.protobuf'
+    implementation 'io.grpc:grpc-okhttp:1.24.0'
+    implementation('io.grpc:grpc-protobuf-lite:1.21.0') {
+        exclude module: "protobuf-lite"
+    }
+    implementation 'com.google.protobuf:protobuf-lite:3.0.0'
+    implementation 'io.grpc:grpc-stub:1.21.0'
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.mixpanel.android:mixpanel-android:5.+'
+
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.github.Adilhusen:circle-progress-ad-android-:1.0'
+
+    implementation 'com.google.android:flexbox:1.0.0'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.segment.analytics.android:analytics:4.+'
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
+    implementation 'io.branch.sdk.android:library:4.0.0'
+    implementation("com.google.firebase:firebase-perf:19.0.1", {
+        // protobuf-lite that firebase depends on.
+        exclude group: 'com.google.protobuf'
+    })
+    implementation 'com.google.android.gms:play-services-analytics:17.0.0'
+    implementation 'com.github.freshdesk:freshchat-android:3.0.0'
+    implementation "com.moengage:moe-android-sdk:10.0.02"
+    /*implementation("com.moengage:moengage-segment-integration:3.5.01") {
+        transitive = true
+    }*/
+
+    implementation 'com.github.AndroidDeveloperLB:VideoTrimmer:6'
+    implementation "com.naver.android.helloyako:imagecropview:1.2.3"
+    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.amplitude:android-sdk:2.23.2'
+    implementation 'com.github.bosphere.android-fadingedgelayout:fadingedgelayout:1.0.0'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation "androidx.work:work-runtime:$rootProject.work_version"
+    implementation "androidx.work:work-runtime-ktx:$rootProject.work_version"
+    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$rootProject.assisted_inject_version"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$rootProject.assisted_inject_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+    implementation 'androidx.room:room-ktx:2.2.5'
+    kapt "androidx.room:room-compiler:2.2.5"
+    implementation "androidx.room:room-rxjava2:$rootProject.room_version"
+    implementation 'com.airbnb.android:lottie:3.4.1'
+    implementation "androidx.paging:paging-runtime:2.1.2"
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "com.android.billingclient:billing:$billing_version"
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation 'io.agora.rtc:full-sdk:3.1.2'
+    implementation "androidx.lifecycle:lifecycle-livedata:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.archLifecycleVersion"
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+    implementation 'com.eightbitlab:blurview:1.6.5'
+    implementation 'id.zelory:compressor:3.0.0'
+    // video compression libs
+//    implementation 'com.github.AbedElazizShe:LightCompressor:0.7.7'
+//    implementation 'com.iceteck.silicompressorr:silicompressor:2.2.4'
+
+
+    // Import the BoM for the Firebase platform
+//    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+
+    // Declare the dependency for the Analytics library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+//    implementation 'com.google.firebase:firebase-analytics-ktx'
+}
+
+/*
+implementation "com.google.dagger:dagger:2.12"
+implementation "com.google.dagger:dagger-android-support:2.12"
+annotationProcessor "com.google.dagger:dagger-android-processor:2.12"
+annotationProcessor "com.google.dagger:dagger-compiler:2.12"*/
+
+configurations.all {
+    resolutionStrategy.force "com.android.support:support-annotations:$supportLibraryVersion"
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+
+}

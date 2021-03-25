@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="selected"
+            type="Boolean" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_6"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/color_holder"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
+            android:background="@drawable/circle_white_bg"
+            android:backgroundTint="@color/gold" />
+
+        <ImageView
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
+            android:src="@drawable/white_circle_border_bg" />
+
+        <ImageView
+            android:layout_width="@dimen/size_10"
+            android:layout_height="@dimen/size_10"
+            android:layout_gravity="center"
+            android:visibility="@{selected ? View.VISIBLE : View.INVISIBLE}"
+            android:src="@drawable/white_circle_border_bg" />
+
+    </FrameLayout>
+
+</layout>

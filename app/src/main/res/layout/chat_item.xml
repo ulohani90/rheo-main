@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.player.activity.ChatItemViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:elevation="4dp"
+        android:orientation="horizontal"
+
+        android:padding="8dp"
+        android:shadowColor="@color/white"
+        android:shadowRadius="8.0">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.rheotv.android.ui.customViews.CircularImageView
+                    android:id="@+id/chatUserPic"
+                    android:layout_width="19dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="4dp"
+                    android:src="@drawable/avd_avatar"
+                    android:visibility="visible"
+                    app:civ_border_width="0dp"
+                    app:civ_shadow="false"
+                    app:civ_shadow_gravity="center"
+                    app:civ_shadow_radius="0" />
+
+                <androidx.emoji.widget.EmojiTextView
+                    android:id="@+id/chatUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:maxEms="4"
+                    android:maxLines="1"
+                    android:text="Random Alien asdsadasdasd gghghg"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+
+                    />
+
+                <androidx.emoji.widget.EmojiTextView
+                    android:id="@+id/chatMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/margin_12"
+                    android:paddingTop="@dimen/margin_4"
+                    android:paddingEnd="@dimen/margin_6"
+                    android:paddingBottom="@dimen/margin_4"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    tools:text="Hi asdasdasdasdasdasdasdas dasdasdas asdas a ddsad asd as das asa das dadsd as as as das as das dasd as dasd ad ass " />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/timeSent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginRight="4dp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:visibility="visible"
+                tools:text="01:05 P.M" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chat_rounded_rect"
+            android:elevation="@dimen/margin_4">
+
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.profile.editprofile.view.PreferredGameFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewmodel.UserProfileViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_4"
+        android:layout_marginBottom="@dimen/margin_56">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:layout_marginTop="@dimen/margin_4"
+            android:src="@drawable/avd_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_20"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/sub_header_text_view"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toEndOf="@id/back_button"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="What do you like?" />
+
+        <TextView
+            android:id="@+id/sub_header_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:fontFamily="sans-serif"
+            android:text="Pick one or more and we’ll show you streams that you’ll love."
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/game_recycler_view"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toStartOf="@+id/header_text_view"
+            app:layout_constraintTop_toBottomOf="@id/header_text_view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/game_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_20"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/continue_button"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintTop_toBottomOf="@id/sub_header_text_view"
+            app:spanCount="3"
+            tools:itemCount="9"
+            tools:listitem="@layout/list_item_game_selection" />
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:indeterminateTint="@color/color_accent"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:progressTint="@color/color_accent"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.submittingGame == Status.LOADING ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintTop_toBottomOf="@id/game_recycler_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/continue_button"
+            style="@style/BaseButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_36"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:backgroundTint="@color/color_accent"
+            android:text="@string/action_save"
+            android:visibility="@{viewModel.submittingGame == Status.LOADING ? View.INVISIBLE : View.VISIBLE, default=visible}"
+            app:layout_constraintTop_toBottomOf="@id/game_recycler_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_130"
+            android:background="@drawable/bottom_bar_gradient_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:indeterminateTint="@color/color_accent"
+            android:layout_centerVertical="true"
+            android:progressTint="@color/color_accent"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.loadingGame == Status.LOADING ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.gamify.RedeemSummaryFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.gamify.RedeemSummaryViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_background_color"
+                android:minHeight="?attr/actionBarSize"
+                app:navigationIcon="@drawable/avd_back_arrow"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:padding="@dimen/margin_4"
+                android:scrollbarStyle="outsideOverlay">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                    <ImageView
+                        android:id="@+id/sku_image_view"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        app:imageUrl="@{viewModel.meta.thumbnail}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/error_text_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_16"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="2sp"
+                        android:text="Redeem Request was Unsuccessful"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        android:visibility="@{viewModel.meta.transactionId == null ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sku_image_view"
+                        tools:text="You have successfully redeemed \nDiamond for Free Fire" />
+
+                    <TextView
+                        android:id="@+id/success_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_16"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="2sp"
+                        android:text='@{(@string/redeem_summary_message).replace("game", viewModel.meta.game != null ? viewModel.meta.game : "game").replace("Points", viewModel.meta.currency != null ? viewModel.meta.currency : "Points")}'
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        android:visibility="@{viewModel.meta.transactionId != null ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sku_image_view"
+                        tools:text="You have successfully redeemed \nDiamond for Free Fire" />
+
+                    <TextView
+                        android:id="@+id/user_detail_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginTop="@dimen/margin_32"
+                        android:layout_marginEnd="@dimen/margin_20"
+                        android:fontFamily="sans-serif"
+                        android:text="USER DETAILS"
+                        android:textColor="@color/light_grey_text_color"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/success_text_view" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.meta.playerId == null ? View.GONE : View.VISIBLE, default=gone}"
+                        app:constraint_referenced_ids="player_id_title_text_view,player_id_text_view,player_divider" />
+
+                    <TextView
+                        android:id="@+id/player_id_title_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:fontFamily="sans-serif"
+                        android:text="Player ID"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toTopOf="@id/player_id_text_view"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="@id/user_detail_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/user_detail_text_view"
+                        app:layout_constraintVertical_bias="0" />
+
+                    <TextView
+                        android:id="@+id/player_id_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:text="@{viewModel.meta.playerId}"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="@+id/player_id_title_text_view"
+                        app:layout_constraintEnd_toEndOf="@id/user_detail_text_view"
+                        app:layout_constraintHorizontal_bias="1"
+                        app:layout_constraintStart_toEndOf="@id/guideline"
+                        app:layout_constraintTop_toTopOf="@id/player_id_title_text_view"
+                        tools:text="PUBGQUEEN1234" />
+
+                    <View
+                        android:id="@+id/player_divider"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin_6"
+                        android:background="#66767680"
+                        app:layout_constraintEnd_toEndOf="@id/player_id_text_view"
+                        app:layout_constraintStart_toStartOf="@id/player_id_title_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/player_id_title_text_view" />
+
+                    <TextView
+                        android:id="@+id/rheo_coin_title_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:text="Rheo Coins"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="@id/user_detail_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/player_divider" />
+
+                    <ImageView
+                        android:id="@+id/rheo_coin_image_view"
+                        android:layout_width="@dimen/size_18"
+                        android:layout_height="@dimen/size_18"
+                        android:src="@drawable/avd_coin"
+                        app:layout_constraintEnd_toEndOf="@id/user_detail_text_view"
+                        app:layout_constraintTop_toTopOf="@id/rheo_coin_title_text_view" />
+
+                    <TextView
+                        android:id="@+id/rheo_coin_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:fontFamily="sans-serif"
+                        android:text='@{viewModel.meta.coins +""}'
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="@+id/rheo_coin_image_view"
+                        app:layout_constraintEnd_toStartOf="@id/rheo_coin_image_view"
+                        app:layout_constraintTop_toTopOf="@id/rheo_coin_image_view"
+                        tools:text="100" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin_6"
+                        android:background="#66767680"
+                        app:layout_constraintEnd_toEndOf="@id/rheo_coin_image_view"
+                        app:layout_constraintStart_toStartOf="@id/rheo_coin_title_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/rheo_coin_title_text_view" />
+
+                    <TextView
+                        android:id="@+id/transaction_detail_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginTop="@dimen/margin_32"
+                        android:layout_marginEnd="@dimen/margin_20"
+                        android:fontFamily="sans-serif"
+                        android:text="TRANSACTION DETAILS"
+                        android:textColor="@color/light_grey_text_color"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rheo_coin_text_view" />
+
+                    <TextView
+                        android:id="@+id/status_title_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:text="Status"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="@id/transaction_detail_text_view"
+                        app:layout_constraintTop_toBottomOf="@+id/transaction_detail_text_view" />
+
+                    <TextView
+                        android:id="@+id/status_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:text='@{viewModel.meta.transactionId == null ? "Failed" : "Success"}'
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@id/transaction_detail_text_view"
+                        app:layout_constraintStart_toEndOf="@id/guideline"
+                        app:layout_constraintTop_toTopOf="@id/status_title_text_view" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin_6"
+                        android:background="#66767680"
+                        app:layout_constraintEnd_toEndOf="@id/status_text_view"
+                        app:layout_constraintStart_toStartOf="@id/status_title_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/status_title_text_view" />
+
+                    <TextView
+                        android:id="@+id/time_title_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_16"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:text="Time"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="@id/transaction_detail_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/status_title_text_view" />
+
+                    <TextView
+                        android:id="@+id/time_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:text="@{viewModel.meta.date}"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="@id/time_title_text_view"
+                        app:layout_constraintEnd_toEndOf="@id/transaction_detail_text_view"
+                        app:layout_constraintStart_toEndOf="@id/time_title_text_view"
+                        app:layout_constraintTop_toTopOf="@id/time_title_text_view"
+                        tools:text="19 Dec 2019, 5:27 PM" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin_6"
+                        android:background="#66767680"
+                        app:layout_constraintEnd_toEndOf="@id/time_text_view"
+                        app:layout_constraintStart_toStartOf="@id/time_title_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/time_title_text_view" />
+
+                    <TextView
+                        android:id="@+id/transaction_id_title_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Transaction ID"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="@id/transaction_detail_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/time_title_text_view"
+                        tools:text="Transaction ID" />
+
+                    <TextView
+                        android:id="@+id/transaction_id_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:text='@{viewModel.meta.transactionId != null ? viewModel.meta.transactionId : "NA"}'
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_15"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="@id/transaction_detail_text_view"
+                        app:layout_constraintHorizontal_bias="1"
+                        app:layout_constraintStart_toEndOf="@id/guideline"
+                        app:layout_constraintTop_toTopOf="@+id/transaction_id_title_text_view"
+                        tools:text="PUN767243619" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin_6"
+                        android:background="#66767680"
+                        app:layout_constraintEnd_toEndOf="@id/transaction_id_text_view"
+                        app:layout_constraintStart_toStartOf="@id/transaction_id_title_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/transaction_id_text_view" />
+
+                    <androidx.constraintlayout.widget.Group
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.meta.voucherCode == null ? View.GONE : View.VISIBLE}"
+                        app:constraint_referenced_ids="voucher_redeem,voucher_text_view,divider_voucher" />
+
+                    <TextView
+                        android:id="@+id/voucher_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:drawableStart="@drawable/avd_copy"
+                        android:drawablePadding="@dimen/margin_8"
+                        android:onClick="@{(v) -> viewModel.onVoucherClick(v)}"
+                        android:text="@{viewModel.meta.voucherCode}"
+                        android:textColor="@color/white_text_color"
+                        app:layout_constraintEnd_toStartOf="@id/voucher_redeem"
+                        app:layout_constraintStart_toStartOf="@id/transaction_detail_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/transaction_id_text_view"
+                        app:layout_constraintVertical_bias="0"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="test1IDR12k-00495" />
+
+                    <TextView
+                        android:id="@+id/voucher_redeem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_20"
+                        android:background="@drawable/follow_normal_bg"
+                        android:gravity="center"
+                        android:onClick="@{(v) -> viewModel.onRedeemClick(v)}"
+                        android:paddingStart="@dimen/margin_8"
+                        android:paddingTop="@dimen/margin_4"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_4"
+                        android:text="Redeem"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_13"
+                        app:layout_constraintBottom_toBottomOf="@+id/voucher_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/voucher_text_view"
+                        app:layout_constraintVertical_bias="0" />
+
+                    <View
+                        android:id="@+id/divider_voucher"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/margin_12"
+                        android:background="#66767680"
+                        app:layout_constraintEnd_toEndOf="@id/transaction_id_text_view"
+                        app:layout_constraintStart_toStartOf="@id/transaction_id_title_text_view"
+                        app:layout_constraintTop_toBottomOf="@id/voucher_text_view" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/done_button"
+                style="@style/BaseButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_12"
+                android:backgroundTint="@color/follow_btn_normal_color"
+                android:text="@string/done"
+                app:cornerRadius="@dimen/size_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="1" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{viewModel.isContentShared || viewModel.meta.transactionId == null ? View.GONE : View.VISIBLE, default=gone}"
+            android:background="@drawable/redeem_gradient_bg" >
+
+            <TextView
+                android:id="@+id/reveal_text_View"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/share_redeem_message"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.1"
+                android:layout_margin="@dimen/margin_16"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@id/reveal_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reveal_button"
+                style="@style/BaseButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_12"
+                android:backgroundTint="@color/follow_btn_normal_color"
+                android:text="@string/share_only"
+                android:layout_marginTop="@dimen/margin_32"
+                app:cornerRadius="@dimen/size_24"
+                app:icon="@drawable/ic_share_white_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reveal_text_View"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</layout>

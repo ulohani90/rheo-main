@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.chatActivity.SupportChatItemViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/chatText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/chat_rounded_rect"
+            android:padding="@dimen/margin_12"
+            android:textColor="@color/white"
+            tools:text="Hello" />
+
+
+        <TextView
+            android:id="@+id/chatTextServer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/chat_rounded_rect"
+            android:padding="@dimen/margin_12"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            tools:text="Hello" />
+
+    </RelativeLayout>
+</layout>

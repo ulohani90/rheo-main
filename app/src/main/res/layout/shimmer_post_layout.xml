@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        app:shimmer_auto_start="true"
+        app:shimmer_base_alpha="0.2"
+        app:shimmer_highlight_alpha="0.5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder" />
+
+            <RelativeLayout
+                android:id="@+id/streamer_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/margin_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.rheotv.android.ui.customViews.CircularImageView
+                    android:id="@+id/userProfilePic"
+                    android:layout_width="@dimen/margin_36"
+                    android:layout_height="@dimen/margin_36"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avd_avatar"
+                    app:civ_border="true"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/margin_1" />
+
+                <ImageView
+                    android:id="@+id/more_options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/margin_8"
+                    android:src="@drawable/ic_more_vert_white_32dp"
+                    android:visibility="gone" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/more_options"
+                    android:layout_toRightOf="@id/userProfilePic"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_name_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_12"
+                        android:layout_marginEnd="250dp"
+                        android:layout_marginBottom="@dimen/margin_6"
+                        android:background="@color/player_unplayed_color"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/title_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_12"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginBottom="@dimen/margin_6"
+                        android:background="@color/player_unplayed_color"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-medium"
+                        android:maxLines="1"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/game_name_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_12"
+                        android:layout_marginEnd="200dp"
+                        android:background="@color/player_unplayed_color"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingStart="@dimen/margin_8"
+                        android:paddingTop="@dimen/margin_2"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_2" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/follow_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button_transparent_white_border"
+                    android:padding="8dp"
+                    android:text="FOLLOW"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</layout>

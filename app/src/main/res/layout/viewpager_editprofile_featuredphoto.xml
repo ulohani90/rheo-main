@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewmodel.UserProfileViewModel" />
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ImageButton
+            android:id="@+id/action_back"
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/margin_8"
+            android:src="@drawable/avd_back_arrow"
+            android:layout_marginStart="@dimen/margin_7"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_pager"
+        android:layout_marginTop="66dp"
+        android:layout_marginStart="@dimen/margin_7"
+        android:layout_marginEnd="@dimen/margin_7"
+        android:scaleType="centerCrop"
+        >
+
+
+    </androidx.viewpager.widget.ViewPager>
+    </FrameLayout>
+</layout>

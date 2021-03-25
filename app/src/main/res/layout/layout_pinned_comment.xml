@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="chatItem"
+            type="com.rheotv.android.data.network.models.postlisting.responses.CommentChat" />
+
+        <variable
+            name="userColor"
+            type="int" />
+
+        <variable
+            name="isPinned"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_pinned_chat">
+
+        <View
+            android:id="@+id/user_profile_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/chat_user_pic"
+            app:layout_constraintEnd_toEndOf="@id/chat_user_name"
+            app:layout_constraintStart_toStartOf="@id/chat_user_pic"
+            app:layout_constraintTop_toTopOf="@id/chat_user_pic" />
+
+        <ImageView
+            android:id="@+id/chat_user_pic"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/margin_4"
+            android:src="@drawable/avd_avatar"
+            android:visibility="@{chatItem.username!=null &amp;&amp; !chatItem.username.isEmpty() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/chat_user_name"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:roundImageUri="@{chatItem.getProfile_pic()}"
+            app:textDrawable="@{chatItem.usernameText}"
+            tools:src="@drawable/avd_avatar" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/green_ring_bg"
+            android:visibility="@{chatItem.contentModerator ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/chat_user_pic"
+            app:layout_constraintEnd_toEndOf="@id/chat_user_pic"
+            app:layout_constraintStart_toStartOf="@id/chat_user_pic"
+            app:layout_constraintTop_toTopOf="@id/chat_user_pic"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/moderator_image_view"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/margin_14"
+            android:contentDescription="chat moderator"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_moderator_v2"
+            android:visibility="@{chatItem.contentModerator ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/chat_user_pic"
+            app:layout_constraintEnd_toEndOf="@id/chat_user_pic"
+            app:layout_constraintStart_toStartOf="@id/chat_user_pic"
+            app:layout_constraintTop_toBottomOf="@id/chat_user_pic"
+            tools:visibility="visible" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/chat_user_name"
+            isVisible="@{chatItem.usernameText !=null &amp;&amp; !chatItem.usernameText.isEmpty()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_6"
+            android:ellipsize="end"
+            android:maxEms="8"
+            android:maxLines="1"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:text="@{chatItem.usernameText}"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/chat_user_pic"
+            app:layout_constraintEnd_toStartOf="@id/chat_message"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/chat_user_pic"
+            app:layout_constraintTop_toTopOf="@id/chat_user_pic"
+            app:paintText="@{chatItem.usernameText}"
+            tools:text="Random" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/chat_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:textColor="@color/white_text_color"
+            android:textSize="13sp"
+            android:text="@{chatItem.message}"
+            android:visibility="@{chatItem.hasSticker() ? View.GONE : View.VISIBLE}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/pin_image_view"
+            app:layout_constraintStart_toStartOf="@id/chat_user_name"
+            app:layout_constraintTop_toBottomOf="@id/chat_user_name"
+            tools:text="Hi asdasdasdasdasdasdasdas" />
+
+        <ImageView
+            android:id="@+id/chat_sticker"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="@dimen/size_60"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:visibility="@{chatItem.hasSticker() ? View.VISIBLE : View.GONE, default=gone}"
+            app:imageUrl="@{chatItem.getMessage()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/pin_image_view"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/chat_user_name"
+            app:layout_constraintTop_toTopOf="@id/chat_user_name"
+            tools:src="@drawable/ic_confetti" />
+
+        <ImageView
+            android:id="@+id/pin_image_view"
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:padding="@dimen/margin_4"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avd_pin"
+            app:tint="@color/color_accent"
+            android:visibility="@{isPinned ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/chat_user_pic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/chat_user_pic" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

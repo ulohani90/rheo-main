@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="language"
+            type="com.rheotv.android.data.network.models.onboarding.LanguageObject" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/background_image_view"
+            android:layout_width="0dp"
+            android:layout_height="136dp"
+            android:background="@drawable/background_round_grey"
+            app:layout_constraintBottom_toTopOf="@id/language_title_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/language_thumbnail_image_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/background_image_view"
+            app:layout_constraintEnd_toEndOf="@id/background_image_view"
+            app:layout_constraintStart_toStartOf="@id/background_image_view"
+            app:layout_constraintTop_toTopOf="@id/background_image_view"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/overlay_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_2"
+            android:background="@drawable/grid_item_selector"
+            app:layout_constraintBottom_toBottomOf="@id/background_image_view"
+            app:layout_constraintEnd_toEndOf="@id/background_image_view"
+            app:layout_constraintStart_toStartOf="@id/background_image_view"
+            app:layout_constraintTop_toTopOf="@id/background_image_view" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
+            android:background="@drawable/avd_tick"
+            android:backgroundTint="@color/tick_selector"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            app:layout_constraintBottom_toBottomOf="@id/background_image_view"
+            app:layout_constraintEnd_toEndOf="@id/background_image_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/background_image_view"
+            app:layout_constraintTop_toTopOf="@id/background_image_view"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/language_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="1"
+            android:paddingBottom="@dimen/margin_12"
+            android:text="@{language.name}"
+            android:textColor="@color/color_progress_background"
+            android:textSize="@dimen/text_14"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/background_image_view"
+            tools:text="English" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

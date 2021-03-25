@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:shimmer_auto_start="true"
+    app:shimmer_base_alpha="0.2"
+    app:shimmer_highlight_alpha="0.5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_begin="20dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/game_tag_placeholder"
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@drawable/ic_sidebar"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/margin_24"
+            android:paddingEnd="@dimen/margin_10"
+            android:paddingBottom="@dimen/margin_8"
+            app:layout_constraintStart_toStartOf="@id/start_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="200dp"
+            android:layout_height="@dimen/margin_12"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="@dimen/margin_6"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintStart_toEndOf="@id/game_tag_placeholder"
+            app:layout_constraintTop_toTopOf="@id/game_tag_placeholder" />
+
+        <TextView
+            android:id="@+id/game_name_tv"
+            android:layout_width="80dp"
+            android:layout_height="@dimen/margin_12"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toBottomOf="@+id/game_tag_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/title_text_view"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_end="20dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/coin_placeholder"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_rheo_coin"
+            app:layout_constraintBottom_toBottomOf="@id/game_tag_placeholder"
+            app:layout_constraintEnd_toStartOf="@id/trophy_placeholder"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/title_text_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/trophy_placeholder"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/margin_12"
+            android:background="@drawable/avd_leaderboard"
+            app:layout_constraintBottom_toBottomOf="@+id/game_tag_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toEndOf="@id/coin_placeholder"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/player_placeholder"
+            android:layout_width="0dp"
+            android:layout_height="216dp"
+            android:layout_marginTop="@dimen/margin_32"
+            android:layout_marginBottom="@dimen/margin_6"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/game_tag_placeholder" />
+
+        <ImageButton
+            android:id="@+id/gift_button_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/avd_gift_colored"
+            android:padding="@dimen/margin_6"
+            app:layout_constraintBottom_toBottomOf="@+id/chat_state_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/chat_state_placeholder"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/heart_placeholder"
+            android:layout_width="@dimen/margin_32"
+            android:layout_height="@dimen/margin_32"
+            android:background="@drawable/avd_heart_filled"
+            app:layout_constraintBottom_toTopOf="@+id/chat_state_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/gift_button_placeholder"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageButton
+            android:id="@+id/share_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/ic_share_white_24dp"
+            android:padding="@dimen/margin_6"
+            app:layout_constraintBottom_toTopOf="@id/heart_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/heart_placeholder"
+            app:layout_constraintStart_toStartOf="@+id/heart_placeholder" />
+
+        <ImageButton
+            android:id="@+id/coin_scratch_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/avd_next_reward"
+            android:padding="@dimen/margin_6"
+            app:layout_constraintBottom_toTopOf="@id/share_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/share_placeholder"
+            app:layout_constraintStart_toStartOf="@+id/share_placeholder" />
+
+        <ImageButton
+            android:id="@+id/play_request_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/avd_custom_room"
+            app:layout_constraintBottom_toTopOf="@id/coin_scratch_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/coin_scratch_placeholder" />
+
+        <View
+            android:id="@+id/follower_count_placeholder"
+            android:layout_width="50dp"
+            android:layout_height="12dp"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toTopOf="@id/play_request_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/play_request_placeholder" />
+
+        <View
+            android:id="@+id/follow_placeholder"
+            android:layout_width="50dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toTopOf="@id/follower_count_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/follower_count_placeholder" />
+
+        <View
+            android:id="@+id/comment_placeholder"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toTopOf="@id/chat_state_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/chat_state_placeholder"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/chat_state_placeholder" />
+
+        <View
+            android:id="@+id/comment_placeholder_2"
+            android:layout_width="240dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toTopOf="@+id/comment_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/chat_state_placeholder"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/chat_state_placeholder" />
+
+        <View
+            android:id="@+id/comment_placeholder_3"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toTopOf="@+id/comment_placeholder_2"
+            app:layout_constraintEnd_toEndOf="@+id/chat_state_placeholder"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/chat_state_placeholder" />
+
+        <View
+            android:id="@+id/chat_state_placeholder"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/gift_button_placeholder"
+            app:layout_constraintStart_toStartOf="@id/start_guideline" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

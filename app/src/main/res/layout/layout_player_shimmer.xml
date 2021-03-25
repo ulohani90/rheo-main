@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/video_title_tv_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_2"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_16"
+            app:layout_constraintBottom_toTopOf="@id/durationTV_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Warmania Underdog League Qualifier" />
+
+        <View
+            android:id="@+id/durationTV_placeholder"
+            android:layout_width="100dp"
+            android:layout_height="12dp"
+            android:textColor="@color/white_text_color"
+            android:textSize="13sp"
+            android:text="Streaming for 1 hour"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toTopOf="@id/game_name_tv_placeholder"
+            app:layout_constraintStart_toStartOf="@+id/video_title_tv_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/video_title_tv_placeholder"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <View
+            android:id="@+id/game_name_tv_placeholder"
+            android:layout_width="@dimen/size_80"
+            android:layout_height="16dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:gravity="center"
+            android:background="@drawable/game_tag_bg"
+            android:backgroundTint="@color/player_unplayed_color"
+            app:layout_constraintStart_toStartOf="@+id/durationTV_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/durationTV_placeholder" />
+
+        <View
+            android:id="@+id/first_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_13"
+            android:background="#66767680"
+            app:layout_constraintTop_toBottomOf="@id/game_name_tv_placeholder" />
+
+        <com.rheotv.android.ui.customViews.CircularImageView
+            android:id="@+id/postUserProfile_placeholder"
+            android:layout_width="@dimen/margin_36"
+            android:layout_height="@dimen/margin_36"
+            android:layout_marginTop="@dimen/margin_14"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avd_avatar"
+            app:civ_border="true"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/margin_1"
+            app:layout_constraintStart_toStartOf="@id/video_title_tv_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/first_line_view" />
+
+        <View
+            android:id="@+id/user_name_tv_placeholder"
+            android:layout_width="120dp"
+            android:layout_height="@dimen/margin_12"
+            android:layout_marginStart="@dimen/margin_14"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintStart_toEndOf="@+id/postUserProfile_placeholder"
+            app:layout_constraintTop_toTopOf="@+id/postUserProfile_placeholder" />
+
+        <View
+            android:id="@+id/user_followers_count_placeholder"
+            android:layout_width="80dp"
+            android:layout_height="@dimen/margin_12"
+            android:layout_marginStart="@dimen/margin_14"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintStart_toEndOf="@+id/postUserProfile_placeholder"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_tv_placeholder" />
+
+        <View
+            android:id="@+id/follow_btn_placeholder"
+            android:layout_width="80dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:background="@drawable/follow_normal_bg"
+            android:backgroundTint="@color/player_unplayed_color"
+            app:layout_constraintBottom_toBottomOf="@id/second_line_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/first_line_view" />
+
+        <View
+            android:id="@+id/second_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_14"
+            android:background="#66767680"
+            app:layout_constraintTop_toBottomOf="@id/user_followers_count_placeholder" />
+
+        <View
+            android:id="@+id/tab_item_first_placeholder"
+            android:layout_width="@dimen/margin_24"
+            android:layout_height="@dimen/margin_24"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="@drawable/avd_chat"
+            android:backgroundTint="@color/player_unplayed_color"
+            app:layout_constraintEnd_toStartOf="@id/tab_item_second_placeholder"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/second_line_view" />
+
+        <View
+            android:id="@+id/tab_item_second_placeholder"
+            android:layout_width="@dimen/margin_24"
+            android:layout_height="@dimen/margin_24"
+            android:background="@drawable/avd_play_request"
+            android:layout_marginEnd="@dimen/margin_30"
+            android:layout_marginStart="@dimen/margin_30"
+            android:backgroundTint="@color/player_unplayed_color"
+            app:layout_constraintBottom_toBottomOf="@id/tab_item_first_placeholder"
+            app:layout_constraintEnd_toStartOf="@id/tab_item_third_placeholder"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/tab_item_first_placeholder"
+            app:layout_constraintTop_toTopOf="@id/tab_item_first_placeholder" />
+
+        <View
+            android:id="@+id/tab_item_third_placeholder"
+            android:layout_width="@dimen/margin_24"
+            android:layout_height="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:background="@drawable/ic_gift_white_24dp"
+            android:backgroundTint="@color/player_unplayed_color"
+            app:layout_constraintBottom_toBottomOf="@id/tab_item_second_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tab_item_second_placeholder"
+            app:layout_constraintTop_toTopOf="@id/tab_item_second_placeholder" />
+
+        <View
+            android:id="@+id/third_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="#66767680"
+            app:layout_constraintTop_toBottomOf="@id/tab_item_first_placeholder" />
+
+        <include
+            android:id="@+id/chat_placeholder_first"
+            layout="@layout/layout_chat_item_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/third_line_view" />
+
+        <include
+            android:id="@+id/chat_placeholder_second"
+            layout="@layout/layout_chat_item_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_placeholder_first" />
+
+        <include
+            android:id="@+id/chat_placeholder_third"
+            layout="@layout/layout_chat_item_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_placeholder_second" />
+
+        <LinearLayout
+            android:id="@+id/chatboxLL_placeholder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/write_chat_message_box_bg"
+            android:contentDescription="@string/first_comment_reward_alert"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_12"
+            android:paddingTop="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_12"
+            android:paddingBottom="@dimen/margin_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/heart_image_view_placeholder"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/sticker_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/margin_12"
+                android:src="@drawable/ic_sticker_icon" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_12"
+                android:src="@drawable/ic_send_white_24dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/heart_image_view_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:tint="@color/player_unplayed_color"
+            app:layout_constraintBottom_toTopOf="@id/heart_count_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/chatboxLL_placeholder"
+            app:layout_constraintTop_toTopOf="@+id/chatboxLL_placeholder"
+            app:srcCompat="@drawable/ic_like_heart_filled_48" />
+
+        <View
+            android:id="@+id/heart_count_placeholder"
+            android:layout_width="24dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:background="@color/player_unplayed_color"
+            app:layout_constraintBottom_toBottomOf="@+id/chatboxLL_placeholder"
+            app:layout_constraintEnd_toEndOf="@id/heart_image_view_placeholder"
+            app:layout_constraintStart_toStartOf="@id/heart_image_view_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/heart_image_view_placeholder" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

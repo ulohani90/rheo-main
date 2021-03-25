@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="option"
+            type="com.rheotv.android.ui.customViews.bottomSheetMenu.OptionRequest" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_gravity="end"
+            android:contentDescription="@null"
+            app:drawable="@{option.drawable}"
+            app:layout_constraintBottom_toTopOf="@id/text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@android:drawable/alert_dark_frame" />
+
+        <TextView
+            android:id="@+id/text_view"
+            style="@style/PrimaryTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_4"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:ems="6"
+            android:lines="2"
+            android:text="@{option.title}"
+            android:textColor="#d8d8dc"
+            android:textSize="@dimen/text_12"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon"
+            tools:text="Set As Profile Picture" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

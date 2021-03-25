@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.gamify.RedeemActivity">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"/>
+
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/scratch_holder_color">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8"
+            app:cardBackgroundColor="@color/reward_background_color"
+            app:cardCornerRadius="@dimen/margin_4">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_4">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/thumbnail_image_view"
+                    android:layout_width="@dimen/size_48"
+                    android:layout_height="@dimen/size_48"
+                    android:layout_margin="@dimen/margin_12"
+                    android:elevation="@dimen/cardview_default_elevation"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/poster_splash"
+                    app:layout_constraintBottom_toTopOf="@id/player_id_text_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/helper_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="PUBG" />
+
+                <TextView
+                    android:id="@+id/helper_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_10"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/thumbnail_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/title_text_view"
+                    tools:text="Redeem your Rheo points for FREE FIRE DIAMONDS" />
+
+                <TextView
+                    android:id="@+id/player_id_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_9"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/player_id_edit_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/thumbnail_image_view"
+                    tools:text="ENTER YOUR PLAYER ID" />
+
+                <androidx.emoji.widget.EmojiEditText
+                    android:id="@+id/player_id_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:background="@color/color_edit_text_background"
+                    android:hint="Enter your PUBG MOBILE PLAYER ID HERE"
+                    android:lineSpacingExtra="8sp"
+                    android:padding="@dimen/margin_8"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white_dull"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/player_id_question_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/player_id_text_view" />
+
+                <ImageView
+                    android:id="@+id/player_id_question_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:src="@drawable/avd_question"
+                    app:layout_constraintStart_toStartOf="@id/player_id_edit_text"
+                    app:layout_constraintTop_toBottomOf="@id/player_id_edit_text" />
+
+                <TextView
+                    android:id="@+id/player_id_question_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:gravity="bottom"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/text_8"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/player_id_question_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/player_id_question_image_view"
+                    app:layout_constraintTop_toTopOf="@id/player_id_question_image_view"
+                    tools:text="COULDNT FIND YOUR PLAYER ID?" />
+
+                <TextView
+                    android:id="@+id/phone_number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/phone_number_edit_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/player_id_question_image_view"
+                    tools:text="ENTER YOUR PHONE NUMBER" />
+
+                <androidx.emoji.widget.EmojiEditText
+                    android:id="@+id/phone_number_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:background="@color/color_edit_text_background"
+                    android:hint="Enter your PHONE NUMBER HERE"
+                    android:lineSpacingExtra="8sp"
+                    android:padding="@dimen/margin_8"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white_dull"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_text_view" />
+
+                <TextView
+                    android:id="@+id/reward_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_9"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/reward_recycler_view"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_edit_text"
+                    tools:text="SELECT REWARD" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_9"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/total_coins_text_view"
+                    app:layout_constraintEnd_toStartOf="@id/coin_image_view"
+                    app:layout_constraintTop_toTopOf="@id/total_coins_text_view"
+                    tools:text="YOU HAVE" />
+
+                <ImageView
+                    android:id="@+id/coin_image_view"
+                    android:layout_width="@dimen/size_12"
+                    android:layout_height="@dimen/size_12"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:background="@drawable/avd_coin"
+                    app:layout_constraintBottom_toBottomOf="@id/total_coins_text_view"
+                    app:layout_constraintEnd_toStartOf="@id/total_coins_text_view"
+                    app:layout_constraintTop_toTopOf="@id/total_coins_text_view" />
+
+                <TextView
+                    android:id="@+id/total_coins_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_9"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/reward_title_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/reward_title_text_view"
+                    tools:text="200" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reward_recycler_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/continue_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reward_title_text_view"
+                    app:spanCount="3"
+                    tools:itemCount="9"
+                    tools:listitem="@layout/list_item_game_reward" />
+
+                <Button
+                    android:id="@+id/continue_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    android:background="@drawable/blue_gradient"
+                    android:elevation="@dimen/margin_6"
+                    android:text="@string/accept"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reward_recycler_view"
+                    tools:text="@string/accept" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </ScrollView>
+-->
+</layout>

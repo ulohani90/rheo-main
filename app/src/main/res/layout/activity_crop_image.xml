@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:imagecrop="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activities.crop.CropImageActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.crop.CropImageViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <com.naver.android.helloyako.imagecrop.view.ImageCropView
+            android:id="@+id/imageCropView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            imagecrop:gridInnerColor="#66ffffff"
+            imagecrop:gridInnerStroke="1dp"
+            imagecrop:gridOuterColor="#ffffff"
+            imagecrop:gridOuterStroke="1dp"
+            imagecrop:layout_constraintBottom_toTopOf="@id/barrier_button"
+            imagecrop:layout_constraintEnd_toEndOf="parent"
+            imagecrop:layout_constraintStart_toStartOf="parent"
+            imagecrop:layout_constraintTop_toTopOf="parent"
+            imagecrop:outsideLayerColor="#99000000"
+            imagecrop:setInnerGridMode="on"
+            imagecrop:setOuterGridMode="on"
+            android:layout_marginBottom="@dimen/margin_20" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="button_cancel,button_done"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_cancel"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:text="CANCEL"
+            android:onClick="@{v -> viewModel.dismiss(v)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_done"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:text="DONE"
+            android:onClick="@{v -> viewModel.onCrop(v,imageCropView)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

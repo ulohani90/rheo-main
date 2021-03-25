@@ -1,0 +1,614 @@
+<!--
+  ~ /**
+  ~  * Created by Asheesh Sharma on 1st January 2019.
+  ~  * Copyright (c) January 2019 . All rights reserved.
+  ~  * Last modified 1/1/19 12:35 PM
+  ~  */
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="action_settings">Settings</string>
+    <string name="app_market_link">https://play.google.com/store/apps/details?id=com.rheotv.android</string>
+    <string name="app_google_play_store_link">https://play.google.com/store/apps/details?id=com.rheotv.android</string>
+    <string name="title_posts">Posts</string>
+    <string name="title_trending">Trending</string>
+    <string name="title_profile">Profile</string>
+    <string name="empty_screen">No Data Available</string>
+    <string name="retry">Retry</string>
+    <string name="please_retry">Retry again later!</string>
+    <string name="district_dropdown"> Select District</string>
+
+    <string name="app_name">Rheo</string>
+
+
+    <string name="app_logo_url">https://s3.ap-south-1.amazonaws.com/unheard-files/default-logo/logo.png</string>
+
+    <string name="partnerKey">tb9le6315057c043241b994f5e6f63c03a47f</string>
+
+    <string name="media_url_mp4">http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4</string>
+
+    <string name="media_url_mp4_http">http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4</string>
+
+    <string name="media_url_mp4_local">/storage/emulated/0/WhatsApp/Media/WhatsApp Video/VID-20180923-WA0002.mp4</string>
+
+    <string name="sample_news_name">CM Arvind Kejriwal warns officials on mohalla clinics | Delhi News ...</string>
+
+    <string name="sample_news_desc">Chief minister Arvind Kejriwal has warned health department officials that he would go to "any extent" to file criminal cases against ..</string>
+
+    <string name="sample_journalist">Ravish Kumar</string>
+
+    <string name="sample_meta">500K Views</string>
+
+    <string name="followers">Followers</string>
+
+    <string name="videos">Video</string>
+
+    <string name="views">Views</string>
+
+    <string name="photo_upload_permission">Please give permission to upload photo.</string>
+    <string name="photo_thumbnail_permission">Please give permission to upload thumbnail.</string>
+
+    <string name="submitting">Submitting... </string>
+
+    <string name="update_message">Please update your app to get the latest feature.</string>
+
+    <string name="bottom_nav_feed">Home</string>
+
+    <string name="bottom_nav_trending">Trending</string>
+
+    <string name="bottom_nav_home">Home</string>
+
+    <string name="bottom_nav_search">Search</string>
+
+
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">5643aa5dac049e3f3e98f57aafd16fd6</string>
+    <string name="facebook_app_id">475789009899810</string>
+    <string name="fb_login_protocol_scheme">fb475789009899810</string>
+
+    <string name="login_screen_message">Log in with Google to live chat and stream.</string>
+    <string name="profile_login_button">Login</string>
+    <string name="signup_screen_message">Please enter your username.</string>
+
+    <string name="login_current_balance"><u>Current Balance - ₹10/-</u></string>
+
+    <string name="default_notification_channel_id">1</string>
+    <string name="default_notification_channel_title">Mojo Times</string>
+
+    <string name="msg_subscribed">Subscribed to topic!</string>
+
+    <string name="msg_subscribe_failed">Something went wrong.</string>
+    <string name="something_went_wrong_try_again">Something went wrong.\nPlease try again.</string>
+
+    <string name="permission_message">Hello, we need location permission to better target the news and read/write permission to upload the video.</string>
+
+    <string name="all_good">DONE</string>
+
+    <string name="about_you">About you.</string>
+
+    <string name="hint_comment">"Send a nice message to broadcaster..."</string>
+
+    <string name="more">see more</string>
+    <string name="less">less</string>
+
+
+    <string name="whatsapp">Share</string>
+
+    <string name="copy">Copy mobile number.</string>
+    <string name="permission_action_button_yes">SURE</string>
+
+    <string name="share">SHARE</string>
+    <string name="share_only">Share</string>
+
+    <string name="up_arrow">↑</string>
+    <string name="down_arrow">↓</string>
+
+    <string name="empty_name_message">Please fill in your name.</string>
+
+
+    <string name="logging_wating_message">Please wait. Logging in.</string>
+
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="name_hint">Username eg: hulk007 </string>
+    <string name="title_activity_youtube">YoutubeActivity</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="view">View</string>
+    <string name="views_count">Views</string>
+    <string name="bottom_nav_profile">Profile</string>
+    <string name="title_activity_player">PlayerActivity</string>
+    <string name="see_more">See more</string>
+    <string name="playlist">Related videos</string>
+    <string name="next_post">Next</string>
+    <string name="next">Next</string>
+    <string name="update">Please Update</string>
+    <string name="skip_update">Skip</string>
+    <string name="follow">Follow</string>
+    <string name="whatsapp_not_installed_toast">Whatsapp not installed.</string>
+    <string name="downloading">Download is in progress.</string>
+    <string name="location_permission">Location Permission</string>
+    <string name="download_app_message">Download</string>
+    <string name="live_chat_active">Live Chat Active</string>
+    <string name="rheo_tv_player_active">Rheo TV player active</string>
+
+    <string name="followed">Followed</string>
+    <string name="login_to_unlock_the_real_gamer_in_you">Login to unlock the real gamer in you!</string>
+    <string name="views_label_leaderboard">views</string>
+    <string name="view_leaderboard">View Leaderboard</string>
+    <string name="leaderboard">LEADERBOARD</string>
+    <string name="monthly">This Month</string>
+    <string name="weekly">This Week</string>
+    <string name="daily">Today</string>
+    <string name="sort_by">Sort by</string>
+    <string name="see_all">See all</string>
+    <string name="see_all_caps">See All</string>
+    <string name="no_data_found_please_check_again_in_sometime">No data found! Please check again in sometime</string>
+    <string name="player_request_message">No Play request available! Please stay tuned.</string>
+    <string name="custom_room_request_empty_message">No Custom Room access request available! Please stay tuned.</string>
+    <string name="no_data_found">No Results found!</string>
+
+    <string name="edit_profile">edit_profile</string>
+    <string name="edit_cover">edit_cover</string>
+    <string name="edit_room_name">Edit Room Name</string>
+    <string name="rules_text">Rules</string>
+    <string name="update_text">Update</string>
+    <string name="force_update_app">Update required</string>
+    <string name="force_update_msg">App update is required. Please click on Update button.</string>
+    <string name="invoices">Invoices</string>
+    <string name="no_1080p_msg"> <u><b>Note\:</b></u> App does not support streaming in 1080p. Please stream in 720p or less resolution.</string>
+    <string name="good_bio_msg">Add bio for fellow gamers to understand you better. </string>
+    <string name="intro_message">Add one liner Introduction</string>
+    <string name="action_save">Save</string>
+    <string name="total_wallet_amount">Your Rheo wallet has</string>
+    <string name="redeem_now">Redeem Now</string>
+    <string name="data_delayed_note"><u><b>Note\:</b></u> Data may be delayed by a few hours. Please contact support in case of discrepancies.</string>
+    <string name="read_terms_text">I have read the Terms and Conditions.</string>
+    <string name="report_this_title">Report this post?</string>
+    <string name="report_this_comment">Report this comment?</string>
+    <string name="report_comment">Do you want to report this comment as inappropriate?</string>
+    <string name="report_content">Do you want to report this content as inappropriate?</string>
+    <string name="post_report_success">Thank you for submitting your request. Our concerned team is on it and will take necessary action shortly.</string>
+    <string name="will_start_in">Stream will start in</string>
+    <string name="remind_me">Remind Me</string>
+    <string name="error_retry_text">Something went wrong. Tap to retry.</string>
+    <string name="error_message">Something went wrong. Please try after sometime.</string>
+    <string name="end_of_clips_data_text">That\'s it for now. We are adding more and more clips for you. Keep exploring.</string>
+    <string name="give_heart_text">\u2764 \u2764 Superb \u2764 \u2764 </string>
+    <string name="overlay_permission_message">Now keep watching your favourite live stream while browsing your phone.</string>
+    <string name="overlay_permission_click_allow">Please enable the permission on the settings page.</string>
+    <string name="overlay_permission_title">Watch while you browse</string>
+    <string name="delete_comment_success">Comment has been deleted. Thank you for your feedback.</string>
+    <string name="user_block_message">Blocked user successfully</string>
+
+    <string name="download_note_text">Note: You will receive an email with a download link on your registered email address which will be active only for 1 day. Select the video quality and click on submit.</string>
+
+    <!--  scratch card  -->
+    <string name="congrat">Congrats</string>
+    <string name="you_won">You Won</string>
+    <string name="earn">Earn</string>
+    <string name="next_milestone">Next Milestone</string>
+    <string name="open_app_one_time_text">Woohoo!\nFor Opening The App 1 Time Today</string>
+    <string name="watch_stream_for_ten_min_text">BY WATCHING A STREAM FOR 10 MINUTES</string>
+    <string name="my_points">My Points</string>
+    <string name="rheo_coins">Rheo Coins</string>
+    <string name="history">History</string>
+    <string name="redeem">Redeem</string>
+    <string name="reward_alert">Reward Alert</string>
+    <string name="reward">Reward</string>
+    <string name="new_reward_in_message">New Scratch card will be available in $n.</string>
+    <string name="new_reward_time_message">New Scratch card will be available in</string>
+    <string name="ten_minute_reward_message">New Scratch card will be available in $n minutes. Do you want to Exit?</string>
+    <string name="exit">Exit</string>
+    <string name="come_back_tomorrow_reward_message">Come back tomorrow\nfor more Rewards.</string>
+    <string name="loading_message">Loading…</string>
+    <string name="empty_message">No record found</string>
+    <string name="first_comment_reward_alert">Write your first comment and win bonus Rheo coins</string>
+    <string name="login_to_get_reward_message">Login to unlock great rewards!</string>
+    <string name="you_can_win_this_reward_by_login">You can win this reward by login</string>
+    <string name="current_streak">Current streak</string>
+    <string name="login_streak_bonus">Streak Bonus</string>
+    <string name="your_current_login_streak">Your current streak for using Rheo</string>
+    <string name="new_reward_message">You have a new reward.\nLogin to claim Reward Points</string>
+    <string name="hold_on_message">HOLD ON!!</string>
+    <string name="stay">Stay</string>
+    <string name="watch_video_tooltip">Watch the video for $n and win bonus Rheo coins</string>
+    <string name="stay_tuned">*Something exciting is coming stay tuned</string>
+    <string name="enjoying_rheo_tv">Enjoying Rheo?</string>
+    <string name="rating_question">How would you rate our app?</string>
+    <string name="rating_feedback_hint">Enter your feedback here</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="rate_us_on_play_store">Rate us on Play Store</string>
+    <string name="video_reward_alert_message">A new Scratch card will be available soon.\nDo you still want to exit ?</string>
+
+    <!--rank-->
+    <string name="bronze">Bronze</string>
+    <string name="silver">Silver</string>
+    <string name="gold">Gold</string>
+    <string name="criteria">Ache</string>
+    <string name="not_able_to_play">Not able to play?</string>
+    <string name="request_to_play">Request to play</string>
+    <string name="custom_room">Custom Room</string>
+    <string name="request_to_join">Request to join</string>
+    <string name="request_to_play_user_info">Request to play User Info</string>
+    <string name="custom_room_user_info">Custom Room user info</string>
+    <string name="click_to_copy">Click to copy</string>
+    <string name="player_user_name">Player game Username</string>
+    <string name="username">Username</string>
+    <string name="enter_game_username">Enter your %s username</string>
+    <string name="game_id" translatable="false">%s id: %s</string>
+    <string name="accept">Accept</string>
+    <string name="winner">Winner</string>
+    <string name="reject_play_request">Reject play request</string>
+    <string name="not_able_to_play_with_user">Couldn\'t able to Play?</string>
+    <string name="were_you_not_able_to_play">Were you not able to play with %s?</string>
+    <string name="reward_live_stream_message">Reward is only available for live videos</string>
+    <string name="keep_watching_video_message">Keep watching this stream and a new Reward will be available</string>
+    <string name="after_video_rewarded_subtitle">Great work. Keep watching live streams and win exciting rewards daily.</string>
+    <string name="message_from">Message from </string>
+    <string name="queue_message_other">You are %s in Queue</string>
+    <string name="custom_room_queue_message_me">Accept user\'s custom room access request and add them to you game play.</string>
+    <string name="queue_message_me">Accept user\'s play request and add them to you game play.</string>
+    <string name="accepted_play_requests">Accepted play requests</string>
+    <string name="accpeted_custom_room_requests">Accepted Custom Room Requests</string>
+    <string name="play_request_submitted_message">Waiting for approval</string>
+    <string name="play_request_accepted_message">%1s has accepted your play request.\nLogin to your %2s app to play with him.</string>
+    <string name="play_request_rejected_message">%1s could not accept your play request. \n We have refunded your Rheo Coins.</string>
+    <string name="custom_room_rejected_message">%s could not accept your custom room request. \n We have refunded your Rheo Coins.</string>
+    <string name="enter_username_message">Enter your game username below</string>
+    <string name="enter_username_here_message">Enter your game username here</string>
+    <string name="request_play_non_live_message">Request to play is only available\nfor live Videos</string>
+    <string name="custom_room_non_live_message">Custom room is only available\nfor live Videos</string>
+    <string name="cannot_request_play_message">Request to play is not available\nfor this video</string>
+    <string name="custom_room_not_enabled_message">Custom Room not available\nfor this video</string>
+    <string name="not_enough_coins_message">You don\'t have enough coins.</string>
+    <string name="login_to_play_message">Login to Play with %s!</string>
+    <string name="take_play_request">Do you want to take Play Request during this stream.</string>
+    <string name="doing_custom_room">Are you doing Custom Room in this stream.</string>
+    <string name="not_allow_to_request">Request to Play is not available.</string>
+    <string name="play_requested">play_requested</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="close">Close</string>
+    <string name="state_pending">PENDING</string>
+    <string name="state_rejected">REJECTED</string>
+    <string name="state_accepted">ACCEPTED</string>
+    <string name="state_refunded">REFUNDED</string>
+    <string name="custom_room_entry_cost_plural">You can get access to custom room for %s Rheo Coins</string>
+    <string name="custom_room_entry_cost_singular">You can get access to custom room for %s Rheo Coin</string>
+    <string name="request_access">Request Access for</string>
+
+    <string name="upload_completed">Upload Completed!</string>
+    <string name="upload_in_progress">Upload is in progress.</string>
+    <string name="do_not_close_app">Please do not close the app.</string>
+    <string name="internet_not_working">Please check your internet</string>
+    <string name="upload_error_message">Failed to upload. Please try again.</string>
+    <string name="upload_failed">Upload Failed</string>
+    <string name="leader_board">Leaderboard</string>
+    <string-array name="clip_notification_title">
+        <item>🏏🏏 Hattrick!! 3 Headshots in a Row</item>
+        <item>🏎️💰 The most Expensive car in PUBG</item>
+        <item>🥇🥇 How to Snipe?</item>
+        <item>🥇😎 Want some quick PUBG Tips?</item>
+        <item>💰 Your daily reward is waiting!</item>
+    </string-array>
+
+    <string-array name="clip_notification_description">
+        <item>Watch and Learn</item>
+        <item>Click here to See</item>
+        <item>Click Now to learn the PRO TIP</item>
+        <item>Checkout these amazing Clips</item>
+        <item>Get Free game rewards and play with your favorite streamers</item>
+    </string-array>
+
+    <string name="clips">Clips</string>
+    <string name="continue_text">Continue</string>
+    <string name="ok">OK</string>
+
+    <string name="redeem_message">Redeem your Rheo points for $game $product </string>
+    <string name="interface_topup">topup</string>
+    <string name="interface_voucher">voucher</string>
+    <string name="summary">Summary</string>
+    <string name="voucher_code">Voucher Code</string>
+    <string name="alert_title">Confirmation</string>
+    <string name="user_name_confirmation_message">Please verify your Username \n\n Username: $username</string>
+    <string name="voucher_clipboard_message">Voucher copied to clipboard</string>
+    <string name="hint_game_player_id">Enter your game PLAYER ID HERE</string>
+    <string name="setup_streaming">Setup Streaming</string>
+    <string name="copy_only">Copy</string>
+    <string name="done">Done</string>
+
+    <string name="game_title_hint">eg: pubg </string>
+    <string name="game_title">Game Title</string>
+    <string name="game_notification_title">Game and Notification Title</string>
+    <string name="live_stream_language">Livestream language</string>
+    <string name="upload_thumbnail">Upload Thumbnail</string>
+    <string name="all_set_up_title">Awesome you are all set!</string>
+    <string name="all_set_up_sub_title">Please Stream in 720p or less resolution.\nTo know more tap on “How to Stream” below.</string>
+
+    <string name="Awesome">Awesome!</string>
+    <string name="content_uploaded_message">Your content is uploaded successfully.</string>
+
+
+    <string name="login_text">Unlock the real gamer in you!</string>
+
+    <string name="enter_username">Enter a username that you want the whole world to know you with.</string>
+    <string name="high">High (Uses about 900 MB data per hour)</string>
+    <string name="auto">Auto</string>
+    <string name="medium">Medium (Uses about 450 MB data per hour)</string>
+    <string name="low">Low (Uses about 250 MB data per hour)</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="live_stream_reward">Live Stream Bonus</string>
+    <string name="download_video">Download Video</string>
+    <string name="continue_title">Continue</string>
+
+    <string name="upload_video">Upload Video</string>
+    <string name="upload_clips">Upload Clips</string>
+    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+
+    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+
+    <string name="add_moderators">Add Moderators</string>
+    <string name="add">Add</string>
+
+    <string name="enter_moderators_email">Enter email address of moderators for your streams</string>
+
+    <string name="top">Top</string>
+    <string name="games">Games</string>
+    <string name="streamer">Streamers</string>
+    <string name="post">Post</string>
+    <string name="earn_point_message">Earn Coins by watching streams,\n join top streamers and many more…</string>
+    <string name="redeem_point_message">Redeem points for buying\naccessories from your favorite games </string>
+    <string name="redeem_summary_message">You have successfully redeemed \nPoints for game</string>
+    <string name="aim_high">Aim High, Keep it going!</string>
+    <string name="my_current_rank">My Current Rank</string>
+    <string name="rank_achieved">Rank Achieved</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>हिंदी</item>
+        <item>मराठी</item>
+        <item>ગુજરાતી</item>
+        <item>தமிழ்</item>
+        <item>తెలుగు</item>
+        <item>ಕನ್ನಡ</item>
+        <item>മലയാളം</item>
+    </string-array>
+
+    <string name="smile_rating_terrible">Terrible</string>
+    <string name="smile_rating_bad">Bad</string>
+    <string name="smile_rating_okay">Okay</string>
+    <string name="smile_rating_good">Good</string>
+    <string name="smile_rating_great">Great</string>
+    <string name="create_stories">Create Stories</string>
+    <string name="create_new_stories">Create new stories</string>
+    <string name="show_what_you_upto">Show what are you up to.</string>
+    <string name="freshchat_file_provider_authority">com.rheotv.android.provider</string>
+
+    <string name="gallery">Gallery</string>
+    <string name="text">Text</string>
+    <string name="delete">Delete</string>
+    <string name="view_profile">View Profile</string>
+    <string name="report">Report</string>
+    <string name="following">Following</string>
+    <string name="mention">\u0040mention</string>
+    <string name="ask_interest">+ask interest</string>
+
+    <string name="delete_this_title">Delete this Story?</string>
+    <string name="delete_content">Do you want to delete this Story?</string>
+
+    <string name="scoreboard">Scoreboard</string>
+    <string name="past_matches">Past Matches</string>
+
+    <string name="voucher">%s Voucher</string>
+    <string name="live">Live</string>
+    <string name="dead">Dead</string>
+    <string name="comment">Comment</string>
+    <string name="comments">Comments</string>
+    <string name="say_something">Say Something…</string>
+    <string name="say_hi">Say Hi to</string>
+    <string name="recent_follower">Recent Followers</string>
+    <string name="redeem_alert_text">Prices keep on changing. Keep using the app to get updated discounts.</string>
+    <string name="recent_redeems">Recently Redeemed</string>
+    <string name="custom_room_accepted_message">Your request for custom room has been accepted</string>
+
+    <string name="custom_room_id">Room Id</string>
+    <string name="custom_room_pass">Room Password</string>
+    <string name="enter_custom_room_details">Enter custom room details</string>
+    <string name="custom_room_details">Custom Room Details</string>
+    <string name="room_id">Room id: %s</string>
+    <string name="room_pass">Room pass: %s</string>
+    <string name="custom_room_entry_success_text">Your request to custom room has been accepted. Enjoy your game!</string>
+    <string name="not_enough_coins">Not enough coins</string>
+
+    <string name="reward_bonus_title">Bonus plan on top of the above payment</string>
+    <string name="reward_monthly_bonus_title">Monthly bonus plan on top of the above payment</string>
+    <string name="reward_watch_hours">Total Watch Hours</string>
+    <string name="reward_monthly_watch_hours">Total Monthly Watch Hours</string>
+
+    <string name="greet_get_noticed">Greet Streamer &amp; Get Noticed</string>
+
+    <string name="shuffle">Shuffle</string>
+    <string name="share_tooltip_message">Share this post to earn a scratch card</string>
+
+    <string name="ask_to_comment_message">Please write a comment</string>
+
+    <string name="refresh">Refresh</string>
+
+    <string name="custom_room_refund_coins">Refund</string>
+    <string name="description">Description</string>
+    <string name="upload_contact_title">Many of your friends are already using Rheo. Sync your contact to know who.</string>
+    <string name="upload_contacts_text">Rheo will take the contact numbers and find the people who are already on Rheo and also in your contact list.</string>
+    <string name="read_sync_contact_terms">By clicking on Sync contacts, you have read Rheo\'s Privacy Policy.</string>
+
+    <string name="reach_100_followers">Reach 100 followers to see who viewed your profile. Share Profile</string>
+    <string name="share_profile">Share Profile</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="reminder_added">Okay! We’ll remind you</string>
+
+
+    <string-array name="names">
+        <item>@string/smile_rating_terrible</item>
+        <item>@string/smile_rating_bad</item>
+        <item>@string/smile_rating_okay</item>
+        <item>@string/smile_rating_good</item>
+        <item>@string/smile_rating_great</item>
+    </string-array>
+
+    <string-array name="rank">
+        <item>@string/bronze</item>
+        <item>@string/silver</item>
+        <item>@string/gold</item>
+    </string-array>
+
+
+    <string-array name="template_color">
+        <item>#09192c</item>
+        <item>#d77ebb</item>
+        <item>#7a5fc1</item>
+        <item>#fd7554</item>
+        <item>#f55e5e</item>
+        <item>#f5d02a</item>
+        <item>#1c9d6f</item>
+        <item>#219dd1</item>
+        <item>#3d3ab2</item>
+        <item>#8e9bb2</item>
+        <item>#2f3b47</item>
+    </string-array>
+    <string name="title_activity_share">ShareActivity</string>
+    <string name="share_video">Share Video</string>
+    <string name="share_gif">Share Gif</string>
+    <string name="share_image">Share Image</string>
+    <string name="make_india">Indian 🇮🇳 Gaming Community is OP!</string>
+    <string name="offline_message">You\'re Offline. Check your connection</string>
+    <string name="connect_internet">Connect to the internet</string>
+    <string name="last_offline_clip_text">For more such videos \n Go online</string>
+    <string name="offline_alert_text">For more such videos, Go online.</string>
+    <string name="go_online">Go Online</string>
+
+    <string name="hi">Hi there</string>
+    <string name="hello">Hello</string>
+    <string name="how_are_you">How are you?</string>
+    <string name="nice_gameplay">Nice Gameplay</string>
+    <string name="good_game">Good Game</string>
+    <string name="welcome_chat_message">Welcome to %s\'s chat room.</string>
+    <string name="check_progress">Check your progress</string>
+    <string name="no_badge_info">You are just one stream away from your streaming career.</string>
+    <string name="stream_now">Start Streaming now</string>
+    <string name="wallet_balance">Rheo Wallet Balance</string>
+    <string name="download_statement">Download Statement</string>
+    <string name="play_info">This conversion rate keeps on changing\nKeep checking the app regularly for latest conversion rate.</string>
+    <string name="edit_profile_text">Edit Profile</string>
+
+    <string name="share_moment_message">You\'re game moment is \n ready to Share.</string>
+    <string name="share_redeem_message">Share with your friends to \nReveal your Redeem Code</string>
+    <string name="blocked_comment_message">You are not allowed to post messages in this live stream.</string>
+    <string name="edit">Edit</string>
+    <string name="streak_bonus_label">Streak Bonus</string>
+    <string name="reminder_add">Reminder Added</string>
+    <string name="preferred_content_language">Preferred Content Language</string>
+    <string name="preferred_games">Preferred Games</string>
+    <string name="intro">Intro</string>
+    <string name="bio">Bio</string>
+    <string name="audio_profile">Audio profile</string>
+    <string name="featured_photo">Featured Photo</string>
+    <string name="add_photo_message">Add images everyone loves to see it, how you play what you do, anything you like to show.</string>
+    <string name="donation">Donation</string>
+    <string name="add_donation">Add Donation</string>
+    <string name="online_presence">Online Presence</string>
+    <string name="configuration_use">Configuration I use</string>
+    <string name="configuration_hint">i.e. playstation, controller, tell about it</string>
+    <string name="game_wise_username">Game wise username</string>
+    <string name="play_games_from">Play games from</string>
+    <string name="i_play_game_from">I play game from</string>
+    <string name="game_rules">Game Rules</string>
+    <string name="game_description">Games I play and my username. Let’s  play together and show the best live moments.</string>
+    <string name="avg_watch_time">Avg watch time</string>
+    <string name="game_i_play">Games I play</string>
+    <string name="game_already_added">Game already added.</string>
+    <string name="social_media_already_added">Social Media already added.</string>
+    <string name="alert_username">Please enter Username</string>
+    <string name="alert_select_game">Please select a Game</string>
+    <string name="alert_game_rule">Please enter a game rule</string>
+    <string name="my_online_presence">My Online Presence</string>
+    <string name="recent_viewers">Recent Viewers</string>
+    <string name="ask_to_be_moderator">Wanna be a moderator on Rheo?\nAsk your friends to vote for you.</string>
+    <string name="moderator_vote_message">Wanna see me as a moderator on Rheo?</string>
+    <string name="ask">Ask</string>
+    <string name="sure_thumbs_up">👍 Sure</string>
+    <string name="donation_update_success">Donation Updated</string>
+    <string name="action_share_facebook_text">Like Rheo on Facebook</string>
+    <string name="action_share_youtube_text">Subscribe Rheo on YouTube</string>
+    <string name="action_share_instagram_text">Like Rheo on Instagram</string>
+    <string name="empty_bio_message">Add a Bio: A good bio helps others the discover more about streamers. Please go to edit section and update your profile.</string>
+    <string name="no_bio_added">No Bio added</string>
+    <string name="buy_coin_description">You don\'t have enough coins. Buy coins now to send the gifts to your favourite streamer.</string>
+    <string name="buy">Buy</string>
+    <string name="buy_coins">Buy Coins</string>
+    <string name="progressing_coins">Processing… Please don\'t exit</string>
+    <string name="top_fans">Top Fans</string>
+    <string name="top_fans_of">Top Fans Of %s</string>
+    <string name="follow_top_streamers">Follow Top Streamers %d/5</string>
+    <string name="welcome_user_message">Welcome %s to your first live stream</string>
+    <string name="language_english">English</string>
+    <string name="language_hindi">Hindi</string>
+    <string name="language_tamil">Tamil</string>
+    <string name="language_telugu">Telugu</string>
+    <string name="language_marathi">Marathi</string>
+    <string name="language_malayalam">Malayalam</string>
+    <string name="language_bengali">Bengali</string>
+    <string name="enter_username_hint">Enter Username</string>
+    <string name="username_is_taken_text">Username is taken. Try another</string>
+    <string name="empty_username_error">Please enter a username</string>
+    <string name="invalid_username_error">Only alphabets and numbers are allowed</string>
+    <string name="select_your_language">Select Your Language</string>
+    <string name="placeholder_people_are_watching_live_now">%s Watching Live Now</string>
+    <string name="agora_access_token">0063c0d09e7a49c4d44845809ba1c12517bIADhZssSOi5OaArHKO5v/O0SERVGWwH+JIq9ZJhzxON1VB6hIbsAAAAAEABbs5GVEvuCXwEAAQAS+4Jf</string>
+    <string name="agora_app_id">3c0d09e7a49c4d44845809ba1c12517b</string>
+
+    <string name="people_watching_live">5K + people are watching live now</string>
+
+    <string name="request_for">Request for</string>
+    <string name="request_video_call">Become a co-host by video call with %s.</string>
+    <string name="cohost_requests">Co-host Requests</string>
+
+    <string name="accepted_text">Accepted</string>
+    <string name="denied_text">Denied</string>
+
+    <string name="top_fan_tip">Calculated according to watch time for the last 5 streams</string>
+    <string name="blocked_from_room">You have been blocked from this room.</string>
+
+    <string name="community">Community</string>
+    <string name="streaming_game">Streaming %s</string>
+    <string name="talk_to_streamer">Talk to %s</string>
+    <string name="available_in_audio_room">Is available now in audio chatroom</string>
+    <string name="talk_now">Talk\nNow</string>
+
+    <string name="mrp_discount"><strike> %s </strike></string>
+    <string name="enter_audio_room_title">Entering %s chatroom</string>
+    <string name="enter_audio_room_message">You will be disconnected from %s chatroom</string>
+    <string name="audio_room_title">Audio Chatrooms</string>
+    <string name="search_audio_room">Search Audio Chatrooms</string>
+
+    <string-array name="chat_box_hints">
+        <item>Say Something to</item>
+        <item>Type a message for</item>
+        <item>Say Hi to</item>
+    </string-array>
+
+    <string-array name="chat_suggestion">
+        <item>Hello</item>
+        <item>Hi there</item>
+        <item>How are you?</item>
+        <item>Good game</item>
+        <item>Nice gameplay</item>
+    </string-array>
+
+</resources>

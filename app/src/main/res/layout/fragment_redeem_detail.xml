@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.gamify.RedeemDetailFragment">
+
+    <data>
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.gamify.RedeemDetailViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_background_color"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/avd_back_arrow"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_background_color"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/thumbnail_image_view"
+                    android:layout_width="@dimen/size_54"
+                    android:layout_height="@dimen/size_54"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:elevation="@dimen/cardview_default_elevation"
+                    android:scaleType="fitXY"
+                    app:riv_corner_radius="@dimen/corner_radius"
+                    app:imageUrl="@{viewModel.gameDetails.thumbnail}"
+                    app:layout_constraintBottom_toTopOf="@id/player_id_edit_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:src="@drawable/poster_splash"/>
+
+                <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:text="@{viewModel.gameDetails.name}"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_15"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintBottom_toTopOf="@id/helper_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toTopOf="@id/thumbnail_image_view"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="PUBG" />
+
+                <TextView
+                    android:id="@+id/helper_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text='@{(@string/redeem_message).replace("$game", viewModel.gameDetails.name).replace("$product", viewModel.gameDetails.codaShopInterface)}'
+                    android:textColor="@color/light_grey_text_color"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif"
+                    app:layout_constraintBottom_toBottomOf="@id/thumbnail_image_view"
+                    app:layout_constraintEnd_toEndOf="@id/title_text_view"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/title_text_view"
+                    tools:text="Redeem your Rheo points for PUBG DIAMONDS" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility='@{viewModel.gameDetails.codaShopInterface.equalsIgnoreCase(@string/interface_topup) ? View.VISIBLE : View.GONE, default=visible}'
+                    app:constraint_referenced_ids="player_id_edit_text" />
+
+                <!--<TextView
+                    android:id="@+id/player_id_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="ENTER YOUR PLAYER ID"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_9"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/player_id_edit_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/thumbnail_image_view" />-->
+
+                <androidx.emoji.widget.EmojiEditText
+                    android:theme="@style/EditTextStyle"
+                    android:id="@+id/player_id_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32"
+                    android:hint='@{(@string/hint_game_player_id).replace("game", viewModel.gameDetails.name)}'
+                    android:lineSpacingExtra="8sp"
+                    android:text="@={viewModel.playerId}"
+                    android:textColor="@color/white_text_color"
+                    android:textColorHint="@color/white_dull"
+                    android:textSize="@dimen/text_15"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/email_text_view"
+                    app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/thumbnail_image_view" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="email_text_view,email_edit_text" />
+
+                <TextView
+                    android:id="@+id/email_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="ENTER YOUR EMAIL ADDRESS"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_9"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/email_edit_text"
+                    app:layout_constraintEnd_toEndOf="@+id/helper_text_view"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/player_id_edit_text" />
+
+                <androidx.emoji.widget.EmojiEditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:background="@color/color_edit_text_background"
+                    android:hint="Enter your EMAIL ADDRESS here"
+                    android:inputType="textEmailAddress"
+                    android:lineSpacingExtra="8sp"
+                    android:padding="@dimen/margin_8"
+                    android:text="@={viewModel.emailAddress}"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white_dull"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/reward_message_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/email_text_view" />
+
+                <TextView
+                    android:id="@+id/reward_message_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/redeem_alert_text"
+                    android:textColor="@color/alert_red_color"
+                    android:textSize="@dimen/text_13"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/reward_title_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/email_edit_text" />
+
+                <TextView
+                    android:id="@+id/reward_title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:fontFamily="sans-serif"
+                    android:text="Select Reward"
+                    android:textColor="@color/title_grey_color"
+                    android:textSize="@dimen/text_15"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@id/reward_recycler_view"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+                    app:layout_constraintTop_toBottomOf="@id/reward_message_text_view"
+                    tools:text="Select Reward" />
+
+                <LinearLayout
+                    android:id="@+id/total_coin_holder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_leaderboard"
+                    android:backgroundTint="@color/streamer_card_bg"
+                    app:layout_constraintBottom_toBottomOf="@id/reward_title_text_view"
+                    app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+                    app:layout_constraintTop_toTopOf="@id/reward_title_text_view" >
+
+                    <ImageView
+                        android:id="@+id/coin_image_view"
+                        android:layout_width="@dimen/size_24"
+                        android:layout_height="@dimen/size_24"
+                        android:layout_margin="@dimen/margin_4"
+                        android:background="@drawable/avd_coin" />
+
+                    <TextView
+                        android:id="@+id/total_coins_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{viewModel.rheoCoins}"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="normal"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="@dimen/margin_2"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        tools:text="200" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/color_accent"
+                    android:visibility="@{viewModel.skuStatus == Status.LOADING ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toTopOf="@id/continue_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reward_title_text_view" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:textColor="@color/white_text_color"
+                    android:text="@string/no_data_found"
+                    android:visibility="@{viewModel.skuStatus == Status.ERROR ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toTopOf="@id/continue_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reward_title_text_view" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reward_recycler_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:paddingBottom="@dimen/margin_24"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/footer_guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reward_title_text_view"
+                    app:spanCount="3"
+                    tools:itemCount="28"
+                    tools:listitem="@layout/list_item_game_reward" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_130"
+                    android:background="@drawable/bottom_bar_gradient_bg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/BaseButtonStyle"
+                    android:id="@+id/continue_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    android:backgroundTint="@color/follow_btn_normal_color"
+                    android:onClick="@{viewModel::onContinueClick}"
+                    android:text="@string/continue_text"
+                    app:cornerRadius="@dimen/size_24"
+                    android:visibility="@{viewModel.placeOrderStatus == Status.LOADING || viewModel.playerSearchStatus == Status.LOADING ? View.INVISIBLE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_continue"
+                    android:layout_width="@dimen/size_24"
+                    android:layout_height="@dimen/size_24"
+                    android:indeterminateTint="@color/color_accent"
+                    android:layout_margin="@dimen/margin_16"
+                    android:visibility="@{viewModel.placeOrderStatus == Status.LOADING ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_search"
+                    android:layout_width="@dimen/size_24"
+                    android:layout_height="@dimen/size_24"
+                    android:layout_margin="@dimen/margin_16"
+                    android:indeterminateTint="@color/color_accent"
+                    android:visibility="@{viewModel.playerSearchStatus == Status.LOADING ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/footer_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.92"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

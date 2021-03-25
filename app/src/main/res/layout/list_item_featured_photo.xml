@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintCircleRadius="@dimen/margin_13">
+
+    <data>
+
+        <variable
+            name="imageUrl"
+            type="String" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="102dp"
+        android:layout_height="94dp"
+        android:layout_margin="@dimen/margin_7">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:imageUrl="@{imageUrl}"
+            android:scaleType="centerCrop" />
+
+    </FrameLayout>
+
+</layout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/sticker_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sticker_icon"
+            app:layout_constraintBottom_toTopOf="@id/sticker_barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/coin_icon_image_view"
+            android:layout_width="12dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_rheo_coin"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/sticker_value"
+            app:layout_constraintEnd_toStartOf="@+id/sticker_value"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/sticker_image_view"
+            app:layout_constraintTop_toTopOf="@+id/sticker_value"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/sticker_barrier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="sticker_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/sticker_image_view" />
+
+        <TextView
+            android:id="@+id/sticker_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#fbfbfb"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/sticker_image_view"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/coin_icon_image_view"
+            app:layout_constraintTop_toTopOf="@id/sticker_barrier"
+
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="5000" />
+
+        <ProgressBar
+            android:id="@+id/loader"
+            style="?android:progressBarStyleSmall"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminateTint="@color/color_accent"
+            android:progressTint="@color/follow_btn_normal_color"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sticker_barrier"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="reward"
+            type="com.rheotv.android.data.network.models.gamify.RewardHistoryItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/margin_8"
+        android:paddingTop="@dimen/margin_2"
+        android:paddingEnd="@dimen/margin_8">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <TextView
+            android:id="@+id/reward_type_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:layout_marginTop="@dimen/margin_4"
+            android:text="@{reward.title}"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_15"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/reward_date_text_view"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Daily Login" />
+
+        <TextView
+            android:id="@+id/reward_date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_4"
+            android:text="@{reward.completedOn}"
+            android:textColor="@color/light_grey_text_color"
+            android:textSize="@dimen/text_12"
+            android:textStyle="normal"
+            android:visibility="@{reward.completedOn != null ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toTopOf="@id/divider_view"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/reward_type_text_view"
+            app:layout_constraintTop_toBottomOf="@id/reward_type_text_view"
+            tools:text="10/11/2019" />
+
+        <TextView
+            android:id="@+id/coin_number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:text='@{(reward.coins > 0 ? "+" : "") + reward.coins}'
+            android:textColor="@{reward.coins > 0 ? @color/color_credit : @color/color_debit, default=@color/color_credit}"
+            android:textSize="@{reward.coins > 0 ? @dimen/text_22 : @dimen/text_24}"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/reward_date_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/reward_type_text_view"
+            tools:text="+2" />
+
+        <View
+            android:id="@+id/divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="#32425c"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reward_date_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

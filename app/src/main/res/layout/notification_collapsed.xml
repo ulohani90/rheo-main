@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp">
+
+    <LinearLayout
+        android:id="@+id/notification_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="false"
+        android:layout_centerInParent="true"
+        android:layout_toStartOf="@+id/icon_container"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin_12">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/live_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/live"
+                android:padding="@dimen/margin_2"
+                android:gravity="top"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
+                android:textColor="@color/black_dark"
+                android:background="@drawable/button_transparent_white_border"
+                android:textSize="@dimen/text_8" />
+
+            <TextView
+                android:id="@+id/content_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Notification Sample App Notification"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
+                android:textColor="@color/black_dark"
+                android:textSize="@dimen/text_15" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/content_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="Expand me to see a detailed message!"
+            android:textAppearance="@style/TextAppearance.Compat.Notification"
+            android:textColor="#3e3e3e"
+            android:textSize="@dimen/text_13" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/icon_container"
+        android:layout_width="102dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true">
+
+        <ImageView
+            android:id="@+id/big_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="@null"
+            android:src="@drawable/poster_splash" />
+
+        <ImageView
+            android:id="@+id/video_play_icon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:alpha="0.5"
+            android:contentDescription="@null"
+            android:gravity="center_vertical"
+            android:src="@drawable/video_play_icon" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/mojo_times_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:padding="@dimen/margin_6"
+        android:src="@drawable/ic_app_logo_transparent_bg_42"
+        android:contentDescription="@null" />
+
+</RelativeLayout>

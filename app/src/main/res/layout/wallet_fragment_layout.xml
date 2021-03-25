@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.profile.container.ProfileContainerViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background_color"
+        android:paddingLeft="@dimen/margin_20"
+        android:paddingTop="@dimen/margin_20"
+        android:paddingRight="@dimen/margin_20"
+        android:paddingBottom="@dimen/margin_56">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/rheo_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingTop="?actionBarSize"
+                android:paddingRight="@dimen/margin_12"
+                android:visibility="visible">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_12">
+
+                    <TextView
+                        android:id="@+id/percentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@{(int)viewModel.authorProfileData.progressData.progress + `%`}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_14" />
+
+                    <com.app.adprogressbarlib.AdCircleProgress
+                        android:id="@+id/pgb_progress5"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:backgroundTintMode="add"
+                        android:visibility="@{viewModel.authorProfileData.shouldShowPorgress ? View.VISIBLE : View.GONE}"
+                        app:adpgb_background_color="@android:color/transparent"
+                        app:adpgb_finished_color="@color/white"
+                        app:adpgb_gradient_color_one="@color/red"
+                        app:adpgb_gradient_color_two="@color/red"
+                        app:adpgb_suffix_text="%"
+                        app:adpgb_text_color="@color/white"
+                        app:adpgb_text_size="@dimen/text_25"
+                        app:adpgb_unfinished_color="@color/white"
+                        app:adpgb_unfinished_stroke_width="@dimen/size_10"
+                        custom:adpgb_finished_stroke_width="@dimen/size_10"
+                        custom:adpgb_show_text="false" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/label2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rheo_wallet_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="?actionBarSize"
+                android:paddingBottom="?actionBarSize"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_12"
+                    android:paddingLeft="@dimen/margin_12"
+                    android:paddingRight="@dimen/margin_12"
+                    android:text="@string/total_wallet_amount"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_18" />
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Rs 200"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/disable_payout_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="@dimen/margin_12"
+                    android:paddingBottom="@dimen/margin_12"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_20" />
+
+                <TextView
+                    android:id="@+id/redeem_now_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginBottom="@dimen/margin_12"
+                    android:background="@drawable/rheotv_mustard_oval_button"
+                    android:gravity="bottom"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/redeem_now"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>

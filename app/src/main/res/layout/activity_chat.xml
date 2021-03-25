@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/refreshIcon"
+            android:layout_width="@dimen/size_35"
+            android:layout_height="@dimen/size_35"
+            android:layout_marginTop="@dimen/margin_25"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:background="@drawable/refresh"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:text="Support"
+            android:textColor="@color/white_dull"
+            android:textSize="@dimen/text_25"
+            app:layout_constraintBottom_toBottomOf="@id/refreshIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/refreshIcon" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/blogRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingStart="@dimen/margin_12"
+            android:paddingTop="@dimen/margin_12"
+            android:paddingEnd="@dimen/margin_12"
+            app:chatAdapter="@{viewModel.chatList}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toTopOf="@id/chatboxLL"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/refreshIcon"
+            tools:listitem="@layout/item_support_chat" />
+
+        <LinearLayout
+            android:id="@+id/chatboxLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@drawable/background_border_solid_transparent"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_4"
+            android:paddingTop="@dimen/margin_12"
+            android:paddingEnd="@dimen/margin_4"
+            android:paddingBottom="@dimen/margin_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.emoji.widget.EmojiEditText
+                android:id="@+id/chatbox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_6"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:layout_weight="9"
+                android:background="@color/transparent"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white_dull"
+                android:textSize="@dimen/text_12"
+                tools:text="asdasdasdasdasdasdasdas" />
+
+            <ImageView
+                android:id="@+id/sendButton"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:src="@drawable/send_button_w" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.chatActivity.ChatFragmentViewModel" />
+
+    </data>
+</layout>

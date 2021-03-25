@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><!-- START xml_defaults -->
+<defaultsMap xmlns:android="http://schemas.android.com/apk/res/android">
+    <entry>
+        <key>onboard_preferred_language</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>three_fan_icon</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>onboard_background_clip</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>featured_room_enabled</key>
+        <value>false</value>
+    </entry>
+</defaultsMap>

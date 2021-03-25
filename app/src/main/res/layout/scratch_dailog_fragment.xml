@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragments.ScratchDialogFragment">
+
+    <data>
+
+        <variable
+            name="availableReward"
+            type="com.rheotv.android.data.network.models.gamify.Reward" />
+
+        <variable
+            name="milestone"
+            type="String" />
+
+        <variable
+            name="revealMilestone"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/scratch_container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_less_semi_transparent">
+
+        <TextView
+            android:id="@+id/reward_subtitle_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:text="Rheo Coins Earned for watching the video for 10 min"
+            android:textColor="#fbfbfb"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/scratch_card_layout"
+            app:layout_constraintEnd_toEndOf="@+id/scratch_card_layout"
+            app:layout_constraintStart_toStartOf="@+id/scratch_card_layout"
+            tools:visibility="visible" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/scratch_card_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8.7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/scratch_coined_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/avd_fireworks">
+
+                <LinearLayout
+                    android:id="@+id/coin_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/rheo_coin_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="58dp"
+                        android:src="@drawable/ic_rheo_coin" />
+
+                    <TextView
+                        android:id="@+id/coin_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="@{availableReward==null?`0`:availableReward.coinWon + ``}"
+                        android:textColor="#000000"
+                        android:textSize="44sp"
+                        android:textStyle="normal"
+                        tools:text="2" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/congrats_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginEnd="26dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_horizontal"
+                    android:text="Congrats You Won"
+                    android:textColor="#1c1c1e"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/coin_layout" />
+
+                <TextView
+                    android:id="@+id/rheo_coin_count_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@{(availableReward==null?`0`:availableReward.coinWon) + ` RHEO COINS`}"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/congrats_text_view"
+                    tools:text="2 RHEO COINS" />
+
+                <TextView
+                    android:id="@+id/view_reward_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:text="View Reward"
+                    android:textColor="#667998"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rheo_coin_count_text" />
+
+                <com.rheotv.android.ui.customViews.ScratchView
+                    android:id="@+id/scratch_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:overlay_height="@dimen/scratch_card_width"
+                    app:overlay_width="@dimen/scratch_card_height"
+                    tools:visibility="gone" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/milestone_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:text="Next Milestone\nKeep exploring to win More Rheo Coins"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/scratch_card_layout"
+            app:layout_constraintStart_toStartOf="@+id/scratch_card_layout"
+            app:layout_constraintTop_toBottomOf="@+id/scratch_card_layout"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/close_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            android:layout_margin="@dimen/margin_4"
+            android:padding="@dimen/margin_4"
+            android:scaleType="centerInside"
+            android:src="@drawable/avd_back_white"
+            android:visibility="@{revealMilestone ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

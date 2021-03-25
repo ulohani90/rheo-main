@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <variable
+            name="isDayVisible"
+            type="Boolean" />
+
+        <variable
+            name="show"
+            type="com.rheotv.android.ui.activities.onboarding.v2.model.ShowData" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/day_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#ffffff"
+            android:text="@{show.day}"
+            app:visibleWhen="@{isDayVisible}"
+            android:layout_marginBottom="@dimen/margin_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/selection_container"
+            tools:text="Today" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/selection_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:background="@drawable/follow_normal_bg"
+            android:backgroundTint="@{isSelected ? @color/color_card_selected : @color/color_card_unselected, default=@color/color_card_selected}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/day_text_view">
+
+            <ImageView
+                android:id="@+id/avatar_image_view"
+                android:layout_width="@dimen/margin_56"
+                android:layout_height="@dimen/margin_56"
+                android:layout_margin="@dimen/margin_14"
+                app:imageUrlCircular="@{show.author.profilePic}"
+                app:height="@{56}"
+                app:width="@{56}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/bell_image_view"-->
+            <!--                android:layout_width="@dimen/size_20"-->
+            <!--                android:layout_height="@dimen/size_20"-->
+            <!--                android:layout_margin="@dimen/margin_14"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@id/avatar_image_view"-->
+            <!--                app:layout_constraintEnd_toEndOf="@id/avatar_image_view"-->
+            <!--                app:layout_constraintStart_toStartOf="@id/avatar_image_view"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/avatar_image_view"-->
+            <!--                android:src="@{isSelected ? @drawable/avd_notification_active : @drawable/avd_notification}" />-->
+
+            <TextView
+                android:id="@+id/view_count_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_14"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:lineSpacingMultiplier="1.1"
+                android:text="@{show.displayAttribute}"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                android:layout_marginTop="@dimen/margin_4"
+                app:layout_constraintEnd_toEndOf="@id/avatar_image_view"
+                app:layout_constraintStart_toStartOf="@id/avatar_image_view"
+                app:layout_constraintTop_toBottomOf="@id/avatar_image_view"
+                tools:text="1.3k \n Waiting" />
+
+            <TextView
+                android:id="@+id/intro_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_14"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:text="@{show.title}"
+                android:textColor="#fbfbfb"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:layout_marginEnd="@dimen/margin_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/avatar_image_view"
+                app:layout_constraintTop_toTopOf="@id/avatar_image_view"
+                tools:text="Watch me play with mortal" />
+
+            <ImageView
+                android:id="@+id/bell_image_view"
+                android:layout_width="@dimen/size_20"
+                android:layout_height="@dimen/size_20"
+                android:background="@drawable/avd_notification"
+                app:layout_constraintBottom_toBottomOf="@id/live_timing_text_view"
+                app:layout_constraintEnd_toStartOf="@id/live_timing_text_view"
+                app:layout_constraintStart_toStartOf="@id/game_title_text_view"
+                app:layout_constraintTop_toTopOf="@id/live_timing_text_view"
+                tools:src="@drawable/avd_notification"
+                android:backgroundTint="@{isSelected ? @color/white : @color/color_accent, default=@color/color_accent}" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/remind_text_view"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/margin_8"-->
+<!--                android:layout_marginEnd="@dimen/margin_14"-->
+<!--                android:ellipsize="end"-->
+<!--                android:fontFamily="sans-serif"-->
+<!--                android:gravity="center"-->
+<!--                android:maxLines="1"-->
+<!--                android:text="@string/remind_me"-->
+<!--                android:textColor="#fbfbfb"-->
+<!--                android:textSize="11sp"-->
+<!--                android:textStyle="normal"-->
+<!--                app:layout_constraintVertical_chainStyle="packed"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/game_title_text_view"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/intro_text_view"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/bell_image_view"-->
+<!--                tools:text="@string/remind_me" />-->
+
+            <TextView
+                android:id="@+id/game_title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2"
+                android:fontFamily="sans-serif"
+                android:text="@{show.author.user.username + ` | `  + show.gameName}"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/intro_text_view"
+                app:layout_constraintStart_toStartOf="@id/intro_text_view"
+                app:layout_constraintTop_toBottomOf="@id/intro_text_view"
+                tools:text="Kiyahsingh | FreeFire" />
+
+            <TextView
+                android:id="@+id/live_timing_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_9"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_14"
+                android:layout_marginStart="@dimen/margin_4"
+                android:fontFamily="sans-serif"
+                android:text="@{show.nextLiveAt}"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/bell_image_view"
+                app:layout_constraintTop_toBottomOf="@id/game_title_text_view"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Tomorrow at 11:00 am" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/remind_me_btn"
+                style="@style/OutlineTextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/set_reminder"
+                android:textSize="@dimen/text_10"
+                android:textAllCaps="true"
+                android:clickable="false"
+                android:focusable="false"
+                android:padding="@dimen/margin_8"
+                app:layout_constraintVertical_bias="0"
+                android:layout_marginBottom="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_12"
+                app:cornerRadius="@dimen/margin_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/bell_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/live_timing_text_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/tick_image_view"
+            android:layout_width="@dimen/margin_28"
+            android:layout_height="@dimen/margin_28"
+            android:elevation="@dimen/margin_5"
+            android:visibility="visible"
+            android:src="@drawable/avd_selection_tick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/day_text_view"
+            app:visibleWhen="@{isSelected}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

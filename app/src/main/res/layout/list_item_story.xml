@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="author"
+            type="com.rheotv.android.data.network.models.useProfile.responses.ProfileResult" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        android:padding="@dimen/margin_4">
+
+        <ImageView
+            android:id="@+id/receipt_image_view"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+            app:layout_constraintEnd_toEndOf="@id/user_avatar"
+            app:layout_constraintStart_toStartOf="@id/user_avatar"
+            app:layout_constraintTop_toTopOf="@id/user_avatar"
+            tools:background="@drawable/accent_circle_border_bg" />
+
+        <ImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            app:layout_constraintBottom_toTopOf="@id/author_name_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundImageUri="@{author.profilePic}"
+            tools:background="@drawable/profile_placeholder" />
+
+        <ImageView
+            android:id="@+id/indicator_image_view"
+            android:layout_width="@dimen/size_20"
+            android:layout_height="@dimen/size_20"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+            app:layout_constraintEnd_toEndOf="@id/user_avatar"
+            app:layout_constraintVertical_bias="1"
+            tools:src="@drawable/avd_play" />
+
+        <TextView
+            android:id="@+id/author_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:fontFamily="sans-serif"
+            android:text="@{author.user.username}"
+            android:textColor="@color/white_text_color"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:maxEms="5"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/user_avatar"
+            app:layout_constraintStart_toStartOf="@id/user_avatar"
+            app:layout_constraintTop_toBottomOf="@id/user_avatar"
+            tools:text="Replays" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

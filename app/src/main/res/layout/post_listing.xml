@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Asheesh Sharma on 1st January 2019.
+  ~  * Copyright (c) January 2019 . All rights reserved.
+  ~  * Last modified 3/1/19 9:54 PM
+  ~  */
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.posts.PostViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/margin_16"
+                android:paddingTop="@dimen/margin_12"
+                android:paddingEnd="@dimen/margin_16">
+
+                <com.rheotv.android.ui.customViews.CustomAutoCompleteTextView
+                    android:id="@+id/search_autocomplete"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_48"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_border_solid_grey"
+                    android:focusableInTouchMode="false"
+                    android:hint="Search Rheo"
+                    android:imeOptions="actionDone"
+                    android:inputType="none"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingEnd="@dimen/margin_16"
+                    android:singleLine="true"
+                    android:textColor="@color/white_text_color"
+                    android:textColorHint="@color/map_axis_line_color" />
+
+                <TextView
+                    android:id="@+id/total_coin_count_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:drawableLeft="@drawable/avd_rheo_coin_26"
+                    android:drawablePadding="@dimen/margin_4"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="#fbfbfb"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    tools:text="5000" />
+
+                <ImageView
+                    android:id="@+id/clip_image_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:src="@drawable/avd_clips"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/leader_board_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/avd_leaderboard"
+                    app:tint="@color/white" />
+
+
+            </LinearLayout>
+
+
+            <HorizontalScrollView
+                android:id="@+id/quality_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/tag_chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/margin_20"
+                    android:paddingEnd="@dimen/margin_20"
+                    app:chipIconEnabled="true"
+                    app:chipSpacing="@dimen/margin_4"
+                    app:chipSpacingHorizontal="@dimen/margin_12"
+                    app:chipSpacingVertical="@dimen/margin_4"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <!--                        <com.google.android.material.chip.Chip-->
+                    <!--                            style="@style/ChipChoiceFilterStyle"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            app:chipIcon="@drawable/ic_trending_up_white"-->
+                    <!--                            android:text="Trending" />-->
+
+                    <!--                        <com.google.android.material.chip.Chip-->
+                    <!--                            style="@style/ChipChoiceFilterStyle"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            app:chipIcon="@drawable/default_gamer"-->
+                    <!--                            android:text="Top Games" />-->
+
+                    <!--                        <com.google.android.material.chip.Chip-->
+                    <!--                            style="@style/ChipChoiceFilterStyle"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            app:chipIcon="@drawable/avd_clips"-->
+                    <!--                            android:text="Top Clips" />-->
+
+                    <!--                        <com.google.android.material.chip.Chip-->
+                    <!--                            style="@style/ChipChoiceFilterStyle"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            app:chipIcon="@drawable/avd_avatar"-->
+                    <!--                            android:text="Top Streamer" />-->
+
+                    <!--                        <com.google.android.material.chip.Chip-->
+                    <!--                            style="@style/ChipChoiceFilterStyle"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            app:chipIcon="@drawable/live_icon"-->
+                    <!--                            android:text="Top Post" />-->
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+            <!--<com.bosphere.fadingedgelayout.FadingEdgeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:requiresFadingEdge="vertical"
+                app:fel_edge="top"
+                app:fel_size_top="8dp">-->
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/blogRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="true"
+                    android:paddingBottom="@dimen/margin_56"
+                    tools:listitem="@layout/item_post_view" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <!-- </com.bosphere.fadingedgelayout.FadingEdgeLayout>-->
+
+        </LinearLayout>
+
+
+        <!--<ProgressBar
+            android:id="@+id/trending_fragment_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="2dp"
+            android:visibility="@{viewModel.isFirstPage &amp;&amp;  viewModel.isLoading ? View.VISIBLE : View.GONE}" />-->
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/address_looking_up"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="64dp"
+            android:visibility="@{ !viewModel.isFirstPage &amp;&amp; viewModel.isLoading  ? View.VISIBLE : View.GONE}" />
+
+        <include
+            android:id="@+id/noInternetLayout"
+            layout="@layout/layout_offline_mode"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</layout>

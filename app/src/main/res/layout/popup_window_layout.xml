@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_8"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_18"
+        android:paddingEnd="@dimen/size_25"
+        android:textColor="@color/white_dull"
+        android:text="@string/sort_by" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_1"
+        android:layout_marginTop="@dimen/margin_6"
+        android:background="@color/white_dull"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_dull"
+        android:layout_marginTop="@dimen/margin_6"
+        android:id="@+id/monthly"
+        android:paddingTop="@dimen/margin_6"
+        android:paddingBottom="@dimen/margin_6"
+        android:background="?android:attr/selectableItemBackground"
+        android:textSize="@dimen/text_15"
+        android:text="@string/monthly" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_dull"
+        android:paddingTop="@dimen/margin_6"
+        android:id="@+id/weekly"
+        android:paddingBottom="@dimen/margin_6"
+        android:background="?android:attr/selectableItemBackground"
+        android:textSize="@dimen/text_15"
+        android:text="@string/weekly" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_dull"
+        android:paddingTop="@dimen/margin_6"
+        android:id="@+id/daily"
+        android:paddingBottom="@dimen/margin_6"
+        android:background="?android:attr/selectableItemBackground"
+        android:textSize="@dimen/text_15"
+        android:text="@string/daily" />
+
+</LinearLayout>

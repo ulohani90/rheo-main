@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.story.StoryViewerViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="420dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Viewers"
+            android:textColor="@color/white_text_color"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="@dimen/text_18"
+            android:layout_marginTop="@dimen/margin_16"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end" />
+
+        <LinearLayout
+            android:id="@+id/watch_count_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/interest_background"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_8"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+            app:layout_constraintTop_toTopOf="@+id/title_text_view">
+
+            <ImageView
+                android:id="@+id/watch_count_image_view"
+                android:layout_width="18dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/avd_eye" />
+
+            <TextView
+                android:id="@+id/watch_count_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:text="@{viewModel.watchCount}"
+                tools:text="2" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_16"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/chat_item_animation"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/watch_count_layout"
+            tools:listitem="@layout/item_leaderboard" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.loadingStatus == Status.LOADING ? View.VISIBLE : View.GONE}"
+            android:layout_margin="@dimen/margin_20"
+            android:progressTint="@color/color_accent"
+            android:indeterminateTint="@color/color_accent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/watch_count_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.clips.ClipsFragmentViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.rheotv.android.utils.ExoPlayerRecyclerView
+                android:id="@+id/clips_rv"
+                app:visibleWhen="@{viewModel.state == Status.SUCCESS}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ImageView
+            android:id="@+id/clap_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_like_heart_filled_48"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/color_accent"
+            app:visibleWhen="@{viewModel.state == Status.LOADING}"
+            android:layout_gravity="center" />
+
+        <RelativeLayout
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:visibleWhen="@{viewModel.state == Status.ERROR}"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_refresh_white_48dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@string/error_retry_text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_16" />
+
+        </RelativeLayout>
+
+        <include
+            layout="@layout/layout_offline_mode"
+            app:layoutVisible="@{viewModel.state == Status.OFFLINE}"/>
+
+        <View
+            android:id="@+id/anchor_view"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/size_72" />
+
+    </FrameLayout>
+    
+</layout>

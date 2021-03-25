@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="postGift"
+            type="com.rheotv.android.data.network.models.postlisting.responses.PostGift" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/greet_card_bg"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin_10"
+        android:paddingRight="@dimen/margin_10"
+        android:paddingBottom="@dimen/margin_10">
+
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="@dimen/margin_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundImageUri="@{postGift.profilePic}"
+            app:textDrawable="@{postGift.username}" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{postGift.username}"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/wave_hand"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/profile_pic"
+            app:layout_constraintTop_toTopOf="@id/profile_pic"
+            app:layout_constraintWidth_default="wrap"
+            tools:text=" Charles Davies Charles Davies Charles Davies Charles Davies" />
+
+        <ImageView
+            android:id="@+id/wave_hand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5"
+            android:layout_marginTop="@dimen/margin_7"
+            android:src="@drawable/ic_hello_small"
+            app:layout_constraintEnd_toStartOf="@+id/greeting_text"
+            app:layout_constraintStart_toEndOf="@id/username"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/greeting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5"
+            android:layout_marginTop="@dimen/margin_9"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:fontFamily="@font/lobster"
+            android:text="Greetings "
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/timer_progress_bar"
+            app:layout_constraintStart_toEndOf="@id/wave_hand"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/timer_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="@dimen/size_12"
+            android:indeterminateTint="@color/color_accent"
+            android:layout_height="@dimen/size_12"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:progressDrawable="@drawable/clock_progress_bar"
+            android:secondaryProgress="100"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:max="100"
+            tools:progress="75" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:fontFamily="sans-serif"
+            android:text="@{postGift.message}"
+            android:textColor="#fbfbfb"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/username"
+            app:layout_constraintTop_toBottomOf="@id/username"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipis elit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

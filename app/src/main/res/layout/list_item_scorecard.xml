@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="teamItem"
+            type="com.rheotv.android.data.network.models.score.TeamsListItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_12">
+
+        <ImageView
+            android:id="@+id/avatar_image_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:elevation="6dp"
+            app:imageUrl="@{teamItem.team.logo}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/avd_avatar" />
+
+        <TextView
+            android:id="@+id/kill_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_6"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-condensed"
+            android:maxEms="15"
+            android:maxLines="1"
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_15"
+            android:textStyle="bold"
+            android:text='@{teamItem.score + " kills"}'
+            app:layout_constraintBottom_toTopOf="@id/team_name_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/avatar_image_view"
+            app:layout_constraintTop_toTopOf="@id/avatar_image_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="3740 Kills" />
+
+        <TextView
+            android:id="@+id/team_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-condensed"
+            android:maxEms="8"
+            android:maxLines="1"
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_10"
+            android:text="@{teamItem.team.name}"
+            app:layout_constraintBottom_toBottomOf="@+id/avatar_image_view"
+            app:layout_constraintStart_toStartOf="@+id/kill_count_text_view"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/avatar_image_view"
+            app:layout_constraintTop_toBottomOf="@id/kill_count_text_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Mavericks" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

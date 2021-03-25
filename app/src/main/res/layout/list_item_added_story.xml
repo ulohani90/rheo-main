@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.rheotv.story.Constants" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="story"
+            type="com.rheotv.story.model.Story" />
+
+        <variable
+            name="showIndicator"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        android:layout_margin="@dimen/margin_4">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/thumbnail_image_view"
+            android:layout_width="24dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            app:imageUri="@{story.getUrl()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:riv_corner_radius="4dp" />
+
+        <ImageView
+            android:layout_width="@dimen/size_14"
+            android:layout_height="@dimen/size_14"
+            android:src="@{story.getType().equalsIgnoreCase(Constants.VIDEO) ? @drawable/avd_play : (story.getType().equalsIgnoreCase(Constants.ADD_MORE) ? @drawable/avd_add : @drawable/empty_drawable)}"
+            app:layout_constraintBottom_toBottomOf="@id/thumbnail_image_view"
+            app:layout_constraintEnd_toEndOf="@id/thumbnail_image_view"
+            app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+            app:layout_constraintTop_toTopOf="@id/thumbnail_image_view"
+            tools:src="@drawable/avd_add"/>
+
+        <View
+            android:layout_width="@dimen/size_6"
+            android:layout_height="@dimen/size_6"
+            android:background="@drawable/circle_white_bg"
+            android:layout_margin="@dimen/margin_4"
+            android:visibility="@{showIndicator ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintStart_toStartOf="@id/thumbnail_image_view"
+            app:layout_constraintEnd_toEndOf="@id/thumbnail_image_view"
+            app:layout_constraintTop_toBottomOf="@id/thumbnail_image_view"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

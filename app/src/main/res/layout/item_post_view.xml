@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Asheesh Sharma on 1st January 2019.
+  ~  * Copyright (c) January 2019 . All rights reserved.
+  ~  * Last modified 3/1/19 9:55 PM
+  ~  */
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.posts.PostItemViewModel" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:onClick="@{() -> viewModel.onItemClick()}"
+        android:paddingLeft="@dimen/home_card_padding"
+        android:paddingRight="@dimen/home_card_padding"
+        app:cardBackgroundColor="@color/app_background_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/player_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:id="@+id/streamer_info_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/margin_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.rheotv.android.ui.customViews.CircularImageView
+                        android:id="@+id/userProfilePic"
+                        android:layout_width="@dimen/margin_36"
+                        android:layout_height="@dimen/margin_36"
+                        android:layout_marginEnd="@dimen/margin_12"
+                        android:scaleType="centerCrop"
+                        app:civ_border="true"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="@dimen/margin_1" />
+
+                    <ImageView
+                        android:id="@+id/more_options"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:padding="@dimen/margin_8"
+                        android:src="@drawable/ic_more_vert_white_32dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/more_options"
+                        android:layout_toRightOf="@id/userProfilePic"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/user_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@{viewModel.author}"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            tools:text="Dreamleague" />
+
+                        <TextView
+                            android:id="@+id/title_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif-medium"
+                            android:maxLines="1"
+                            android:text="@{viewModel.postTitle}"
+                            android:textColor="@color/light_grey_text_color"
+                            android:textSize="13sp"
+                            android:textStyle="normal"
+                            tools:text="Happy holiday giveaways. Let's play... " />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/game_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_2"
+                            android:background="@drawable/game_tag_bg"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:fontFamily="sans-serif-medium"
+                            android:onClick="@{() -> viewModel.onGameClicked()}"
+                            android:paddingStart="@dimen/margin_8"
+                            android:paddingTop="@dimen/margin_2"
+                            android:paddingEnd="@dimen/margin_8"
+                            android:paddingBottom="@dimen/margin_2"
+                            android:text="@{viewModel.gameName}"
+                            android:textColor="@color/white_text_color"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            tools:text="Fortnite Chapter 2" />
+
+                            <TextView
+                                android:id="@+id/language_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/game_tag_bg"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:layout_marginTop="@dimen/margin_2"
+                                android:layout_marginStart="@dimen/margin_8"
+                                android:fontFamily="sans-serif-medium"
+                                android:paddingStart="@dimen/margin_8"
+                                android:paddingTop="@dimen/margin_2"
+                                android:paddingEnd="@dimen/margin_8"
+                                android:paddingBottom="@dimen/margin_2"
+                                android:text="@{viewModel.language}"
+                                android:visibility="@{viewModel.language == null ? View.GONE : View.VISIBLE}"
+                                android:textColor="@color/white_text_color"
+                                android:textSize="12sp"
+                                android:textStyle="normal"
+                                android:layout_gravity="center_vertical"
+                                tools:text="English" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/follow_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/button_transparent_white_border"
+                        android:padding="8dp"
+                        android:text="FOLLOW"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/button_transparent_white_border"
+                    android:elevation="4dp"
+                    android:paddingLeft="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingRight="4dp"
+                    android:paddingBottom="2dp"
+                    android:text="LIVE"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="@{viewModel.isLive ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@+id/player_view"
+                    app:layout_constraintTop_toTopOf="@+id/player_view" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/videoThumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:alpha="0.9"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toTopOf="@id/streamer_info_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_corner_radius="@dimen/corner_radius" />
+
+                <include
+                    android:id="@+id/more_options_layout"
+                    layout="@layout/more_options_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:visibility="@{viewModel.showMoreOptions?View.VISIBLE: View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/videoThumbnail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/videoThumbnail" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="@dimen/margin_8"
+                    android:background="@drawable/round_background_black"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/margin_4"
+                    android:paddingRight="@dimen/margin_4"
+                    android:visibility="@{viewModel.showTotalView ? View.VISIBLE : View.GONE, default=gone}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_min="40dp">
+
+                    <ImageView
+                        android:id="@+id/listing_iv_views"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="@dimen/margin_4"
+                        android:src="@drawable/eye_white" />
+
+                    <TextView
+                        android:id="@+id/listing_tv_noofviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.totalViews}"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="@dimen/margin_8"
+                    android:background="@drawable/round_background_black"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/margin_4"
+                    android:paddingRight="@dimen/margin_4"
+                    android:visibility="@{viewModel.showTotalView ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_min="40dp">
+
+                    <TextView
+                        android:id="@+id/watch_count_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.totalWatching}"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        tools:text="100 Watching"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_margin="@dimen/margin_8"
+                    android:background="@drawable/round_background_black"
+                    android:paddingLeft="@dimen/margin_4"
+                    android:paddingRight="@dimen/margin_4"
+                    android:visibility="@{viewModel.isLive ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/videoThumbnail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_min="50dp">
+
+                    <TextView
+                        android:id="@+id/listing_tv_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@{viewModel.totalDuration}"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.totalDuration) ? View.GONE : View.VISIBLE}" />
+
+                    <TextView
+                        android:id="@+id/listing_tv_placeholder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

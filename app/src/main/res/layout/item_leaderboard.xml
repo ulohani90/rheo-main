@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.leaderboard.LeaderBoardItemVM" />
+
+        <variable
+            name="shouldShowFollowButton"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_4"
+        android:foreground="?selectableItemBackground">
+
+        <TextView
+            android:id="@+id/rank_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:fontFamily="sans-serif"
+            android:text="@{viewModel.rank}"
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_16"
+            android:textStyle="normal"
+            android:visibility="@{TextUtils.isEmpty(viewModel.rank) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/authorID2"
+            app:layout_constraintEnd_toStartOf="@id/authorID2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/authorID2"
+            tools:text="1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_constraintGuide_percent="0.65" />
+
+        <View
+            android:id="@+id/rank_indicator_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_leaderboard"
+            app:layout_constraintBottom_toBottomOf="@id/authorID2"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="@id/authorID2"
+            app:layout_constraintTop_toTopOf="@id/authorID2" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/authorID2"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="@dimen/margin_8"
+            android:elevation="6dp"
+            android:visibility="visible"
+            app:civ_border="true"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rank_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/avd_avatar" />
+
+        <TextView
+            android:id="@+id/nameL"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxEms="8"
+            android:maxLines="1"
+            android:text="@{viewModel.userName}"
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toTopOf="@id/total_view"
+            app:layout_constraintEnd_toStartOf="@id/follow_button"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/authorID2"
+            app:layout_constraintTop_toTopOf="@id/authorID2"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Dreamleague" />
+
+        <TextView
+            android:id="@+id/total_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxEms="8"
+            android:maxLines="1"
+            android:text='@{viewModel.displayAttribute}'
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_13"
+            app:layout_constraintBottom_toBottomOf="@id/authorID2"
+            app:layout_constraintEnd_toStartOf="@id/follow_button"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/authorID2"
+            app:layout_constraintTop_toBottomOf="@id/nameL"
+            tools:text="144K views" />
+
+        <TextView
+            android:id="@+id/follower_count_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxEms="8"
+            android:maxLines="1"
+            android:text='@{viewModel.followCount + " " + @string/followers}'
+            android:textColor="#fbfbfb"
+            android:textSize="@dimen/text_13"
+            android:visibility="@{viewModel.followCount != null &amp;&amp; viewModel.totalCount == null? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/authorID2"
+            app:layout_constraintEnd_toStartOf="@id/follow_button"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/authorID2"
+            app:layout_constraintTop_toBottomOf="@id/nameL"
+            tools:text="144K followers" />
+
+        <ImageButton
+            android:id="@+id/follow_button"
+            style="@style/Widget.AppTheme.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:clickable="@{viewModel.canFollow}"
+            android:src="@{viewModel.isFollowed ? @drawable/ic_added_user : @drawable/ic_add_user}"
+            android:tint="@{viewModel.isFollowed ? @color/game_tag_bg_color : @color/white_text_color}"
+            android:visibility="@{shouldShowFollowButton ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintBottom_toBottomOf="@id/authorID2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/authorID2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

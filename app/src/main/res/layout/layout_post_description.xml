@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="game"
+            type="String" />
+
+        <variable
+            name="streamingDuration"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <TextView
+            android:id="@+id/stream_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-medium"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:text="@{title}"
+            android:textColor="#fbfbfb"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            android:layout_marginTop="@dimen/margin_16"
+            app:layout_constraintBottom_toTopOf="@id/game_name_text_view"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Finishing fortnite 2" />
+
+        <TextView
+            android:id="@+id/game_name_text_view"
+            style="@style/GameTagStyle"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:includeFontPadding="false"
+            android:text="@{game}"
+            app:layout_constraintBottom_toTopOf="@id/title_text_view"
+            app:layout_constraintEnd_toStartOf="@id/stream_duration_text_View"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/stream_title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/stream_title_text_view"
+            tools:text="Angry birds" />
+
+        <TextView
+            android:id="@+id/stream_duration_text_View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10"
+            android:fontFamily="sans-serif"
+            android:text="@{streamingDuration}"
+            android:textColor="#aeaeb2"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/game_name_text_view"
+            app:layout_constraintStart_toEndOf="@id/game_name_text_view"
+            app:layout_constraintTop_toTopOf="@id/game_name_text_view"
+            tools:text="Since 1h 10m" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            android:textColor="@color/white_text_color"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="@dimen/text_16"
+            android:visibility="@{description != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/game_name_text_view"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintBottom_toTopOf="@+id/description_text_view"/>
+
+        <TextView
+            android:id="@+id/description_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:fontFamily="sans-serif"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text="@{description}"
+            android:visibility="@{description != null ? View.VISIBLE : View.GONE}"
+            android:layout_marginBottom="@dimen/margin_20"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

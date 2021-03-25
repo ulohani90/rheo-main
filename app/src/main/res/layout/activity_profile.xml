@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rheotv.android.ui.activities.profile.viewprofile.view.ProfileActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewprofile.viewmodel.ProfileViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background_color"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:titleTextColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="?actionBarSize"
+                        android:layout_height="?actionBarSize"
+                        android:onClick="@{() -> viewModel.onBackPressed()}"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/avd_back_arrow" />
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin_12"
+                        android:paddingRight="@dimen/margin_12"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_16" />
+
+                    <ImageView
+                        android:id="@+id/share_btn"
+                        android:layout_width="?actionBarSize"
+                        android:layout_height="?actionBarSize"
+                        android:gravity="center"
+                        android:onClick="@{(v) -> viewModel.onShareClicked(v)}"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_share_white_24dp"
+                        android:textColor="@color/white_text_color" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/prime_show_host_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/raleway_bold"
+                    android:paddingLeft="@dimen/margin_12"
+                    android:paddingRight="@dimen/margin_12"
+                    android:paddingBottom="4dp"
+                    android:text="Prime Show Host"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </FrameLayout>
+</layout>

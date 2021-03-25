@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_settings_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Video Quality"
+            android:textColor="#fbfbfb"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/icon"
+            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintTop_toTopOf="@id/icon" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="21dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/header"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/quality_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:checked="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="Auto"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:chipBackgroundColor="@color/chip_video_quality_selector"
+                app:chipEndPadding="8dp"
+                app:chipIconEnabled="false"
+                app:chipIconSize="0dp"
+                app:chipStartPadding="8dp"
+                app:chipStrokeColor="@color/chip_stroke_selector"
+                app:chipSurfaceColor="@color/transparent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/quality_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:checkable="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="High"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:chipBackgroundColor="@color/chip_video_quality_selector"
+                app:chipEndPadding="8dp"
+                app:chipIconEnabled="false"
+                app:chipIconSize="0dp"
+                app:chipStartPadding="8dp"
+                app:chipSurfaceColor="@color/transparent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/quality_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:checkable="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="Medium"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:chipBackgroundColor="@color/chip_video_quality_selector"
+                app:chipEndPadding="8dp"
+                app:chipIconEnabled="false"
+                app:chipIconSize="0dp"
+                app:chipStartPadding="8dp"
+                app:chipSurfaceColor="@color/transparent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/quality_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:checkable="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="Low"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:chipBackgroundColor="@color/chip_video_quality_selector"
+                app:chipEndPadding="8dp"
+                app:chipIconEnabled="false"
+                app:chipIconSize="0dp"
+                app:chipStartPadding="8dp"
+                app:chipSurfaceColor="@color/transparent" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/quality_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:checkable="true"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal"
+                android:text="Audio"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:chipBackgroundColor="@color/chip_video_quality_selector"
+                app:chipEndPadding="8dp"
+                app:chipIconEnabled="false"
+                app:chipIconSize="0dp"
+                app:chipStartPadding="8dp"
+                app:chipSurfaceColor="@color/transparent" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

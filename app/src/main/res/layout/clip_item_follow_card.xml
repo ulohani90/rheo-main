@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="follow"
+            type="com.rheotv.android.db.ClipItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clip_follow_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/clip_item_follow_card_bg"
+        android:backgroundTint="@{follow.author.isFollowed() ? @color/color_secondary_text : @color/clip_follow}"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/clip_follow_profile_pic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/margin_7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundImageUri="@{follow.author.profilePic}"
+            app:textDrawable="@{follow.author.user.username}" />
+
+        <TextView
+            android:id="@+id/clip_follow_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_7"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:text="@{follow.author.isFollowed()? follow.author.user.username: `Follow `+follow.author.user.username }"
+            android:textColor="#ffffff"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/clip_follow_live"
+            app:layout_constraintEnd_toStartOf="@+id/live_icon_dot"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/clip_follow_profile_pic"
+            app:layout_constraintTop_toTopOf="@id/clip_follow_profile_pic"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_default="wrap"
+            tools:text="FollowfjdfhdjfhdjfFollowfjdfhdjfhdjf" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/live_status_group"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:constraint_referenced_ids="live_icon_circle_1,live_icon_circle_2,live_icon_dot" />
+
+        <View
+            android:id="@+id/live_icon_circle_1"
+            android:layout_width="@dimen/margin_12"
+            android:layout_height="@dimen/margin_12"
+            android:layout_centerVertical="true"
+            android:background="@drawable/red_circle_border_bg"
+            app:layout_constraintBottom_toBottomOf="@id/live_icon_dot"
+            app:layout_constraintEnd_toEndOf="@id/live_icon_dot"
+            app:layout_constraintStart_toStartOf="@id/live_icon_dot"
+            app:layout_constraintTop_toTopOf="@id/live_icon_dot" />
+
+        <View
+            android:id="@+id/live_icon_circle_2"
+            android:layout_width="@dimen/margin_12"
+            android:layout_height="@dimen/margin_12"
+            android:layout_centerVertical="true"
+            android:background="@drawable/red_circle_border_bg"
+            app:layout_constraintBottom_toBottomOf="@id/live_icon_dot"
+            app:layout_constraintEnd_toEndOf="@id/live_icon_dot"
+            app:layout_constraintStart_toStartOf="@id/live_icon_dot"
+            app:layout_constraintTop_toTopOf="@id/live_icon_dot" />
+
+        <View
+            android:id="@+id/live_icon_dot"
+            android:layout_width="@dimen/margin_12"
+            android:layout_height="@dimen/margin_12"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:background="@drawable/red_dot_bg"
+            app:layout_constraintBottom_toBottomOf="@id/clip_follow_text"
+            app:layout_constraintEnd_toStartOf="@id/clip_card_line"
+            app:layout_constraintStart_toEndOf="@id/clip_follow_text"
+            app:layout_constraintTop_toTopOf="@id/clip_follow_text" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/clip_follow_live_status1"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="@dimen/margin_5"-->
+        <!--            android:layout_marginTop="@dimen/margin_9"-->
+        <!--            android:layout_marginEnd="10dp"-->
+        <!--            android:background="#ed0000"-->
+        <!--            android:fontFamily="sans-serif-medium"-->
+        <!--            android:maxLength="16"-->
+        <!--            android:paddingLeft="@dimen/margin_3"-->
+        <!--            android:paddingTop="@dimen/margin_2"-->
+        <!--            android:paddingRight="@dimen/margin_3"-->
+        <!--            android:paddingBottom="@dimen/margin_2"-->
+        <!--            android:text="Live"-->
+        <!--            android:textColor="#ffffff"-->
+        <!--            android:textSize="13sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintEnd_toStartOf="@id/clip_follow_btn"-->
+        <!--            app:layout_constraintHorizontal_bias="0.3"-->
+        <!--            app:layout_constraintLeft_toLeftOf="@id/clip_ll"-->
+        <!--            app:layout_constraintRight_toRightOf="@id/clip_follow_btn"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/clip_ll"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            tools:ignore="ExtraText" />-->
+
+        <TextView
+            android:id="@+id/clip_follow_live"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_14"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLength="34"
+            android:maxLines="1"
+            android:text="Get notified when streamer is live"
+            android:textColor="#fbfbfb"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/clip_follow_profile_pic"
+            app:layout_constraintEnd_toStartOf="@id/clip_card_line"
+            app:layout_constraintStart_toStartOf="@id/clip_follow_text"
+            app:layout_constraintTop_toBottomOf="@id/clip_follow_text"
+            tools:ignore="ExtraText"
+            tools:text="Get notified when streamer is live" />
+
+        <View
+            android:id="@+id/clip_card_line"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:background="#090d10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/clip_follow_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/clip_follow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:fontFamily="sans-serif"
+            android:orientation="vertical"
+            android:text="@{follow.author.isFollowed()? `View`:`Follow`}"
+            android:textColor="#ffffff"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:backgroundTint="#043990"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ExtraText"
+            tools:text="Follow" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

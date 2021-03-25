@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="landscapeVisibility"
+            type="androidx.databinding.ObservableField&lt;Boolean&gt;" />
+
+        <variable
+            name="portraitVisibility"
+            type="androidx.databinding.ObservableField&lt;Boolean&gt;" />
+
+        <variable
+            name="landscapeText"
+            type="androidx.databinding.ObservableField&lt;String&gt;" />
+
+        <variable
+            name="portraitText"
+            type="androidx.databinding.ObservableField&lt;String&gt;" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/screen_tutorial_gradient_bg"
+        tools:context=".ui.activities.player.activity.PlayerTutorialActivity">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/portrait_view_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{portraitVisibility ? View.VISIBLE : View.GONE, default=gone}"
+            app:constraint_referenced_ids="portrait_image,portrait_text_view,portrait_hand"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/portrait_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_hint_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/portrait_hand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_hand"
+            app:layout_constraintBottom_toBottomOf="@id/portrait_image"
+            app:layout_constraintStart_toEndOf="@id/portrait_image"
+            app:layout_constraintTop_toTopOf="@id/portrait_image" />
+
+        <TextView
+            android:id="@+id/portrait_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="80dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:text="@{portraitText}"
+            android:textColor="#fbfbfb"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portrait_image"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Drag up and down to switch streams" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/landscape_view_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{landscapeVisibility ? View.VISIBLE : View.GONE, default=gone}"
+            app:constraint_referenced_ids="landscape_image,landscape_text_view,landscape_hand"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/landscape_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:rotation="90"
+            android:src="@drawable/ic_hint_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+
+        <ImageView
+            android:id="@+id/landscape_hand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
+            android:src="@drawable/ic_hand"
+            app:layout_constraintEnd_toEndOf="@+id/landscape_image"
+            app:layout_constraintStart_toStartOf="@+id/landscape_image"
+            app:layout_constraintTop_toBottomOf="@id/landscape_image"
+            app:layout_constraintTop_toTopOf="@+id/landscape_image" />
+
+        <TextView
+            android:id="@+id/landscape_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginEnd="80dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:text="@{landscapeText}"
+            android:textColor="#fbfbfb"
+            android:textSize="17sp"
+            android:textStyle="normal"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/landscape_image"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Drag up and down to switch streams" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_12">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:fontFamily="sans-serif-medium"
+        android:text="Leave the chatroom?"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sub_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:text="To stay connected to the chat room you can simply minimize the app by pressing the home button."
+        android:textColor="#AAffffff"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/header"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/exit_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24"
+        android:backgroundTint="@color/tag_unselected"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="EXIT"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14"
+        android:textStyle="normal"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/stay_action"
+        app:layout_constraintStart_toStartOf="@+id/sub_header"
+        app:layout_constraintTop_toBottomOf="@+id/sub_header" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/stay_action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_weight="1"
+        android:backgroundTint="@color/color_accent"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16"
+        android:text="KEEP CONNECTED"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14"
+        android:textStyle="normal"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/exit_action"
+        app:layout_constraintEnd_toEndOf="@+id/sub_header"
+        app:layout_constraintStart_toEndOf="@+id/exit_action"
+        app:layout_constraintTop_toTopOf="@+id/exit_action" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

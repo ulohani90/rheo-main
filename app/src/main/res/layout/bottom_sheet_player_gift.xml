@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.player.activity.VideoRewardViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Gift"
+            android:textColor="#fbfbfb"
+            android:textSize="17sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/streak_bonus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/avd_background_streakbonus"
+            android:visibility="@{viewModel.showWatchVideoReward ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+        <com.rheotv.android.ui.customViews.CircularIndeterminateProgressBar
+            android:id="@+id/timer"
+            android:layout_width="111dp"
+            android:layout_height="111dp"
+            android:layout_gravity="end|center_vertical"
+            android:visibility="@{viewModel.showWatchVideoReward ? View.VISIBLE : View.INVISIBLE}"
+            app:backgroundColor="@color/app_background_color"
+            app:layout_constraintBottom_toTopOf="@+id/timer_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+        <ImageView
+            android:id="@+id/inactive_gift_box"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="28dp"
+            android:src="@drawable/avd_gift_box"
+            android:visibility="@{viewModel.showWatchVideoReward ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/timer"
+            app:layout_constraintEnd_toEndOf="@+id/timer"
+            app:layout_constraintStart_toStartOf="@+id/timer"
+            app:layout_constraintTop_toTopOf="@+id/timer" />
+
+        <ImageView
+            android:id="@+id/active_gift_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_gift_box_large"
+            android:visibility="@{viewModel.showWatchVideoReward ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/streak_bonus" />
+
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.rewardTimeRemaining}"
+            android:textColor="#fbfbfb"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/active_gift_box"
+            tools:text="You’re Rewarded" />
+
+        <TextView
+            android:id="@+id/sub_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.rewardSubTitle}"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timer_text"
+            tools:text="Great work. Keep watching live streams and win exciting rewards daily" />
+
+        <TextView
+            android:id="@+id/view_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="View more"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sub_description" />
+
+        <ImageView
+            android:id="@+id/view_more_arrow"
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:tint="#fbfbfb"
+            app:layout_constraintBottom_toBottomOf="@id/view_more"
+            app:layout_constraintStart_toEndOf="@id/view_more"
+            app:layout_constraintTop_toTopOf="@+id/view_more" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

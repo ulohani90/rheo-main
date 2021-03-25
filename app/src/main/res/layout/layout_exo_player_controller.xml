@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/player_controls_gradient_bg">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.035" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9611111" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <TextView
+        android:id="@+id/stream_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_16"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingMultiplier="1.1"
+        android:maxLines="2"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:textColor="#fbfbfb"
+        android:textSize="17sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@id/game_name_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/share_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_vertical_top"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Finishing fortnite 2" />
+
+    <TextView
+        android:id="@+id/game_name_text_view"
+        style="@style/GameTagStyle"
+        android:layout_marginTop="@dimen/margin_8"
+        android:includeFontPadding="false"
+        app:layout_constraintEnd_toStartOf="@id/stream_viewer_count_text_View"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+        app:layout_constraintTop_toBottomOf="@id/stream_title_text_view"
+        tools:text="Angry birds" />
+
+    <TextView
+        android:id="@+id/stream_viewer_count_text_View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10"
+        android:fontFamily="sans-serif"
+        android:textColor="#aeaeb2"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toStartOf="@+id/share_btn"
+        app:layout_constraintStart_toEndOf="@id/game_name_text_view"
+        app:layout_constraintTop_toTopOf="@id/game_name_text_view"
+        tools:text="2.4k Viewers" />
+
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_8"
+        android:src="@drawable/ic_close_white_24dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+        app:layout_constraintTop_toTopOf="@+id/guideline_vertical_top" />
+
+    <ImageView
+        android:id="@+id/settings_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_4"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_8"
+        android:src="@drawable/ic_settings_24dp"
+        app:layout_constraintEnd_toStartOf="@id/close_btn"
+        app:layout_constraintTop_toTopOf="@+id/guideline_vertical_top" />
+
+    <ImageView
+        android:id="@+id/flag_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_4"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_8"
+        android:src="@drawable/ic_flag_white_24dp"
+        app:layout_constraintEnd_toStartOf="@id/settings_btn"
+        app:layout_constraintTop_toTopOf="@+id/guideline_vertical_top" />
+
+    <ImageView
+        android:id="@+id/share_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_4"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_8"
+        android:src="@drawable/ic_share_white_24dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/flag_btn"
+        app:layout_constraintTop_toTopOf="@+id/guideline_vertical_top" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/exo_rew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_64"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/margin_8"
+            android:src="@drawable/ic_rewind_white_24dp" />
+
+        <ImageView
+            android:id="@+id/exo_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/margin_8"
+            android:src="@drawable/ic_play_button_white_24dp" />
+
+        <ImageView
+            android:id="@+id/exo_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/margin_8"
+            android:src="@drawable/ic_pause_button_white_24dp" />
+
+        <ImageView
+            android:id="@+id/exo_ffwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_64"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/margin_8"
+            android:src="@drawable/ic_fast_forward_white_24dp" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/volume_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:padding="@dimen/margin_8"
+        android:src="@drawable/ic_baseline_volume_up_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rotate_btn" />
+
+    <ImageView
+        android:id="@+id/rotate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_8"
+        android:src="@drawable/ic_rotate_player_white_24dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end" />
+
+    <LinearLayout
+        android:id="@+id/live_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/recorded_layout"
+        app:layout_constraintEnd_toStartOf="@id/recorded_layout"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+        app:layout_constraintTop_toTopOf="@id/recorded_layout"
+        app:layout_constraintVertical_bias="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/margin_10"
+                android:layout_height="@dimen/margin_10"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:src="@drawable/ic_live_circle_dot" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Live"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/text_14" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recorded_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_16"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_vertical_bottom"
+        app:layout_constraintEnd_toStartOf="@id/volume_btn"
+        app:layout_constraintStart_toEndOf="@id/live_layout"
+        app:layout_constraintTop_toTopOf="@id/rotate_btn">
+
+        <TextView
+            android:id="@id/exo_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            tools:text="11:00" />
+
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+            android:id="@id/exo_progress"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_16"
+            android:layout_weight="1"
+            app:played_color="@color/bottom_bar_selected_item_color"
+            app:scrubber_enabled_size="@dimen/margin_16"
+            app:unplayed_color="@color/player_unplayed_color" />
+
+        <TextView
+            android:id="@id/exo_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            tools:text="11:00" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/go_to_live_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:background="@drawable/go_to_live_bg"
+        android:padding="@dimen/margin_6"
+        android:text="Go to live"
+        android:textAllCaps="true"
+        android:textColor="@color/white_text_color"
+        android:textSize="@dimen/text_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/sticker_button"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/total_views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:textColor="@color/white_text_color"
+        android:textSize="@dimen/text_14"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/recorded_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="2.4K views" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/streamer_info_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/recorded_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_start">
+
+        <com.rheotv.android.ui.customViews.CircularImageView
+            android:id="@+id/user_profile_image"
+            android:layout_width="@dimen/margin_36"
+            android:layout_height="@dimen/margin_36"
+            android:layout_marginRight="@dimen/margin_12"
+            android:visibility="visible"
+            app:civ_border_width="0dp"
+            app:civ_shadow="false"
+            app:civ_shadow_gravity="center"
+            app:civ_shadow_radius="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/avd_avatar" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/user_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_6"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintStart_toEndOf="@id/user_profile_image"
+            app:layout_constraintTop_toTopOf="@id/user_profile_image"
+            tools:text="Shivam" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/user_followers_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="@color/light_grey_text_color"
+            android:textSize="@dimen/text_13"
+            app:layout_constraintBottom_toBottomOf="@+id/user_profile_image"
+            app:layout_constraintStart_toStartOf="@id/user_name_tv"
+            app:layout_constraintTop_toBottomOf="@id/user_name_tv"
+            tools:text="23K Followers" />
+
+        <TextView
+            android:id="@+id/follow_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
+            android:background="@drawable/rounded_corner_dialog_bg"
+            android:backgroundTint="@color/color_accent"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="@dimen/margin_10"
+            android:paddingTop="@dimen/margin_2"
+            android:paddingEnd="@dimen/margin_10"
+            android:paddingBottom="@dimen/margin_2"
+            android:textColor="@color/white_text_color"
+            android:textSize="10sp"
+            app:cornerRadius="@dimen/margin_16"
+            app:layout_constraintBottom_toBottomOf="@id/user_name_tv"
+            app:layout_constraintStart_toEndOf="@id/user_name_tv"
+            app:layout_constraintTop_toTopOf="@id/user_name_tv"
+            tools:text="Follow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/chat_state_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_12"
+        android:src="@drawable/ic_hide_chat_white_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/gift_button"
+        app:layout_constraintEnd_toStartOf="@id/gift_button"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/streamer_info_layout"
+        app:layout_constraintTop_toTopOf="@id/gift_button" />
+
+    <ImageButton
+        android:id="@+id/gift_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_12"
+        android:src="@drawable/avd_next_reward"
+        app:layout_constraintBottom_toBottomOf="@id/heart_image_view"
+        app:layout_constraintEnd_toStartOf="@id/heart_image_view"
+        app:layout_constraintStart_toEndOf="@id/chat_state_btn"
+        app:layout_constraintTop_toTopOf="@id/heart_image_view" />
+
+    <FrameLayout
+        android:id="@+id/heart_animation_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/heart_image_view"
+        app:layout_constraintEnd_toEndOf="@id/heart_image_view"
+        app:layout_constraintStart_toStartOf="@id/heart_image_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/heart_image_view"
+        android:layout_width="@dimen/margin_48"
+        android:layout_height="@dimen/margin_48"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@id/sticker_button"
+        app:layout_constraintEnd_toStartOf="@id/sticker_button"
+        app:layout_constraintStart_toEndOf="@id/gift_button"
+        app:layout_constraintTop_toTopOf="@id/sticker_button"
+        app:srcCompat="@drawable/avd_heart_fill"
+        tools:padding="@dimen/margin_8"
+        tools:srcCompat="@drawable/avd_heart_outline" />
+
+    <TextView
+        android:id="@+id/heart_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/white_text_color"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/heart_image_view"
+        app:layout_constraintEnd_toEndOf="@id/heart_image_view"
+        tools:text="100" />
+
+    <ImageButton
+        android:id="@+id/sticker_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="@dimen/margin_12"
+        android:src="@drawable/avd_gift_colored"
+        app:layout_constraintBottom_toTopOf="@id/recorded_layout"
+        app:layout_constraintEnd_toEndOf="@id/rotate_btn"
+        app:layout_constraintStart_toEndOf="@id/heart_image_view" />
+
+    <SeekBar
+        android:id="@+id/volume_seekbar"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_24"
+        android:background="@drawable/background_round_grey"
+        android:backgroundTint="#B3050505"
+        android:paddingStart="@dimen/margin_6"
+        android:paddingTop="@dimen/margin_6"
+        android:paddingEnd="@dimen/margin_6"
+        android:paddingBottom="@dimen/margin_6"
+        android:progress="50"
+        android:progressDrawable="@drawable/seek_bar"
+        android:rotation="270"
+        android:secondaryProgressTint="@color/color_accent"
+        android:thumbTint="@color/color_accent"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/volume_btn"
+        app:layout_constraintStart_toStartOf="@id/volume_btn"
+        app:layout_constraintTop_toTopOf="@id/volume_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

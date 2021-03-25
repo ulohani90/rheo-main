@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Asheesh Sharma on 1st January 2019.
+  ~  * Copyright (c) January 2019 . All rights reserved.
+  ~  * Last modified 1/1/19 12:38 PM
+  ~  */
+  -->
+
+<resources>
+
+    <color name="gray">#152B5C</color>
+    <color name="semi_gray">#979797</color>
+    <color name="dark_gray">#696969</color>
+    <color name="bg_color">#f7f7f7</color>
+    <color name="black_effective">#2a2a2a</color>
+    <color name="black_dark">#000000</color>
+
+    <color name="shadow">#d0d8dc</color>
+    <color name="translucent_white">#88ffffff</color>
+    <color name="fb">#3b5998</color>
+    <color name="google">#d34836</color>
+    <color name="hashtag">#365899</color>
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="black_less_semi_transparent">#88000000</color>
+    <color name="translucent">#8009192C</color>
+
+    <color name="player_grey">#414447</color>
+    <!--Design colors-->
+    <color name="red_dark">#F06423</color>
+    <color name="red_dark2">#D85A1B</color>
+    <color name="cyan_light">#c9ebee</color>
+    <color name="cyan">#b5e3e7</color>
+    <color name="cyan_dark">#70BDC6</color>
+    <color name="navy_blue">#214258</color>
+    <color name="navy_blue_dark">#1C3A4E</color>
+    <color name="light_green">#78DC96</color>
+    <color name="light_blue">#55C8F0</color>
+    <color name="blue_black_dark">#13171d</color>
+    <color name="blue_black_light">#516179</color>
+    <color name="blue_grey_light">#A5B4C8</color>
+    <color name="orange">#FFA500</color>
+    <color name="yellow">#fff44f</color>
+
+    <color name="text_color">#D02A38</color>
+    <color name="text_color_white">@color/white_dull</color>
+    <color name="separtor_color">#E8E8E8</color>
+    <color name="text_color_light">#EC4856</color>
+    <color name="color_accent">#438cfd</color>
+    <color name="tag_unselected">#3d767680</color>
+    <color name="color_control_highlight">#40438CFD</color>
+    <color name="colorPrimary">#09233c</color>
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="colorPrimaryDark">#07192b</color>
+    <color name="colorPrimaryLight">#8C07192b</color>
+    <color name="colorBackground">#202020</color>
+    <color name="colorBackgroundItems">#7600a9</color>
+    <color name="background_color">#B192F0</color>
+    <color name="background_color_light">#8863D2</color>
+    <color name="game_card_color">#D0BCF9</color>
+
+    <color name="musturd">#ffdb58</color>
+    <color name="dark_musturd1">#fcce28</color>
+    <color name="gold">#FADA5E</color>
+    <color name="silver_shade">#CFCFCF</color>
+    <color name="leaderboard_item">#d6b4fc</color>
+    <color name="bronze">#CD853F</color>
+    <color name="colorAccent">#FFFFFFFF</color>
+    <color name="app_color"></color>
+    <color name="main_color">#FF1039</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_dull">#80FFFFFF</color>
+
+    <color name="black">#3e3e3e</color>
+    <color name="grey">#0D000000</color>
+    <color name="lightGreen">#e2fffb</color>
+    <color name="red">#f1000c</color>
+    <color name="primary_notif_color">#1c0229</color>
+
+    <color name="dark_musturd">#ffcb0f</color>
+    <color name="color_primary_text">@android:color/black</color>
+    <color name="color_secondary_text">#88000000</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="text_tab_selected">#FFFFFFFF</color>
+    <color name="text_tab_unselected">#80FFFFFF</color>
+    <color name="show_order_selected">#3e3e3e</color>
+    <color name="show_order_unselected">#0D000000</color>
+    <color name="silver">#cacdd0</color>
+    <!--<color name="frag_background">#F6F6F6</color>-->
+    <color name="frag_background">#F6F6F6</color>
+    <color name="selected_region">#DEE4E7</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="alert_red_color">#F31431</color>
+    <color name="black_overlay_dark">#AA000000</color>
+    <color name="competition_bg">#dd352e</color>
+    <color name="red_heart">#D75A4A</color>
+
+    <color name="grad1">#5683FF</color>
+    <color name="grad2">#26c2f0</color>
+    <color name="grad3">#1CE8A9</color>
+
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink">#e91e63</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
+    <color name="light_dull">#AAFFFFFF</color>
+    <color name="light_grey">#33d9d9d9</color>
+    <color name="grey_text_color">#606060</color>
+    <color name="color_text_secondary">#aeaeb2</color>
+    <color name="scratch_start_gradient">#8863D2</color>
+    <color name="scratch_end_gradient">#3b5998</color>
+    <color name="scratch_holder_color">#112545</color>
+    <color name="reward_background_color">#283d58</color>
+    <color name="bright_light_green">#4ffab5</color>
+    <color name="background_reward">#07192c</color>
+    <color name="blue_progress">#4d73ff</color>
+    <color name="submit_green_color">#65B235</color>
+    <color name="dark_green_color">#317706</color>
+    <color name="color_edit_text_background">#2a4f83</color>
+    <color name="pin_normal">#6B767E</color>
+    <color name="color_selected">#0ac87b</color>
+
+    <color name="light_pink">#fb6fb6</color>
+    <color name="light_bright_green">#14f485</color>
+    <color name="light_musturd">#ddbf2e</color>
+
+    <!--simple tool tip-->
+    <color name="simpletooltip_background">@color/colorAccent</color>
+    <color name="simpletooltip_text">@android:color/primary_text_light</color>
+    <color name="simpletooltip_arrow">@color/colorAccent</color>
+    <color name="bronze_color">#C68F04</color>
+    <color name="badge_color">#ff6161</color>
+    <color name="progress_primary_gradient">#d2247a</color>
+
+
+    <color name="app_background_color">#09192c</color>
+    <color name="title_grey_color">#a8a8af</color>
+    <color name="streamer_card_bg">#32425c</color>
+    <color name="score_card_translucent">#a832425c</color>
+    <color name="score_card_non_translucent">#32425c</color>
+    <color name="follow_btn_normal_color">#438cfd</color>
+    <color name="bottom_nav_view_bg">#2c2c2e</color>
+
+    <color name="bottom_bar_selected_item_color">#438cfd</color>
+    <color name="bottom_bar_normal_item_color">#fbfbfb</color>
+
+    <color name="color_text_grey">#a8a8af</color>
+    <color name="white_text_color">#fbfbfb</color>
+    <color name="light_grey_text_color">#aeaeb2</color>
+    <color name="tab_selected_text_color">@color/bottom_bar_selected_item_color</color>
+    <color name="tab_unselected_text_color">@color/color_text_grey</color>
+    <color name="color_edit_text_hint">@color/tab_unselected_text_color</color>
+    <color name="color_toast_background">@color/bottom_bar_selected_item_color</color>
+    <color name="color_button">@color/bottom_bar_selected_item_color</color>
+    <!--    <color name="color_outline_border">@color/tab_unselected_text_color</color>-->
+    <color name="color_progress_background">#667998</color>
+
+
+    <color name="map_axis_line_color">#4DFBFBFB</color>
+    <color name="clip_upload_selector_color">#66767680</color>
+    <color name="clip_follow">#043990</color>
+
+    <color name="color_streamer_first_place">#43af7e</color>
+    <color name="color_streamer_second_place">#7a73ee</color>
+    <color name="color_streamer_third_place">#ff9300</color>
+
+    <color name="color_bottom_sheet_background">@color/streamer_card_bg</color>
+
+    <color name="player_unplayed_color">#d8d8d8</color>
+    <color name="game_tag_bg_color">#66767680</color>
+
+    <color name="chat_window_light_bg">#33000000</color>
+
+    <color name="white_bg_color">#E6FFFFFF</color>
+    <color name="color_credit">#ffd949</color>
+    <color name="color_debit">@color/competition_bg</color>
+
+    <color name="color_unselected_rank">#69737e</color>
+
+    <color name="color_target_first">#5047ff</color>
+    <color name="color_target_second">#039e5f</color>
+    <color name="color_target_third">#ed6e0c</color>
+    <color name="color_target_forth">#3e5578</color>
+    <color name="color_remaining_target">#8e8e93</color>
+
+
+    <color name="color_accent_alpha">#BF438CFD</color>
+    <color name="color_filter_text">#112350</color>
+
+    <color name="accepted">#04B758</color>
+    <color name="bronze_badge">#d86c44</color>
+    <color name="gold_badge">#edbd31</color>
+    <color name="silver_badge">#95a9bf</color>
+    <color name="tinted_blue">#1d2e44</color>
+    <color name="color_suggestion_chip">#32425C</color>
+    <color name="color_chat_box">#a832425c</color>
+
+    <color name="color_outline_border">#32425c</color>
+    <color name="color_text_primary">#fbfbfb</color>
+    <color name="color_selector">#438cfd</color>
+    <color name="color_gray_divider">@color/color_outline_border</color>
+    <color name="color_secondary_surface">@color/color_outline_border</color>
+    <color name="color_green_button">#0a9c59</color>
+    <color name="color_blue_light_navy">#182e53</color>
+
+    <color name="selected_card_bg">#265294</color>
+    <color name="unselected_card_bg">#19293f</color>
+    <color name="color_card_selected">#80438CFD</color>
+    <color name="color_card_unselected">#19293f</color>
+    <color name="purple">#5e3cdd</color>
+    <color name="seek_bar_background">#ababab</color>
+    <color name="seek_bar_progress">#ffb600</color>
+    <color name="seek_bar_secondary_progress">#3399CC</color>
+    <color name="color_darker_black">#b3050505</color>
+
+
+</resources>

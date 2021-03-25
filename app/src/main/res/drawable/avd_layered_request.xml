@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/image"
+        android:drawable="@drawable/avd_custom_room" />
+    <item
+        android:id="@+id/indicator"
+        android:gravity="top|end"
+        android:right="@dimen/margin_1">
+        <shape android:shape="oval">
+
+            <solid android:color="@android:color/holo_red_dark" />
+            <size
+                android:width="@dimen/margin_8"
+                android:height="@dimen/margin_8" />
+        </shape>
+    </item>
+</layer-list>

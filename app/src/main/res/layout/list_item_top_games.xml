@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="game"
+            type="com.rheotv.android.data.network.models.postlisting.responses.SearchItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/game_thumbnail_image_view"
+            android:layout_width="76dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="@dimen/corner_radius" />
+
+        <TextView
+            android:id="@+id/game_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{game.name}"
+            android:padding="@dimen/margin_4"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/game_thumbnail_image_view"
+            app:layout_constraintTop_toTopOf="@id/game_thumbnail_image_view"
+            tools:text="Fortnite 2" />
+
+        <TextView
+            android:id="@+id/total_views_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:padding="@dimen/margin_4"
+            android:textColor="#aeaeb2"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@id/game_title_text_view"
+            app:layout_constraintStart_toStartOf="@id/game_title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/game_title_text_view"
+            tools:text="144K viewers" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

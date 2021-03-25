@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.story.CreateStoryActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.story.CreateStoryViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                app:navigationIcon="@drawable/avd_close">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/size_54"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="@string/create_stories"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_background_color"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_4"
+                app:cardBackgroundColor="#1d2e44"
+                app:cardCornerRadius="@dimen/size_16"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Group
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{viewModel.hasStories ? View.GONE : View.VISIBLE}"
+                        app:constraint_referenced_ids="thumbnail_image_view,thumbnail_text_view,subtitle_text_view" />
+
+                    <View
+                        android:id="@+id/story_placeholder_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintStart_toStartOf="@id/subtitle_text_view"
+                        app:layout_constraintEnd_toEndOf="@id/subtitle_text_view"
+                        app:layout_constraintTop_toTopOf="@id/thumbnail_image_view"
+                        app:layout_constraintBottom_toBottomOf="@id/subtitle_text_view" />
+
+                    <ImageView
+                        android:id="@+id/thumbnail_image_view"
+                        android:layout_width="@dimen/size_50"
+                        android:layout_height="@dimen/size_40"
+                        android:layout_marginBottom="@dimen/margin_20"
+                        android:src="@drawable/avd_upload_thumbnail"
+                        app:layout_constraintBottom_toTopOf="@id/thumbnail_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/thumbnail_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:text="@string/create_new_stories"
+                        android:textColor="@color/white_text_color"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/thumbnail_image_view"
+                        app:layout_constraintStart_toStartOf="@+id/thumbnail_image_view"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/subtitle_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginTop="@dimen/margin_12"
+                        android:layout_marginEnd="@dimen/margin_20"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="2dp"
+                        android:text="@string/show_what_you_upto"
+                        android:textColor="@color/title_grey_color"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/thumbnail_text_view"
+                        app:layout_constraintVertical_bias="0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_continue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/color_accent"
+                    android:layout_margin="@dimen/margin_16"
+                    android:visibility="@{viewModel.deleteStatus == Status.LOADING ? View.VISIBLE : View.GONE}" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/added_story_rv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/margin_14"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingEnd="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_4"
+                android:visibility="@{viewModel.hasStories ? View.VISIBLE : View.GONE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_bottom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_bottom"
+                tools:itemCount="1"
+                tools:listitem="@layout/list_item_added_story" />
+
+            <androidx.constraintlayout.widget.Group
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.hasStories ? View.GONE : View.VISIBLE}"
+                app:constraint_referenced_ids="button_gallery,button_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_gallery"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gallery"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/button_text"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_bottom" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_text"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_bottom"
+                app:layout_constraintStart_toEndOf="@id/button_gallery"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_bottom" />
+
+            <ProgressBar
+                android:id="@+id/player_progress_bar"
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                android:layout_marginEnd="@dimen/margin_40"
+                android:indeterminateTint="@color/color_accent"
+                android:elevation="2dp"
+                android:visibility="@{viewModel.publishedStatus == Status.LOADING ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_bottom"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_bottom" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/share_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:enabled="@{viewModel.hasStories}"
+                android:onClick="@{v -> viewModel.publishAllStories()}"
+                android:text="@string/share_only"
+                android:visibility="@{viewModel.publishedStatus == Status.LOADING ? View.INVISIBLE : View.VISIBLE}"
+                app:backgroundTint="@color/color_accent"
+                app:cornerRadius="@dimen/size_17"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_bottom"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_bottom"
+                tools:text="@string/share_only" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

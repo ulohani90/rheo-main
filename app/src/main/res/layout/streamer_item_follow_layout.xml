@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_view_background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/user_img"
+            android:layout_width="140dp"
+            android:layout_height="110dp"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars"
+            app:riv_corner_radius_top_left="@dimen/corner_radius"
+            app:riv_corner_radius_top_right="@dimen/corner_radius" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_4"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/margin_6"
+            android:paddingRight="@dimen/margin_6"
+            tools:text="@tools:sample/first_names"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_15" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/followers_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:gravity="center"
+            android:paddingLeft="@dimen/margin_6"
+            android:paddingRight="@dimen/margin_6"
+            android:textColor="#aeaeb2"
+            tools:text="@tools:sample/lorem"
+            android:textSize="@dimen/text_12" />
+
+        <TextView
+            android:id="@+id/follow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingLeft="@dimen/margin_12"
+            android:paddingTop="@dimen/margin_4"
+            android:paddingRight="@dimen/margin_12"
+            android:paddingBottom="@dimen/margin_4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_14" />
+
+    </LinearLayout>
+</layout>

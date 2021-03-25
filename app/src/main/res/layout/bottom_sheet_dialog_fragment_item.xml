@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="option"
+            type="com.rheotv.android.ui.customViews.bottomSheetMenu.Option" />
+
+        <variable
+            name="titleSpan"
+            type="android.text.SpannableString" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/navigation_item_background_rounded_rect"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@android:id/icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_24"
+            android:contentDescription="@null"
+            android:src="@{option.icon}"
+            android:visibility="@{option.icon == null ? View.GONE : View.VISIBLE}"
+            tools:src="@drawable/ic_instagram" />
+
+        <TextView
+            android:id="@android:id/text1"
+            style="@style/PrimaryTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="@{titleSpan}"
+            android:textColor="@color/navigation_item_tint"
+            tools:text="Share" />
+
+    </LinearLayout>
+
+</layout>

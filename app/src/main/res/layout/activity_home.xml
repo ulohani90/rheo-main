@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.rheotv.android.utils.ViewUtils" />
+
+        <import type="android.graphics.Color" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/ongoing_video_call_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#54b733"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:letterSpacing="0.08"
+            android:padding="4dp"
+            android:text="Click to join ongoing Call"
+            android:textAlignment="gravity"
+            android:textColor="@color/white_text_color"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/update_strip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ongoing_video_call_text_view"
+            app:shimmer_base_alpha="1"
+            app:shimmer_clip_to_children="true"
+            app:shimmer_direction="left_to_right"
+            app:shimmer_duration="2000"
+            app:shimmer_highlight_alpha="0.8"
+            app:shimmer_highlight_color="@color/musturd"
+            app:shimmer_repeat_mode="reverse"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dark_musturd"
+                android:gravity="center"
+                android:text="@string/update_message"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/update_strip"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/gradient_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="3dp"
+            android:translationZ="@dimen/margin_3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/bottom_navigation_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="bottom_navigation,action_button,action_button_icon" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:background="#C7171719"
+            android:theme="@style/Widget.BottomNavigationView"
+            app:itemBackground="@android:color/transparent"
+            app:itemIconTint="@drawable/navigation_item_color"
+            app:itemTextColor="@drawable/navigation_item_color"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/navigation" />
+
+        <ImageView
+            android:id="@+id/action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:clickable="false"
+            android:elevation="@dimen/margin_5"
+            android:src="@drawable/ic_action_button_background"
+            android:translationZ="@dimen/margin_6"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="@id/bottom_navigation"
+            app:layout_constraintStart_toStartOf="@id/bottom_navigation"
+            app:layout_constraintTop_toTopOf="@id/bottom_navigation" />
+
+        <ImageView
+            android:id="@+id/action_button_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:elevation="@dimen/margin_5"
+            android:translationZ="@dimen/margin_6"
+            app:layout_constraintBottom_toBottomOf="@id/action_button"
+            app:layout_constraintEnd_toEndOf="@id/action_button"
+            app:layout_constraintStart_toStartOf="@id/action_button"
+            app:layout_constraintTop_toTopOf="@id/action_button"
+            app:srcCompat="@drawable/ic_plus" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

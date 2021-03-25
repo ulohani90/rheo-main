@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_24"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/dotted_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/sync_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:src="@drawable/ic_friends"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_20"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="start"
+                android:lineSpacingMultiplier="1.2"
+                android:padding="@dimen/margin_4"
+                android:text="@string/upload_contact_title"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sync_image_view" />
+
+            <TextView
+                android:id="@+id/heading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:lineSpacingMultiplier="1.2"
+                android:padding="@dimen/margin_4"
+                android:text="@string/upload_contacts_text"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/text_14"
+                app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+                app:layout_constraintStart_toStartOf="@+id/title_text_view"
+                app:layout_constraintTop_toBottomOf="@id/title_text_view" />
+
+            <CheckBox
+                android:id="@+id/terms_and_conditions_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:checked="true"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_14"
+                app:layout_constraintEnd_toEndOf="@id/heading"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/heading"
+                app:layout_constraintTop_toBottomOf="@id/heading" />
+
+            <TextView
+                android:id="@+id/terms_and_conditions_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:padding="@dimen/margin_4"
+                android:text="@string/read_sync_contact_terms"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_14"
+                app:layout_constraintEnd_toEndOf="@id/heading"
+                app:layout_constraintStart_toEndOf="@id/terms_and_conditions_check"
+                app:layout_constraintTop_toTopOf="@id/terms_and_conditions_check" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/upload_contacts_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:backgroundTint="@color/color_accent"
+                android:text="Sync Contacts"
+                app:cornerRadius="@dimen/size_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cancel_btn"
+                app:layout_constraintTop_toBottomOf="@id/terms_and_conditions_check" />
+
+            <TextView
+                android:id="@+id/cancel_btn"
+                style="@style/OutlineTextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_24"
+                app:cornerRadius="@dimen/size_20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/upload_contacts_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/upload_contacts_btn"
+                tools:text="@string/cancel" />
+
+            <LinearLayout
+                android:id="@+id/uploading_contacts_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_36"
+                android:layout_marginBottom="@dimen/margin_24"
+                android:background="@drawable/rounded_corner_blue_btn_bg"
+                android:backgroundTint="@color/color_accent"
+                android:elevation="@dimen/margin_16"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/margin_24"
+                android:paddingEnd="@dimen/margin_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heading">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:progressTint="@color/white" />
+
+                <TextView
+                    android:id="@+id/syncing_contacts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:gravity="center"
+                    android:text="Syncing Contacts"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

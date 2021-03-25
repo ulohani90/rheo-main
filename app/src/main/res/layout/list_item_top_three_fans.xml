@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fan"
+            type="com.rheotv.android.data.network.models.postlisting.responses.TopFans" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/size_24"
+            android:layout_height="@dimen/size_24"
+            android:scaleType="centerCrop"
+            app:roundImageUri="@{fan.profilePic}"
+            app:textDrawable="@{fan.user.username}"
+            tools:src="@tools:sample/avatars"/>
+
+    </FrameLayout>
+
+</layout>

@@ -1,0 +1,72 @@
+{
+  "project_info": {
+    "project_number": "435722410062",
+    "firebase_url": "https://rheo-tv.firebaseio.com",
+    "project_id": "rheo-tv",
+    "storage_bucket": "rheo-tv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435722410062:android:26d572284531ee5b",
+        "android_client_info": {
+          "package_name": "com.rheotv.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435722410062-ekfmh8jr9vidu7tm6dmav1col56kp0pd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rheotv.android",
+            "certificate_hash": "22ee770f854105d5df131799c9b9fd48b72e20d3"
+          }
+        },
+        {
+          "client_id": "435722410062-1mkolc2nf16p7lrmv0def3tcfa0egith.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rheotv.android",
+            "certificate_hash": "3d775280ab0f5e1e9b4ce94c5eb49fbf6e8e2506"
+          }
+        },
+        {
+          "client_id": "435722410062-cehadnhd7afi3e3oa5uhqu4kfues5ght.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rheotv.android",
+            "certificate_hash": "9ead5e661c4fcf03423a69cc7705229f0f2905d5"
+          }
+        },
+        {
+          "client_id": "435722410062-fr47p2j8f47ankum3q6rbh9aq340pf0r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rheotv.android",
+            "certificate_hash": "36f7a82f28b0faaa7a83836e19fec513f1d514f1"
+          }
+        },
+        {
+          "client_id": "435722410062-qd1csrjm1j7cvu08oa28ugl48dkuoquc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3-GmeXGCvzyIYBwzZkHyyJF2z-gjqhbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435722410062-qd1csrjm1j7cvu08oa28ugl48dkuoquc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

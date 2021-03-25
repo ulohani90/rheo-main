@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.story.StoryImageFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.story.StoryImageViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/place_holder_image_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:scaleType="centerCrop"
+            tools:background="#09192c"
+            app:blurImageUri="@{viewModel.story.placeholderThumbnail}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <VideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shouldSeek="@{true}"
+            tools:visibility="gone"
+            app:startVideo="@{false}"
+            app:videoUri="@{viewModel.story.getUrl()}" />
+
+        <ImageView
+            android:id="@+id/player_indicator"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="@dimen/size_60"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/avd_play" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:visibility="gone"
+            app:imageUri="@{viewModel.story.getUrl()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/story_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/text_5"
+            android:textAlignment="gravity"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_25"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lorem ipsum lorem ipsumlorem ipsumlorem ipsum"
+            tools:textColor="@color/black_dark"
+            tools:visibility="visible" />
+
+        <com.rheotv.android.ui.customViews.CustomAutoCompleteTextView
+            android:id="@+id/mention_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_30"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/mention"
+            android:inputType="text"
+            android:textColor="@color/white_text_color"
+            android:textColorHint="@color/color_edit_text_hint"
+            android:textSize="@dimen/text_30"
+            android:theme="@style/EditTextStyle"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/added_user_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/added_user_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:background="@color/translucent"
+            android:clipToPadding="true"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_14"
+            android:paddingEnd="@dimen/margin_4"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/mention_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mention_edit_text"
+            app:layout_constraintVertical_bias="0.2"
+            tools:itemCount="9"
+            tools:listitem="@layout/list_item_mention_user" />
+
+        <TextView
+            android:id="@+id/mention_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:background="@drawable/translucent_background"
+            android:gravity="center"
+            android:paddingStart="@dimen/margin_16"
+            android:paddingTop="@dimen/margin_4"
+            android:paddingEnd="@dimen/margin_16"
+            android:paddingBottom="@dimen/margin_8"
+            android:textColor="@color/white_text_color"
+            android:textColorHint="@color/color_edit_text_hint"
+            android:textSize="@dimen/text_30"
+            app:layout_constraintBottom_toTopOf="@+id/mention_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintVertical_bias="0.85"
+            tools:text="javiverna" />
+
+        <View
+            android:id="@+id/title_protector_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/grey_gradient_background"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/footer_barrier" />
+
+        <LinearLayout
+            android:id="@+id/watch_count_layout"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_13"
+            android:background="@drawable/interest_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_8"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_default="wrap">
+
+            <ImageView
+                android:id="@+id/watch_count_image_view"
+                android:layout_width="18dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/avd_eye" />
+
+            <TextView
+                android:id="@+id/watch_count_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                tools:text="2" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mention_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:layout_marginStart="@dimen/margin_16"
+            android:padding="0dp"
+            android:text="@string/mention"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_12"
+            app:layout_constraintBottom_toTopOf="@+id/watch_count_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/white_text_color" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ask_interest_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:text="+ask Love"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/watch_count_layout"
+            app:layout_constraintStart_toEndOf="@id/mention_button"
+            app:strokeColor="@color/white_text_color"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/interest_count_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/watch_count_layout"
+            app:layout_constraintStart_toEndOf="@id/mention_button"
+            app:strokeColor="@color/white_text_color"
+            tools:text="9.5k interests"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/delete_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_delete_outline"
+            android:tint="@color/white_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/share_btn"
+            app:layout_constraintHorizontal_weight="1" />
+
+        <ImageButton
+            android:id="@+id/share_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:contentDescription="@null"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_share_white_24dp" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/footer_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="watch_count_layout,ask_interest_button,delete_btn,share_btn,mention_button" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

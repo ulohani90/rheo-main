@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.profile.editprofile.view.GameRuleFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewmodel.UserProfileViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.041666668" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.96" />
+
+            <ImageButton
+                android:id="@+id/action_back"
+                android:layout_width="@dimen/size_32"
+                android:layout_height="@dimen/size_32"
+                android:layout_marginTop="@dimen/margin_32"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/margin_8"
+                android:src="@drawable/avd_back_arrow"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title_textView"
+                style="@style/PrimaryTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:text="Game rules"
+                app:layout_constraintBottom_toBottomOf="@+id/action_back"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toEndOf="@+id/action_back"
+                app:layout_constraintTop_toTopOf="@+id/action_back" />
+
+            <TextView
+                android:id="@+id/game_rule_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_32"
+                android:fontFamily="sans-serif"
+                android:text="Add new game rules"
+                android:textColor="#fbfbfb"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/action_back" />
+
+            <TextView
+                android:id="@+id/game_rule_detail_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:fontFamily="sans-serif"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor."
+                android:textColor="#aeaeb2"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/game_rule_text_view" />
+
+            <EditText
+                android:id="@+id/game_rule_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:background="@drawable/background_border_solid_grey"
+                android:fontFamily="sans-serif"
+                android:gravity="top|start"
+                android:hint="Write your game rules"
+                android:lineSpacingMultiplier="1.1"
+                android:maxLines="3"
+                android:minHeight="104dp"
+                android:padding="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_16"
+                android:text="@={viewModel.currentRule}"
+                android:textColor="#fbfbfb"
+                android:textColorHint="#aeaeb2"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/game_rule_detail_text_view" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_button"
+                style="@style/MaterialButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:backgroundTint="@color/color_accent"
+                android:onClick="@{(v) -> viewModel.onAddRuleClicked()}"
+                android:text="@string/add"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/game_rule_edit_text" />
+
+            <View
+                android:id="@+id/add_game_rule_divider_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_24"
+                android:background="@color/color_gray_divider"
+                app:layout_constraintBottom_toTopOf="@id/game_rule_title_text_view"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/add_button" />
+
+            <TextView
+                android:id="@+id/game_rule_title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_30"
+                android:fontFamily="sans-serif"
+                android:text="Games rules"
+                android:textColor="#fbfbfb"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/edit_button"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/add_game_rule_divider_view" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edit_button"
+                style="@style/MaterialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="sans-serif-medium"
+                android:onClick="@{() -> viewModel.onEditRuleClick()}"
+                android:text="@{viewModel.inRuleEditMode ? @string/done : @string/edit, default=@string/edit}"
+                android:textColor="@{viewModel.inRuleEditMode ? @color/white : @color/color_remaining_target, default=@color/color_remaining_target}"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/game_rule_title_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/game_rule_title_text_view"
+                app:layout_constraintTop_toTopOf="@id/game_rule_title_text_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rule_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin_20"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/bottom_space"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@+id/game_rule_title_text_view"
+                tools:itemCount="3"
+                tools:listitem="@layout/list_item_game_rule" />
+
+            <Space
+                android:id="@+id/bottom_space"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_60"
+                app:layout_constraintTop_toBottomOf="@id/rule_recycler_view"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

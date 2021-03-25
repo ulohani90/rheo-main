@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="simpletooltip_overlay_alpha">120</integer>
+    <integer name="simpletooltip_animation_duration">800</integer>
+    <integer name="reach_100_followers_spannable_start">52</integer>
+    <integer name="reach_100_followers_spannable_end">64</integer>
+    <integer name="default_animation_duration">500</integer>
+</resources>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_navigation"
+    app:startDestination="@id/userProfileFragment">
+
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.rheotv.android.ui.activities.profile.viewprofile.view.UserProfileFragment"
+        android:label="UserProfileFragment"
+        tools:layout="@layout/fragment_user_profile">
+        <action
+            android:id="@+id/action_userProfileFragment_to_profileEditFragment"
+            app:destination="@id/profileEditFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim" />
+        <action
+            android:id="@+id/action_profileEditFragment_to_featuredPhotoFragment"
+            app:destination="@id/featuredPhotoFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim"
+
+            />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.ProfileEditFragment"
+        android:label="profile_detail_fragment"
+        tools:layout="@layout/profile_detail_fragment">
+        <action
+            android:id="@+id/action_profileEditFragment_to_donationEditFragment"
+            app:destination="@id/donationEditFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim" />
+        <action
+            android:id="@+id/action_profileEditFragment_to_gameWiseUserFragment"
+            app:destination="@id/gameWiseUserFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim" />
+        <action
+            android:id="@+id/action_profileEditFragment_to_gameTimingFragment"
+            app:destination="@id/gameTimingFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim" />
+        <action
+            android:id="@+id/action_profileEditFragment_to_gameRuleFragment"
+            app:destination="@id/gameRuleFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim" />
+
+        <action
+            android:id="@+id/action_profileEditFragment_to_onlinePresenceFragment"
+            app:destination="@id/onlinePresenceFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim" />
+        <action
+            android:id="@+id/action_profileEditFragment_to_featuredPhotoFragment"
+            app:destination="@id/featuredPhotoFragment"
+            app:enterAnim="@anim/fragment_slide_left"
+            app:exitAnim="@anim/wait_anim" />
+
+        <action
+            android:id="@+id/action_profileEditFragment_to_preferredGameFragment"
+            app:destination="@id/preferredGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/donationEditFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.DonationEditFragment"
+        android:label="donation_edit_fragment"
+        tools:layout="@layout/donation_edit_fragment" />
+
+    <fragment
+        android:id="@+id/featuredPhotoFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.FeaturedPhotoFragment"
+        android:label="featured_photo_fragment"
+        app:enterAnim="@anim/slide_right_out"
+        app:exitAnim="@anim/fragment_fade_exit"
+        tools:layout="@layout/viewpager_editprofile_featuredphoto">
+
+        <argument
+            android:name="photo_position"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameRuleFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.GameRuleFragment"
+        android:label="game_rule_fragment"
+        tools:layout="@layout/game_rule_fragment" />
+
+    <fragment
+        android:id="@+id/gameWiseUserFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.GameWiseUserFragment"
+        android:label="game_wise_user_fragment"
+        tools:layout="@layout/game_wise_user_fragment" />
+
+    <fragment
+        android:id="@+id/gameTimingFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.GameTimingFragment"
+        android:label="fragment_game_timing"
+        tools:layout="@layout/fragment_game_timing" />
+
+    <fragment
+        android:id="@+id/onlinePresenceFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.OnlinePresenceFragment"
+        android:label="online_presence_fragment"
+        tools:layout="@layout/fragment_online_presence" />
+
+    <fragment
+        android:id="@+id/preferredGameFragment"
+        android:name="com.rheotv.android.ui.activities.profile.editprofile.view.PreferredGameFragment"
+        android:label="preferred_game_fragment"
+        tools:layout="@layout/fragment_preferred_game" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.rheotv.android.ui.fragments.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/layout_login_fragment" />
+
+</navigation>

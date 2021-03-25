@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="@dimen/home_card_padding"
+            android:paddingRight="@dimen/home_card_padding"
+            android:textColor="@color/title_grey_color"
+            android:textSize="@dimen/text_17"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/title_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:fontFamily="sans-serif-medium"
+            android:paddingLeft="@dimen/home_card_padding"
+            android:paddingRight="@dimen/home_card_padding"
+            android:text="Search History"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/top_games_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/home_card_padding"
+            android:paddingRight="@dimen/home_card_padding" />
+
+    </LinearLayout>
+</layout>

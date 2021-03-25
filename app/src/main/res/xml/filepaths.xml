@@ -1,0 +1,25 @@
+<!--
+<paths>
+    <external-path
+        name="InstructiveRide"
+        path="Android/data/com.rheotv.android/files/Download" />
+
+</paths>-->
+<paths>
+    <external-path
+        name="clips path"
+        path="rheo_clips/" />
+
+    <files-path
+        name="clips path"
+        path="rheo_clips/" />
+
+    <external-path
+        name="story path"
+        path="rheo_stories/" />
+
+    <files-path
+        name="media"
+        path="/media/" />
+
+</paths>

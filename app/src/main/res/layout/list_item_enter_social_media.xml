@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="inEditMode"
+            type="Boolean" />
+
+        <variable
+            name="media"
+            type="com.rheotv.android.ui.activities.profile.model.SocialMedia" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_border_solid_grey"
+        android:backgroundTint="#a832425c"
+        android:layout_marginBottom="@dimen/margin_4"
+        android:padding="@dimen/margin_4">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
+            android:layout_margin="@dimen/margin_8"
+            android:layout_marginTop="8dp"
+            app:imageUrl="@{media.logo}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_whatsapp" />
+
+        <TextView
+            android:id="@+id/name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#aeaeb2"
+            android:fontFamily="sans-serif"
+            android:textColor="#fbfbfb"
+            android:textColorHint="#aeaeb2"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:background="@null"
+            android:text="@={media.text}"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            app:layout_constraintBottom_toTopOf="@id/link_text_view"
+            app:layout_constraintEnd_toStartOf="@id/delete_button"
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="@+id/imageView8"
+            tools:text="WhatsApp" />
+
+        <TextView
+            android:id="@+id/link_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:background="@null"
+            android:fontFamily="sans-serif"
+            android:text="@={media.link}"
+            android:textColor="#aeaeb2"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+            app:layout_constraintEnd_toEndOf="@+id/name_text_view"
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/name_text_view"
+            tools:text="https://whatsapp.com/abc" />
+
+        <ImageButton
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_delete_outline_white"
+            android:background="@null"
+            app:visibleWhen="@{inEditMode}"
+            android:layout_marginEnd="@dimen/margin_12"
+            app:layout_constraintBottom_toBottomOf="@id/imageView8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/name_text_view"
+            app:layout_constraintTop_toTopOf="@id/imageView8"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

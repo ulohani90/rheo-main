@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.profile.viewprofile.view.UserChatFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewprofile.viewmodel.UserChatViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/pin_comment"
+            layout="@layout/layout_pinned_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_4"
+            android:visibility="@{viewModel.pinnedComment != null ? View.VISIBLE : View.GONE}"
+            app:chatItem="@{viewModel.pinnedComment}"
+            app:isPinned="@{true}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:userColor="@{@color/transparent}" />
+
+        <com.bosphere.fadingedgelayout.FadingEdgeLayout
+            android:id="@+id/chat_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fadingEdgeLength="32dp"
+            android:requiresFadingEdge="vertical"
+            app:fel_edge="top"
+            app:fel_size_top="48dp"
+            app:layout_constraintBottom_toTopOf="@id/suggestion_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:focusable="true"
+                android:layoutAnimation="@anim/chat_item_animation"
+                android:nestedScrollingEnabled="false"
+                android:paddingStart="@dimen/margin_6"
+                android:paddingEnd="@dimen/margin_6"
+                android:paddingBottom="@dimen/margin_4"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:reverseLayout="true"
+                app:stackFromEnd="false"
+                tools:itemCount="1"
+                tools:layoutManager="GridLayoutManager"
+                tools:listitem="@layout/recycler_view_item"
+                tools:spanCount="5" />
+
+        </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+        <com.bosphere.fadingedgelayout.FadingEdgeLayout
+            android:id="@+id/suggestion_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:requiresFadingEdge="vertical"
+            app:fel_edge="right"
+            app:layout_constraintBottom_toTopOf="@id/message_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_container">
+
+            <HorizontalScrollView
+                android:id="@+id/suggestion_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/tag_chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingEnd="@dimen/margin_16"
+                    app:chipIconEnabled="true"
+                    app:chipSpacing="@dimen/margin_4"
+                    app:chipSpacingHorizontal="@dimen/margin_12"
+                    app:chipSpacingVertical="@dimen/margin_4"
+                    app:singleLine="true"
+                    app:singleSelection="false">
+
+                    <!--                    <com.google.android.material.chip.Chip-->
+                    <!--                        style="@style/ChipSuggestionStyle"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:checkable="false"-->
+                    <!--                        android:text="👋" />-->
+
+                    <!--                    <com.google.android.material.chip.Chip-->
+                    <!--                        style="@style/ChipSuggestionStyle"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:checkable="false"-->
+                    <!--                        android:text="🔥" />-->
+
+                    <!--                    <com.google.android.material.chip.Chip-->
+                    <!--                        android:id="@+id/hi_chip"-->
+                    <!--                        style="@style/ChipSuggestionStyle"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:checkable="false"-->
+                    <!--                        android:text="@string/hi" />-->
+
+                    <!--                    <com.google.android.material.chip.Chip-->
+                    <!--                        style="@style/ChipSuggestionStyle"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:checkable="false"-->
+                    <!--                        android:text="@string/hello" />-->
+
+                    <!--                    <com.google.android.material.chip.Chip-->
+                    <!--                        style="@style/ChipSuggestionStyle"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:checkable="false"-->
+                    <!--                        android:text="@string/how_are_you" />-->
+
+                    <!--                    <com.google.android.material.chip.Chip-->
+                    <!--                        style="@style/ChipSuggestionStyle"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:checkable="false"-->
+                    <!--                        android:text="@string/nice_gameplay" />-->
+
+                    <!--                    <com.google.android.material.chip.Chip-->
+                    <!--                        style="@style/ChipSuggestionStyle"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:checkable="false"-->
+                    <!--                        android:text="@string/good_game" />-->
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+        </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+        <LinearLayout
+            android:id="@+id/message_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/background_border_solid_grey"
+            android:backgroundTint="#a832425c"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/gift_button_portrait"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/suggestion_container"
+            app:layout_constraintVertical_bias="1">
+
+            <TextView
+                android:id="@+id/message_edit_text"
+                style="@style/EditTextStyle.Base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_8"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:fontFamily="sans-serif"
+                android:gravity="center|start"
+                android:maxLines="1"
+                android:padding="@dimen/margin_4"
+                android:text="@{viewModel.showHint() ? @string/say_hi + ` ` + viewModel.username : ``}"
+                android:textColor="@color/color_edit_text_hint" />
+
+            <ImageButton
+                android:id="@+id/send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{(v) -> viewModel.sendMessage()}"
+                android:padding="@dimen/margin_6"
+                android:src="@drawable/ic_send_white_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/message_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/message_container"
+                app:layout_constraintTop_toTopOf="@id/message_container" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/gift_button_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:background="?selectableItemBackgroundBorderless"
+            android:onClick="@{viewModel::onGiftClick}"
+            android:padding="@dimen/margin_6"
+            android:src="@drawable/avd_gift_colored"
+            app:layout_constraintBottom_toBottomOf="@id/message_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/message_container"
+            app:layout_constraintTop_toTopOf="@id/message_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

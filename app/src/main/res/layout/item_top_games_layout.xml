@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/game_image"
+            android:layout_width="138dp"
+            android:layout_height="182dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="@dimen/corner_radius" />
+
+        <TextView
+            android:id="@+id/game_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/margin_12"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_14" />
+
+        <TextView
+            android:id="@+id/game_views"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:fontFamily="sans-serif-medium"
+            android:text="144K views"
+            android:textColor="#aeaeb2"
+            android:textSize="@dimen/text_14"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+</layout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="inEditMode"
+            type="Boolean" />
+
+        <variable
+            name="rule"
+            type="com.rheotv.android.ui.activities.profile.viewprofile.model.GameRule" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4">
+
+        <ImageView
+            android:id="@+id/check_image_view"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="@dimen/margin_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rule_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:srcCompat="@drawable/avd_check" />
+
+        <TextView
+            android:id="@+id/rule_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:fontFamily="sans-serif"
+            android:lineSpacingMultiplier="1.1"
+            android:text="@{rule.rule}"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/delete_button"
+            app:layout_constraintStart_toEndOf="@id/check_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor." />
+
+        <ImageButton
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_delete_outline_white"
+            android:background="@null"
+            app:visibleWhen="@{inEditMode}"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/margin_12"
+            app:layout_constraintBottom_toBottomOf="@id/rule_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rule_text_view"
+            app:layout_constraintTop_toTopOf="@id/rule_text_view"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

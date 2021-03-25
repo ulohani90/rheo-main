@@ -1,0 +1,17 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.lb.video_trimmer_library"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="18"
+8-->/Users/umeshlohani/RheoTVProjects/rheotv-android-app/mirage-android/video_trimmer_library/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->/Users/umeshlohani/RheoTVProjects/rheotv-android-app/mirage-android/video_trimmer_library/src/main/AndroidManifest.xml
+10    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
+11    <application android:allowBackup="true" />
+11-->/Users/umeshlohani/RheoTVProjects/rheotv-android-app/mirage-android/video_trimmer_library/src/main/AndroidManifest.xml:3:5-46
+11-->/Users/umeshlohani/RheoTVProjects/rheotv-android-app/mirage-android/video_trimmer_library/src/main/AndroidManifest.xml:3:18-44
+12
+13</manifest>

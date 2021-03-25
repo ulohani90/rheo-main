@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.player.activity.RequestToPlayDialogFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="gamerId"
+            type="String" />
+
+        <variable
+            name="userName"
+            type="String" />
+
+        <variable
+            name="gameName"
+            type="String" />
+
+        <variable
+            name="profileUrl"
+            type="String" />
+
+        <variable
+            name="isViewOnly"
+            type="Boolean" />
+
+        <variable
+            name="customRoomEnabled"
+            type="Boolean" />
+
+        <variable
+            name="requestAccepted"
+            type="Boolean" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_24"
+            app:cardBackgroundColor="@color/streamer_card_bg"
+            app:cardCornerRadius="@dimen/margin_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:text="@{customRoomEnabled?@string/custom_room_user_info:@string/request_to_play_user_info}"
+                    android:textColor="@color/white_text_color"
+                    android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.rheotv.android.ui.customViews.CircularImageView
+                    android:id="@+id/profile_image_view"
+                    android:layout_width="@dimen/size_48"
+                    android:layout_height="@dimen/size_48"
+                    android:layout_marginTop="@dimen/text_30"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:visibility="visible"
+                    app:civ_border_width="0dp"
+                    app:civ_shadow="false"
+                    app:civ_shadow_gravity="center"
+                    app:civ_shadow_radius="0"
+                    app:layout_constraintBottom_toTopOf="@id/player_username_text_view"
+                    app:layout_constraintEnd_toStartOf="@id/user_name_text_view"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@+id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@+id/title_text_view"
+
+                    tools:background="@drawable/avd_avatar" />
+
+                <TextView
+                    android:id="@+id/user_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_24"
+                    android:text="@{userName}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image_view"
+                    app:layout_constraintTop_toTopOf="@id/profile_image_view"
+                    tools:text="User Name" />
+
+                <TextView
+                    android:id="@+id/player_username_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:text='@{(@string/player_user_name).replace("game", gameName)}'
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="normal"
+                    tools:visibility="visible"
+                    android:visibility="@{customRoomEnabled?View.GONE:View.VISIBLE,default=gone}"
+                    app:layout_constraintBottom_toTopOf="@id/username_holder_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@+id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/profile_image_view"
+                    tools:text="Player PUBG Username" />
+
+                <View
+                    android:id="@+id/username_holder_view"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_40"
+                    android:background="@color/game_tag_bg_color"
+                    android:visibility="@{customRoomEnabled?View.GONE:View.VISIBLE,default=gone}"
+                    tools:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@id/copy_text_view"
+                    app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+                    app:layout_constraintStart_toStartOf="@+id/title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/player_username_text_view" />
+
+                <TextView
+                    android:id="@+id/username_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:text="@{gamerId}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_16"
+                    android:textStyle="normal"
+                    android:visibility="@{customRoomEnabled?View.GONE:View.VISIBLE,default=gone}"
+                    app:layout_constraintBottom_toBottomOf="@id/username_holder_view"
+                    app:layout_constraintEnd_toStartOf="@id/copy_image_viw"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/username_holder_view"
+                    app:layout_constraintTop_toTopOf="@id/username_holder_view"
+                    tools:visibility="visible"
+                    tools:text="PUBGQUEEN56" />
+
+                <ImageView
+                    android:id="@+id/copy_image_viw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:padding="@dimen/margin_8"
+                    android:src="@drawable/avd_copy"
+                    android:visibility="@{customRoomEnabled?View.GONE:View.VISIBLE,default=gone}"
+                    app:layout_constraintBottom_toBottomOf="@id/username_holder_view"
+                    app:layout_constraintEnd_toEndOf="@id/username_holder_view"
+                    app:layout_constraintTop_toTopOf="@id/username_holder_view" />
+
+                <TextView
+                    android:id="@+id/copy_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_24"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:text="@string/click_to_copy"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_10"
+                    android:textStyle="normal"
+                    android:visibility="@{customRoomEnabled?View.GONE:View.VISIBLE,default=gone}"
+                    app:layout_constraintBottom_toTopOf="@id/accept_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/username_holder_view" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_24"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:text="@string/cancel"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_14"
+                    android:visibility="@{isViewOnly ? View.GONE : View.VISIBLE}"
+                    app:backgroundTint="@color/color_progress_background"
+                    app:cornerRadius="@dimen/size_15"
+                    app:layout_constraintBottom_toBottomOf="@id/accept_button"
+                    app:layout_constraintEnd_toStartOf="@id/accept_button"
+                    app:layout_constraintTop_toTopOf="@id/accept_button"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/accept_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:text="@string/accept"
+                    android:visibility="@{isViewOnly ? View.GONE : View.VISIBLE}"
+                    app:backgroundTint="@color/color_accent"
+                    app:cornerRadius="@dimen/size_15"
+                    app:layout_constraintBottom_toTopOf="@id/accept_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/copy_text_view"
+                    tools:text="@string/accept" />
+
+                <Button
+                    android:id="@+id/winner_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:text="@string/winner"
+                    android:visibility="@{isViewOnly &amp;&amp; requestAccepted ? View.VISIBLE : View.GONE, default=visible}"
+                    app:backgroundTint="@color/submit_green_color"
+                    app:cornerRadius="@dimen/size_15"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/accept_button"
+                    tools:text="@string/winner" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/close_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:text="@string/close"
+                    android:visibility="@{isViewOnly ? View.VISIBLE : View.GONE, default=visible}"
+                    app:backgroundTint="@color/color_progress_background"
+                    app:cornerRadius="@dimen/size_15"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/winner_button"
+                    app:layout_constraintTop_toBottomOf="@id/accept_button"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+</layout>

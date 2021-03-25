@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="authorName"
+            type="String" />
+
+        <variable
+            name="isAuthor"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/request_to_call_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/header_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.08"
+                    android:text="@{isAuthor?@string/cohost_requests:@string/request_video_call(authorName)}"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@id/refresh_btn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/refresh_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:background="@drawable/rounded_corner_blue_btn_bg"
+                    android:backgroundTint="@color/color_accent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/margin_12"
+                    android:paddingEnd="@dimen/margin_12"
+                    android:text="Refresh"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/header_text_view"
+                    app:layout_constraintTop_toTopOf="@id/header_text_view" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="header_text_view,refresh_btn" />
+
+                <!--<com.google.android.material.button.MaterialButton
+                    style="@style/BaseButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:backgroundTint="@color/color_accent"
+                    android:drawableEnd="@drawable/avd_rheo_coin_26"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.08"
+                    android:text="@{@string/request_for + ` ` + (coinValue == null ? 0 : coinValue)}"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:cornerRadius="@dimen/size_24"
+                    app:layout_constraintBottom_toTopOf="@id/queue_pos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_1"
+                    tools:text="Request for 10 coins" />-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/request_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:background="@drawable/rounded_corner_stream_platform_bg"
+                    android:padding="@dimen/margin_24"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/queue_pos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_1"
+                    tools:visibility="visible">
+
+
+                    <!--<TextView
+                        android:id="@+id/request_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Request for"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@id/discount_text"
+                        app:layout_constraintEnd_toStartOf="@id/mrp"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />-->
+
+                    <TextView
+                        android:id="@+id/mrp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:includeFontPadding="false"
+                        android:textColor="#88ffffff"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@id/sp"
+                        app:layout_constraintBottom_toBottomOf="@id/sp"
+                        app:layout_constraintStart_toEndOf="@id/sp"
+                        tools:text="100" />
+
+                    <TextView
+                        android:id="@+id/discount_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="sans-serif-medium"
+                        android:includeFontPadding="false"
+                        android:textColor="#88FFFFFF"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@id/sp"
+                        app:layout_constraintStart_toEndOf="@id/mrp"
+                        app:layout_constraintTop_toTopOf="@id/mrp"
+                        tools:text="(10% Off)" />
+
+                    <ImageView
+                        android:id="@+id/coin_img"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/avd_rheo_coin_26"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_6"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:lineSpacingExtra="0dp"
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/coin_img"
+                        app:layout_constraintTop_toTopOf="@id/coin_img"
+                        tools:text="100" />
+
+                    <TextView
+                        android:id="@+id/rheo_coin_text_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="sans-serif"
+                        android:text="RHEO COINS"
+                        android:textColor="#fbfbfb"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@id/sp"
+                        app:layout_constraintTop_toBottomOf="@id/sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/request"
+                        style="@style/BaseButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="@dimen/margin_12"
+                        android:backgroundTint="@color/color_accent"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:letterSpacing="0.08"
+                        android:text="Request"
+                        android:textSize="14sp"
+                        android:visibility="visible"
+                        app:cornerRadius="@dimen/size_24"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rheo_coin_text_header"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_12"
+                        android:drawableLeft="@drawable/ic_police_logo"
+                        android:drawablePadding="@dimen/margin_6"
+                        android:text="By clicking on Request I confirm that if I abuse then i will be liable for a Police action."
+                        android:textColor="#AFFFFFFF"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/request" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/queue_pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginEnd="@dimen/margin_6"
+                    android:textColor="@color/white_text_color"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/request_button"
+                    tools:text="You are at position 10 in queue" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/video_call_request_queue"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_6"
+                android:layout_marginEnd="@dimen/margin_6"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/margin_16"
+                app:layout_constraintBottom_toTopOf="@id/refresh_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/request_to_call_layout" />
+        </LinearLayout>
+
+
+        <!-- <View
+             android:layout_width="0dp"
+             android:layout_height="0dp"
+             android:background="@color/app_background_color"
+             app:layout_constraintBottom_toBottomOf="@id/refresh_btn"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="@id/refresh_btn" />-->
+
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/null_requests_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_24"
+            android:gravity="center"
+            android:paddingStart="@dimen/margin_12"
+            android:paddingEnd="@dimen/margin_12"
+            android:text="No Requests available.\n Invite your viewers in your stream to become co-host with you"
+            android:textColor="#88FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

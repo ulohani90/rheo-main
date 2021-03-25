@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.rheotv.android.data.network.models.play.ResultsItem" />
+
+        <variable
+            name="isMe"
+            type="Boolean" />
+
+        <variable
+            name="showState"
+            type="Boolean" />
+
+        <variable
+            name="showQueue"
+            type="Boolean" />
+
+        <variable
+            name="waitingNumber"
+            type="String" />
+
+        <variable
+            name="playerStateMessage"
+            type="String" />
+
+        <variable
+            name="queueMessage"
+            type="String" />
+
+        <variable
+            name="isCustomRoom"
+            type="Boolean" />
+
+        <variable
+            name="gameName"
+            type="String" />
+
+        <variable
+            name="gameUserName"
+            type="String" />
+
+        <variable
+            name="authorName"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_4">
+
+        <TextView
+            android:id="@+id/state_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:fontFamily="sans-serif"
+            android:gravity="start"
+            android:lineSpacingExtra="@dimen/text_5"
+            android:text="@{playerStateMessage}"
+            android:textColor="@color/white_text_color"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:visibility="@{showState ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/queue_position_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Your Request Has Been Submitted Waiting \n For ASHISHGAMER To Accept It" />
+
+        <TextView
+            android:id="@+id/queue_position_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text='@{queueMessage}'
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:visibility="@{showQueue ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toTopOf="@id/player_card_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/state_text_view"
+            tools:text="YOU ARE 22 IN QUEUE" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/player_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/queue_position_text_view">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.63" />
+
+            <TextView
+                android:id="@+id/position_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:text="@{waitingNumber}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_10"
+                android:visibility='@{item.state.equals(@string/state_accepted)?View.GONE:(item.type.equals(@string/play_requested) ? View.VISIBLE : View.GONE)}'
+                app:layout_constraintBottom_toTopOf="@+id/game_id_text_view"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/user_name_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/user_name_text_view"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/game_id_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:text="@{@string/game_id(gameName,gameUserName)}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_12"
+                android:visibility='@{isMe &amp;&amp; isCustomRoom?View.VISIBLE:View.GONE}'
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image_view"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/user_name_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/position_text_view"
+                tools:text="1" />
+
+
+            <com.rheotv.android.ui.customViews.CircularImageView
+                android:id="@+id/profile_image_view"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:visibility="visible"
+                app:civ_border_width="0dp"
+                app:civ_shadow="false"
+                app:civ_shadow_gravity="center"
+                app:civ_shadow_radius="0"
+                app:layout_constraintBottom_toTopOf="@id/divider_vertical_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@drawable/avd_avatar" />
+
+            <TextView
+                android:id="@+id/user_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{item.fromUserProfile.user.username}'
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/profile_image_view"
+                app:layout_constraintTop_toTopOf="@id/profile_image_view"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Hemchandra Chakrav" />
+
+            <ImageView
+                android:id="@+id/tick_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_4"
+                android:padding="@dimen/margin_8"
+                android:src="@drawable/avd_tick"
+                android:visibility="@{isMe &amp;&amp; item.state.equals(@string/state_pending) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/divider_vertical_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider_view"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:background="@color/map_axis_line_color"
+                android:visibility="@{isMe &amp;&amp; item.state.equals(@string/state_pending) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/tick_image_view"
+                app:layout_constraintEnd_toStartOf="@id/tick_image_view"
+                app:layout_constraintTop_toTopOf="@id/tick_image_view" />
+
+            <ImageView
+                android:id="@+id/cross_image_viw"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:padding="@dimen/margin_8"
+                android:scaleType="centerInside"
+                android:src="@drawable/avd_cross"
+                android:visibility="@{isMe &amp;&amp; item.state.equals(@string/state_pending) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/tick_image_view"
+                app:layout_constraintEnd_toStartOf="@id/divider_view"
+                app:layout_constraintTop_toTopOf="@id/tick_image_view" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/not_able_to_play_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4"
+                android:text="@{isCustomRoom ?@string/custom_room_refund_coins:@string/not_able_to_play}"
+                android:textAllCaps="true"
+                android:textColor="#fd7070"
+                android:textSize="@dimen/text_12"
+                android:textStyle="normal"
+                android:visibility="@{(isMe &amp;&amp; item.state.equals(@string/state_accepted) &amp;&amp; !item.winner) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/divider_vertical_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/winner_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="@dimen/margin_4"
+                android:background="@drawable/green_rounded_corner_bg"
+                android:gravity="center"
+                android:paddingStart="@dimen/margin_12"
+                android:paddingEnd="@dimen/margin_12"
+                android:text="Winner"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_12"
+                android:textStyle="normal"
+                android:visibility="@{item.winner ? View.VISIBLE : View.GONE, default=gone}"
+                app:layout_constraintBottom_toTopOf="@id/divider_vertical_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/status_image_viw"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:scaleType="centerInside"
+                android:src='@{item.state.equals(@string/state_pending) ? @drawable/avd_play_request_pending : (item.state.equals(@string/state_accepted) ? @drawable/avd_play_request_accepted : @drawable/avd_play_request_rejected)}'
+                android:visibility="@{!isMe &amp;&amp; item.type.equals(@string/play_requested) &amp;&amp; !isCustomRoom ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/divider_vertical_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/avd_play_request_accepted"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/divider_vertical_view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/map_axis_line_color"
+                android:visibility="@{item.message != null &amp;&amp; item.type.equals(@string/play_requested) &amp;&amp; (item.state.equals(@string/state_rejected) || item.state.equals(@string/state_refunded)) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/message_from_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_image_view" />
+
+            <TextView
+                android:id="@+id/message_from_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_4"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/text_12"
+                android:text='@{@string/message_from + " " +authorName}'
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/text_11"
+                android:textStyle="normal"
+                android:visibility="@{item.message != null &amp;&amp; item.type.equals(@string/play_requested) &amp;&amp; (item.state.equals(@string/state_rejected) || item.state.equals(@string/state_refunded)) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/message_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_vertical_view"
+                tools:text="Message from aashish gamer" />
+
+            <TextView
+                android:id="@id/message_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_12"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/text_5"
+                android:text="@{item.message}"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/text_11"
+                android:textStyle="normal"
+                android:visibility="@{item.message != null &amp;&amp; item.type.equals(@string/play_requested) &amp;&amp; (item.state.equals(@string/state_rejected) || item.state.equals(@string/state_refunded)) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/message_from_text_view"
+                tools:text="“HEY I’M REALLY SORRY I COULD NOT ACCEPT YOUR PLAY REQUEST.\nTHERE WERE ALREADY TOO MANY REQUESTS..”" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

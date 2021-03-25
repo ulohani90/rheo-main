@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rheotv.android.services.AudioRoomService" />
+
+        <variable
+            name="room"
+            type="com.rheotv.android.ui.activities.audioroom.model.AudioRoom" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16">
+
+        <ImageView
+            android:id="@+id/thumbnail_image_view"
+            android:layout_width="@dimen/size_48"
+            android:layout_height="@dimen/size_48"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:riv_corner_radius="@dimen/corner_radius"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_14"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:text="@{room.groupDetails.name != null ? room.groupDetails.name : room.groupDetails.ownerDetails.username}"
+            android:textColor="#fbfbfb"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/last_comment_text_view"
+            app:layout_constraintEnd_toStartOf="@id/online_count_text_view"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/thumbnail_image_view"
+            app:layout_constraintTop_toTopOf="@+id/thumbnail_image_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="bfhdbsjkhbsjkflndsjnfjkdsn.njdnjkdsnjdknkjdsbn" />
+
+        <TextView
+            android:id="@+id/online_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_4"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="end"
+            android:text="@{room.onlineParticipant()}"
+            android:textColor="#438cfd"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/title_text_view"
+            app:layout_constraintEnd_toStartOf="@id/joined_room_indicator"
+            app:layout_constraintStart_toEndOf="@id/title_text_view"
+            app:layout_constraintTop_toTopOf="@id/title_text_view"
+            tools:text="@tools:sample/us_zipcodes"
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/joined_room_indicator"
+            android:layout_width="@dimen/size_12"
+            android:layout_height="@dimen/size_12"
+            android:background="@drawable/rounded_corner_dialog_bg"
+            android:backgroundTint="@color/bright_light_green"
+            app:layout_constraintBottom_toBottomOf="@id/online_count_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/online_count_text_view"
+            app:layout_constraintTop_toTopOf="@id/online_count_text_view"
+            app:visibleWhen="@{room.isConnected}" />
+
+        <TextView
+            android:id="@+id/last_comment_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif"
+            android:maxLines="1"
+            android:text="@{room.groupDetails.ownerDetails.intro}"
+            android:textColor="@color/light_grey_text_color"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/suggestion_scroll"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view"
+            tools:text="@tools:sample/lorem/random" />
+
+        <!--        <com.rheotv.android.utils.customview.TouchableThroughFrameLayout-->
+        <!--            android:id="@+id/suggestion_scroll"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:scrollbars="none">-->
+
+        <HorizontalScrollView
+            android:id="@+id/suggestion_scroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/divider_view"
+            app:layout_constraintEnd_toEndOf="@id/joined_room_indicator"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/last_comment_text_view">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/tag_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                app:chipIconEnabled="true"
+                app:chipSpacing="@dimen/margin_4"
+                app:chipSpacingHorizontal="@dimen/margin_8"
+                app:chipSpacingVertical="@dimen/margin_2"
+                app:chipSuggestion="@{room.language}"
+                app:singleLine="true"
+                app:singleSelection="false">
+
+                <!--                <com.google.android.material.chip.Chip-->
+                <!--                    style="@style/ChipSuggestionStyle"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="24dp"-->
+                <!--                    android:text="@string/language_hindi"-->
+                <!--                    app:chipMinTouchTargetSize="10dp"-->
+                <!--                    android:textAppearance="@style/CaptionTextStyle"/>-->
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        <View
+            android:id="@+id/tag_protector"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/suggestion_scroll"
+            app:layout_constraintEnd_toEndOf="@id/suggestion_scroll"
+            app:layout_constraintTop_toTopOf="@id/suggestion_scroll"
+            app:layout_constraintBottom_toBottomOf="@id/suggestion_scroll" />
+
+        <!--        </com.rheotv.android.utils.customview.TouchableThroughFrameLayout>-->
+
+        <View
+            android:id="@+id/divider_view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="#32425c"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/suggestion_scroll" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

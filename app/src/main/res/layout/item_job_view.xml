@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.posts.PostItemViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/card_view_background"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/videoThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingTop="5dp"
+                android:scaleType="fitXY" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/news_tv_origin"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="@dimen/margin_8"-->
+            <!--android:layout_marginTop="@dimen/margin_8"-->
+            <!--android:layout_marginEnd="@dimen/margin_8"-->
+            <!--android:background="@drawable/round_tags_home"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="@dimen/margin_5"-->
+            <!--android:text="@{viewModel.origin}"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/text_14"-->
+            <!--android:visibility='@{viewModel.origin.equalsIgnoreCase("") ? View.INVISIBLE : View.VISIBLE}'-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/videoThumbnail" />-->
+
+            <TextView
+                android:id="@+id/job_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:text="@{viewModel.title}"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/job_tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_8" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_32"
+                android:layout_marginRight="@dimen/margin_32"
+                android:layout_marginBottom="@dimen/margin_8">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/like"
+                    android:layout_width="@dimen/size_30"
+                    android:layout_height="@dimen/size_30"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:id="@+id/nooflikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

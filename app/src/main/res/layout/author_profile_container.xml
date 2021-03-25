@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.tabcontainer.profile.container.ProfileContainerViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/container_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.profileStatus == Status.SUCCESS ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsing_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fitsSystemWindows="true"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                        app:titleEnabled="false">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_collapseMode="none">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <!-- author details-->
+                                <RelativeLayout
+                                    android:id="@+id/videoPlaceholderRL"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+
+                                    <FrameLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical">
+
+                                        <com.makeramen.roundedimageview.RoundedImageView
+                                            android:id="@+id/coverPic"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="144dp"
+                                            android:scaleType="centerCrop" />
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@color/colorPrimaryLight" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:fontFamily="@font/raleway_bold"
+                                            android:paddingLeft="@dimen/margin_12"
+                                            android:paddingTop="6dp"
+                                            android:paddingRight="@dimen/margin_12"
+                                            android:paddingBottom="6dp"
+                                            android:text="Prime Show Host"
+                                            android:textAllCaps="true"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp"
+                                            android:visibility="gone" />
+
+                                        <ImageView
+                                            android:id="@+id/setting_image_view"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="end|top"
+                                            android:layout_marginTop="@dimen/margin_20"
+                                            android:layout_marginEnd="@dimen/margin_20"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:foreground="?selectableItemBackground"
+                                            android:src="@drawable/ic_settings_24dp" />
+
+                                        <!--<ImageView
+                                            android:id="@+id/share"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="32dp"
+                                            android:layout_gravity="end"
+                                            android:layout_marginTop="?android:attr/actionBarSize"
+                                            android:layout_marginEnd="@dimen/margin_12"
+                                            android:clickable="true"
+                                            android:focusable="true"
+                                            android:onClick="@{(v) -> viewModel.onShareClicked(v)}"
+                                            android:paddingLeft="@dimen/margin_8"
+                                            android:paddingRight="@dimen/margin_8"
+                                            android:src="@drawable/ic_share_white_32dp"
+                                            android:text="Share"
+                                            android:textColor="@color/white" />-->
+
+
+                                        <!--<TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="end"
+                                            android:layout_marginTop="?android:attr/actionBarSize"
+                                            android:layout_marginEnd="@dimen/margin_8"
+                                            android:background="@drawable/round_background_black"
+                                            android:onClick="@{(v) -> viewModel.pickImageFromGallery(@string/edit_cover)}"
+                                            android:paddingStart="@dimen/margin_4"
+                                            android:paddingTop="@dimen/margin_2"
+                                            android:paddingEnd="@dimen/margin_4"
+                                            android:paddingBottom="@dimen/margin_2"
+                                            android:text="Edit"
+                                            android:textColor="@color/white"
+                                            android:visibility="@{viewModel.isSetUpForSelf ? View.VISIBLE : View.GONE}" />-->
+
+
+                                        <LinearLayout
+                                            android:id="@+id/authorProfile"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_centerInParent="true"
+                                            android:background="@color/transparent"
+                                            android:gravity="center_vertical"
+                                            android:orientation="vertical"
+                                            android:paddingLeft="@dimen/margin_20"
+                                            android:paddingRight="@dimen/margin_20"
+                                            android:paddingBottom="@dimen/margin_4">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="96dp"
+                                                android:layout_marginBottom="@dimen/margin_12">
+
+                                                <!--android:visibility="@{viewModel.authorProfileData.primeStreamer? View.VISIBLE:View.GONE}"-->
+
+                                                <FrameLayout
+                                                    android:id="@+id/avatar_container_layout"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content">
+
+                                                    <com.mikhaellopez.circularimageview.CircularImageView
+                                                        android:id="@+id/authorID2"
+                                                        android:layout_width="84dp"
+                                                        android:layout_height="84dp"
+                                                        android:layout_gravity="center"
+                                                        android:visibility="visible"
+                                                        app:civ_border="true"
+                                                        app:civ_border_width="1dp"
+                                                        tools:background="@drawable/circle_white_bg" />
+
+                                                    <ImageView
+                                                        android:id="@+id/story_indicator_view"
+                                                        android:layout_width="94dp"
+                                                        android:layout_height="94dp"
+                                                        android:layout_gravity="center"
+                                                        android:background="@drawable/accent_circle_border_bg"
+                                                        android:visibility="visible" />
+
+                                                    <ImageView
+                                                        android:id="@+id/content_moderator_image"
+                                                        android:layout_width="28dp"
+                                                        android:layout_height="28dp"
+                                                        android:layout_marginStart="@dimen/margin_2"
+                                                        android:layout_marginTop="@dimen/margin_2"
+                                                        android:src="@drawable/ic_moderator"
+                                                        android:visibility="gone"
+                                                        tools:visibility="visible" />
+
+                                                </FrameLayout>
+
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_below="@+id/avatar_container_layout"
+                                                    android:layout_alignStart="@+id/avatar_container_layout"
+                                                    android:layout_alignEnd="@+id/avatar_container_layout"
+                                                    android:layout_marginTop="-16dp"
+                                                    android:background="@drawable/background_border_solid_transparent"
+                                                    android:clickable="true"
+                                                    android:focusable="true"
+                                                    android:gravity="center_horizontal"
+                                                    android:onClick="@{() -> viewModel.onMedalClick()}"
+                                                    android:orientation="horizontal"
+                                                    android:visibility="@{viewModel.isBadgeVisible ? View.VISIBLE : View.GONE}">
+
+                                                    <ImageView
+                                                        android:id="@+id/level_badge_image_view"
+                                                        android:layout_width="@dimen/size_30"
+                                                        android:layout_height="@dimen/size_30"
+                                                        android:layout_marginBottom="@dimen/margin_4"
+                                                        android:paddingTop="@dimen/margin_2"
+                                                        android:paddingEnd="@dimen/margin_4"
+                                                        android:scaleType="centerInside"
+                                                        tools:src="@drawable/ic_bronze" />
+
+                                                    <TextView
+                                                        android:id="@+id/level_badge_text_view"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_gravity="center_vertical"
+                                                        android:layout_marginEnd="@dimen/margin_4"
+                                                        android:paddingBottom="2dp"
+                                                        android:textColor="@color/bronze"
+                                                        android:textSize="@dimen/text_12"
+                                                        tools:text="BRONZE" />
+
+                                                </LinearLayout>
+
+                                                <ImageView
+                                                    android:layout_width="124dp"
+                                                    android:layout_height="62dp"
+                                                    android:layout_marginLeft="-24dp"
+                                                    android:layout_toRightOf="@id/avatar_container_layout"
+                                                    android:scaleType="centerInside"
+                                                    android:visibility="gone" />
+
+                                                <TextView
+                                                    android:id="@+id/follow"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="32dp"
+                                                    android:layout_alignParentEnd="true"
+                                                    android:layout_marginTop="64dp"
+                                                    android:background="@{viewModel.isFollowed? @drawable/follow_selected_bg:@drawable/follow_normal_bg}"
+                                                    android:clickable="true"
+                                                    android:drawableStart="@{viewModel.isFollowed ? @drawable/ic_added_user_16 : @drawable/ic_add_user_dark}"
+                                                    android:drawablePadding="@dimen/margin_4"
+                                                    android:focusable="true"
+                                                    android:gravity="center"
+                                                    android:onClick="@{() -> viewModel.toggleFollow()}"
+                                                    android:paddingLeft="@dimen/margin_8"
+                                                    android:paddingRight="@dimen/margin_8"
+                                                    android:text="@{viewModel.followButton}"
+                                                    android:textColor="@{viewModel.isFollowed? @color/white:@color/white }" />
+
+                                                <LinearLayout
+                                                    android:id="@+id/go_live_btn"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="32dp"
+                                                    android:layout_alignParentEnd="true"
+                                                    android:layout_marginTop="64dp"
+                                                    android:layout_marginEnd="@dimen/margin_12"
+                                                    android:background="@drawable/button_transparent_white_border"
+                                                    android:gravity="center"
+                                                    android:orientation="horizontal"
+                                                    android:paddingStart="@dimen/margin_6"
+                                                    android:paddingTop="@dimen/margin_4"
+                                                    android:paddingEnd="@dimen/margin_6"
+                                                    android:paddingBottom="@dimen/margin_4"
+                                                    android:visibility="gone">
+
+
+                                                    <ImageView
+                                                        android:id="@+id/share_app_icon"
+                                                        android:layout_width="15dp"
+                                                        android:layout_height="15dp"
+                                                        android:layout_gravity="center"
+                                                        android:layout_marginEnd="@dimen/margin_8"
+                                                        android:src="@drawable/live_icon" />
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="GO LIVE"
+                                                        android:textColor="@color/white"
+                                                        android:textSize="12sp"
+                                                        android:textStyle="bold" />
+                                                </LinearLayout>
+
+                                                <ImageButton
+                                                    android:id="@+id/upload_clip"
+                                                    style="@style/OutlineIconButton"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_alignParentEnd="true"
+                                                    android:layout_marginStart="@dimen/margin_8"
+                                                    android:layout_marginTop="64dp"
+                                                    android:onClick="@{() -> viewModel.uploadVideoButton()}"
+                                                    android:visibility="@{viewModel.isSetUpForSelf ? View.VISIBLE : View.GONE}"
+                                                    app:srcCompat="@drawable/avd_upload_outline" />
+
+                                                <ImageButton
+                                                    android:id="@+id/edit_profile"
+                                                    style="@style/OutlineIconButton"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginStart="@dimen/margin_8"
+                                                    android:layout_marginTop="64dp"
+                                                    android:layout_marginEnd="@dimen/margin_8"
+                                                    android:layout_toLeftOf="@id/upload_clip"
+                                                    android:onClick="@{() -> viewModel.editProfileButton()}"
+                                                    android:textColor="@color/white"
+                                                    android:visibility="@{viewModel.isSetUpForSelf ? View.VISIBLE : View.GONE}"
+                                                    app:srcCompat="@drawable/avd_pencil_outline" />
+
+                                                <ImageButton
+                                                    android:id="@+id/share_profile"
+                                                    style="@style/OutlineIconButton"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="64dp"
+                                                    android:layout_marginEnd="@dimen/margin_8"
+                                                    android:layout_toLeftOf="@id/edit_profile"
+                                                    android:onClick="@{(v) -> viewModel.onShareSelfClicked(v)}"
+                                                    android:paddingStart="@dimen/margin_2"
+                                                    android:visibility="@{viewModel.isSetUpForSelf ? View.VISIBLE : View.GONE}"
+                                                    app:srcCompat="@drawable/ic_share_white_24dp" />
+
+
+                                                <!-- <ImageView
+                                                     android:layout_width="@dimen/size_17"
+                                                     android:layout_height="@dimen/size_17"
+                                                     android:layout_gravity="bottom|end"
+                                                     android:layout_marginEnd="6dp"
+                                                     android:layout_marginBottom="@dimen/margin_8"
+                                                     android:background="@drawable/edit_p"
+                                                     android:onClick="@{() -> viewModel.pickImageFromGallery(@string/edit_profile)}"
+                                                     android:visibility="@{viewModel.isSetUpForSelf ? View.VISIBLE : View.GONE}" />-->
+
+
+                                            </RelativeLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/margin_4"
+
+                                                android:paddingEnd="@dimen/margin_12">
+
+
+                                                <TextView
+                                                    android:id="@+id/authorName"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center_horizontal"
+                                                    android:layout_marginTop="@dimen/margin_6"
+                                                    android:fontFamily="sans-serif-medium"
+                                                    android:paddingEnd="@dimen/margin_8"
+                                                    android:text="@{viewModel.authorProfileData.user.username}"
+                                                    android:textColor="@color/white_text_color"
+                                                    android:textSize="@dimen/text_16"
+                                                    tools:text="Nishant" />
+
+                                                <ImageView
+                                                    android:id="@+id/verified_mark_image_view"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:layout_marginBottom="@dimen/margin_2"
+                                                    android:src="@drawable/avd_verified_tick"
+                                                    app:visibleGone="@{viewModel.authorProfileData.isVerified}" />
+                                                <!--                                            <ImageView-->
+                                                <!--                                                android:id="@+id/editNameButton"-->
+                                                <!--                                                android:layout_width="12dp"-->
+                                                <!--                                                android:layout_height="12dp"-->
+                                                <!--                                                android:layout_gravity="center"-->
+                                                <!--                                                android:layout_marginTop="-2dp"-->
+                                                <!--                                                android:layout_marginEnd="6dp"-->
+                                                <!--                                                android:background="@drawable/edit_p"-->
+                                                <!--                                                android:onClick="@{() -> viewModel.onEditUsernameClicked()}"-->
+                                                <!--                                                android:visibility="@{viewModel.isSetUpForSelf ? View.VISIBLE : View.GONE}" />-->
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="@dimen/margin_8"
+                                                android:layout_toRightOf="@id/avatar_container_layout"
+                                                android:drawablePadding="@dimen/margin_8"
+                                                android:gravity="center_vertical"
+                                                android:text="Prime Show Host"
+                                                android:textColor="#f6c043"
+                                                android:textSize="@dimen/text_14"
+                                                android:visibility="@{viewModel.authorProfileData.primeStreamer?View.VISIBLE:View.GONE}" />
+
+                                            <TextView
+                                                android:id="@+id/authorIntro"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:ellipsize="end"
+                                                android:maxLines="2"
+                                                android:text="@{viewModel.authorProfileData.getIntro()}"
+                                                android:textColor="@color/light_grey_text_color"
+                                                android:textSize="@dimen/text_14"
+                                                android:visibility="@{TextUtils.isEmpty(viewModel.authorProfileData.getIntro())? View.GONE : View.VISIBLE}"
+                                                tools:text="Author intro asdhaskdhaskjhdkjsahdkashdkjashdkjashdjkashkda" />
+
+
+                                            <TextView
+                                                android:id="@+id/bio_view"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/margin_8"
+                                                android:textColor="@color/white_text_color"
+                                                android:textSize="@dimen/text_14" />
+
+                                            <LinearLayout
+                                                android:id="@+id/follow_linear_layout"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/margin_8"
+                                                android:layout_marginBottom="@dimen/margin_10"
+                                                android:gravity="center_horizontal"
+                                                android:orientation="horizontal"
+                                                android:visibility="@{viewModel.authorProfileData.getFollowersCountString !=null ? View.VISIBLE : View.GONE}"
+                                                android:weightSum="2">
+
+                                                <LinearLayout
+                                                    android:id="@+id/follower_count_layout"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginEnd="@dimen/margin_8"
+                                                    android:layout_weight="1"
+                                                    android:background="@drawable/chat_rounded_rect_landscape"
+                                                    android:backgroundTint="@color/grey_text_color"
+                                                    android:gravity="end|center_horizontal"
+                                                    android:orientation="horizontal"
+                                                    android:paddingStart="@dimen/margin_2"
+                                                    android:paddingEnd="@dimen/margin_2">
+
+                                                    <TextView
+                                                        android:id="@+id/follower_count"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_margin="@dimen/margin_4"
+                                                        android:text="@{viewModel.authorProfileData.getFollowersCountString()}"
+                                                        android:textColor="@color/light_grey_text_color"
+                                                        android:textSize="@dimen/text_14"
+                                                        tools:text="100" />
+
+                                                </LinearLayout>
+
+                                                <View
+                                                    android:layout_width="2dp"
+                                                    android:layout_height="2dp"
+                                                    android:layout_gravity="bottom"
+                                                    android:layout_marginBottom="@dimen/margin_8"
+                                                    android:background="@color/light_grey_text_color" />
+
+                                                <LinearLayout
+                                                    android:id="@+id/video_count_layout"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="bottom"
+                                                    android:layout_marginStart="@dimen/margin_8"
+                                                    android:layout_weight="1"
+                                                    android:gravity="start|center_horizontal"
+                                                    android:orientation="vertical"
+                                                    android:padding="@dimen/margin_4">
+
+
+                                                    <TextView
+                                                        android:id="@+id/video_count"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="@{viewModel.authorProfileData.getTotalVideosString()}"
+                                                        android:textColor="@color/light_grey_text_color"
+                                                        android:textSize="@dimen/text_14"
+                                                        android:visibility="visible"
+                                                        tools:text="100" />
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:id="@+id/recent_viewers_layout"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="bottom"
+                                                    android:layout_marginStart="@dimen/margin_8"
+                                                    android:layout_weight="1"
+                                                    android:gravity="start|center_horizontal"
+                                                    android:orientation="vertical"
+                                                    android:padding="@dimen/margin_4">
+
+
+                                                    <TextView
+                                                        android:id="@+id/recent_viewers_text"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:drawableLeft="@drawable/avd_eye"
+                                                        android:drawablePadding="@dimen/margin_6"
+                                                        android:gravity="center_vertical"
+                                                        android:text="Recent Viewers"
+                                                        android:textColor="@color/light_grey_text_color"
+                                                        android:textSize="@dimen/text_14"
+                                                        android:visibility="visible" />
+
+                                                </LinearLayout>
+
+
+                                            </LinearLayout>
+
+                                            <TextView
+                                                android:id="@+id/who_viewed_header"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/margin_12"
+                                                android:fontFamily="sans-serif"
+                                                android:text="People viewed your profile"
+                                                android:textColor="#aeaeb2"
+                                                android:textSize="12sp"
+                                                android:textStyle="normal" />
+
+                                            <LinearLayout
+                                                android:id="@+id/who_viewed_layout"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/margin_4"
+                                                android:layout_marginBottom="@dimen/margin_6">
+
+                                                <ImageView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:src="@drawable/group_15" />
+
+                                                <TextView
+                                                    android:id="@+id/share_profile_for_followers"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:fontFamily="sans-serif"
+                                                    android:lineSpacingExtra="2dp"
+                                                    android:textColor="#ffffff"
+                                                    android:textSize="13sp"
+                                                    android:textStyle="normal" />
+                                            </LinearLayout>
+
+                                            <!--<TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center_horizontal"
+                                                android:background="@drawable/dashed_border_white"
+                                                android:fontFamily="@font/raleway_bold"
+                                                android:onClick="@{() -> viewModel.onMoreInfoPartnerClicked()}"
+                                                android:text="@{viewModel.authorProfileData.buttonData.text}"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/white"
+                                                android:textSize="@dimen/text_13"
+                                                android:visibility="@{!TextUtils.isEmpty(viewModel.authorProfileData.buttonData.text) ? View.VISIBLE : View.VISIBLE}" />-->
+                                        </LinearLayout>
+
+                                    </FrameLayout>
+
+
+                                </RelativeLayout>
+
+                                <ProgressBar
+                                    android:id="@+id/progress_bar"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:indeterminateTint="@color/color_accent"
+                                    android:visibility="gone" />
+
+
+                                <!-- edit user profile!-->
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/content_moderator_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginTop="@dimen/margin_2"
+                        android:layout_marginEnd="@dimen/margin_20"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <View
+                            android:id="@+id/moderator_divider"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:background="#32425c"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/moderator_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_12"
+                            android:text="Wanna see me as a moderator on Rheo."
+                            android:textColor="@color/light_grey_text_color"
+                            android:textSize="@dimen/text_14"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:visibility="visible" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/moderator_vote_button"
+                            style="@style/BaseButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="@dimen/margin_12"
+                            android:background="#ffffff"
+                            android:drawable="@drawable/chat_rounded_rect_landscape"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Vote for me"
+                            android:textColor="#c8931f"
+                            android:visibility="gone"
+                            app:cornerRadius="@dimen/margin_8"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/moderator_title"
+                            app:strokeColor="#c8931f"
+                            app:strokeWidth="1dp"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/moderator_success_message"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_12"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Thanks for voting!"
+                            android:textColor="#c8931f"
+                            android:textSize="@dimen/text_14"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/moderator_share_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:text="Wanna be a moderator on Rheo? Ask your friends to vote for you."
+                            android:textColor="@color/light_grey_text_color"
+                            android:textSize="@dimen/text_14"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toStartOf="@+id/moderator_share_button"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:visibility="visible" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/moderator_share_button"
+                            style="@style/BaseButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="@dimen/margin_12"
+                            android:text="Ask"
+                            android:textColor="#c8931f"
+                            android:visibility="gone"
+                            app:cornerRadius="@dimen/margin_8"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeColor="#c8931f"
+                            app:strokeWidth="1dp"
+                            tools:visibility="visible" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:layout_marginRight="@dimen/margin_20"
+                        android:background="@color/app_background_color"
+                        android:minHeight="?actionBarSize"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@color/tab_selected_text_color"
+                        app:tabIndicatorHeight="3dp"
+                        app:tabMode="scrollable"
+                        app:tabSelectedTextColor="@color/tab_selected_text_color"
+                        app:tabTextAppearance="@style/CustomTabTextStyle"
+                        app:tabTextColor="@color/tab_unselected_text_color" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:layout_marginRight="@dimen/margin_20"
+                        android:background="#32425c" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/color_accent"
+                android:visibility="@{viewModel.profileStatus == Status.LOADING ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:drawableTop="@drawable/ic_refresh_white_48dp"
+                android:lineSpacingExtra="@dimen/margin_4"
+                android:text="@string/error_retry_text"
+                android:textAlignment="center"
+                android:textColor="@color/white_dull"
+                android:textSize="@dimen/text_17"
+                android:visibility="@{viewModel.profileStatus == Status.ERROR ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/offline_layout"
+                layout="@layout/layout_offline_mode"
+                app:layoutVisible="@{viewModel.profileStatus == Status.OFFLINE}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</layout>

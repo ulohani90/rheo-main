@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.profile.viewprofile.view.AboutUserFragment">
+
+    <data>
+
+        <import type="com.rheotv.android.utils.CommonUtils" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.profile.viewmodel.UserProfileViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_about"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.042" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.96" />
+
+            <TextView
+                android:id="@+id/bio_title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:fontFamily="sans-serif"
+                android:text="@string/bio"
+                android:textColor="#aeaeb2"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bio_description_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:fontFamily="sans-serif"
+                android:lineSpacingMultiplier="1.1"
+                android:text="@{viewModel.profile.bio != null &amp;&amp; !viewModel.profile.bio.empty ? viewModel.profile.bio : (viewModel.profile.selfProfile ? @string/empty_bio_message : @string/no_bio_added)}"
+                android:textColor="@{viewModel.profile.bio != null &amp;&amp; !viewModel.profile.bio.empty ? @color/color_text_primary : @color/color_text_secondary}"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/bio_title_text_view"
+                tools:text="Hey! I&apos;m Umesh, full-time game streamer on Rheo! I am currently in Bangalore, India
+i don&apos;t have a perfect pitch but except gaming i read and watch movies  " />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/audio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="audio_control_button,audio_duration_text_view"
+                app:visibleWhen="@{viewModel.profile.profileDetail.audioMessage != null &amp;&amp; viewModel.profile.profileDetail.audioMessage.url != null}" />
+
+            <ImageButton
+                android:id="@+id/audio_control_button"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_marginTop="@dimen/margin_36"
+                android:background="@drawable/avd_play"
+                app:audioUrl="@{viewModel.audioMessage.url}"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/bio_description_text_view" />
+
+            <TextView
+                android:id="@+id/audio_duration_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:background="@drawable/interest_background"
+                android:fontFamily="sans-serif"
+                android:padding="@dimen/margin_4"
+                android:text="@{viewModel.profile.profileDetail.audioMessage.formattedDuration}"
+                android:textColor="@color/white_text_color"
+                android:textSize="@dimen/text_12"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/audio_control_button"
+                app:layout_constraintStart_toEndOf="@id/audio_control_button"
+                app:layout_constraintTop_toTopOf="@id/audio_control_button"
+                tools:text="2:10" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/featuredPhotos_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="photo_recycler_view,photo_count_button"
+                app:visibleWhen="@{viewModel.profile.profileDetail.featuredPhotos != null &amp;&amp; !viewModel.profile.profileDetail.featuredPhotos.empty}" />
+
+            <!-- <ImageView
+                 android:id="@+id/photo_recycler1"
+                 android:layout_width="200dp"
+                 android:layout_height="180dp"
+                 app:layout_constraintBottom_toTopOf="@id/photo_recycler_view"
+                 app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                 app:layout_constraintTop_toBottomOf="@id/audio_control_button"
+                 android:contentDescription="TODO" />
+             <ImageView
+                 android:layout_width="114dp"
+                 android:layout_height="87dp"
+                 app:layout_constraintBottom_toTopOf="@id/photo_recycler_view"
+
+                 app:layout_constraintStart_toEndOf="@id/photo_recycler1"
+                 app:layout_constraintTop_toBottomOf="@id/audio_control_button"
+                 android:contentDescription="TODO" />
+ -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photo_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="111dp"
+                android:layout_marginTop="@dimen/margin_36"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/audio_control_button"
+                tools:itemCount="3"
+                tools:listitem="@layout/recycler_view_item"
+                tools:spanCount="2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/photo_count_button"
+                style="@style/MaterialButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:backgroundTint="@color/game_tag_bg_color"
+                android:text="@{`Show all ` + viewModel.profile.profileDetail.featuredPhotos.size() + ` photos`}"
+                app:cornerRadius="@dimen/size_20"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/photo_recycler_view"
+                app:visibleWhen="@{viewModel.profile.profileDetail.featuredPhotos.size()>3}"
+                tools:text="Show all 9 photos" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/online_presence_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="online_presence_text_view,social_media_recycler_view,view_divider"
+                app:visibleWhen="@{!viewModel.profile.profileDetail.socialMediaList.empty}" />
+
+            <TextView
+                android:id="@+id/online_presence_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_36"
+                android:fontFamily="sans-serif"
+                android:text="@string/online_presence"
+                android:textColor="#aeaeb2"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/photo_count_button" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/social_media_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/online_presence_text_view"
+                tools:itemCount="3"
+                tools:listitem="@layout/recycler_view_item" />
+
+            <View
+                android:id="@+id/view_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_40"
+                android:background="@color/color_gray_divider"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/social_media_recycler_view" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/confirguation_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="configuration_used_title_text_view,configuration_used_detail_text_view,configuration_view_divider"
+                app:visibleWhen="@{viewModel.profile.profileDetail.configurationUsed != null &amp;&amp; !viewModel.profile.profileDetail.configurationUsed.empty}" />
+
+            <TextView
+                android:id="@+id/configuration_used_title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_32"
+                android:fontFamily="sans-serif"
+                android:text="@string/configuration_use"
+                android:textColor="#aeaeb2"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/view_divider" />
+
+            <TextView
+                android:id="@+id/configuration_used_detail_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.profile.profileDetail.configurationUsed}"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/configuration_used_title_text_view"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+            <View
+                android:id="@+id/configuration_view_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_24"
+                android:background="@color/color_gray_divider"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/configuration_used_detail_text_view" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/donation_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="donation_text_view,donation_image_view,donation_button,sparkle_image_view,donation_divider_view"
+                app:visibleWhen="@{viewModel.profile.profileDetail.donation != null &amp;&amp; viewModel.profile.profileDetail.donation.link != null}" />
+
+            <TextView
+                android:id="@+id/donation_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_36"
+                android:fontFamily="sans-serif"
+                android:text="@string/donation"
+                android:textColor="#aeaeb2"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/configuration_view_divider" />
+
+            <ImageView
+                android:id="@+id/donation_image_view"
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_72"
+                android:layout_marginTop="@dimen/margin_24"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/donation_text_view"
+                app:srcCompat="@drawable/avd_donation" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/donation_button"
+                style="@style/MaterialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#26b43d"
+                android:paddingStart="@dimen/margin_32"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_32"
+                android:paddingBottom="@dimen/margin_8"
+                android:text="Support Me"
+                app:cornerRadius="@dimen/size_20"
+                app:layout_constraintBottom_toBottomOf="@id/donation_image_view"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toEndOf="@id/donation_image_view"
+                app:layout_constraintTop_toTopOf="@id/donation_image_view" />
+
+            <ImageView
+                android:id="@+id/sparkle_image_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="@dimen/cardview_default_elevation"
+                app:layout_constraintBottom_toBottomOf="@id/donation_image_view"
+                app:layout_constraintEnd_toEndOf="@id/donation_button"
+                app:layout_constraintStart_toStartOf="@id/donation_button"
+                app:layout_constraintTop_toTopOf="@id/donation_image_view"
+                app:srcCompat="@drawable/avd_sparkle" />
+
+            <View
+                android:id="@+id/donation_divider_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_30"
+                android:background="@color/color_gray_divider"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/donation_image_view" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/game_wise_username_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="game_wise_username_text_view,game_wise_description_text_view,game_user_recycler_view"
+                app:visibleWhen="@{!viewModel.profile.profileDetail.gameUserNames.empty}" />
+
+            <TextView
+                android:id="@+id/game_wise_username_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_40"
+                android:fontFamily="sans-serif"
+                android:text="Game wise username"
+                android:textColor="#aeaeb2"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/donation_divider_view" />
+
+            <TextView
+                android:id="@+id/game_wise_description_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:fontFamily="sans-serif"
+                android:text="@string/game_description"
+                android:textColor="#fbfbfb"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/game_wise_username_text_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/game_user_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/game_wise_description_text_view"
+                tools:itemCount="2"
+                tools:listitem="@layout/list_item_user_game" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/play_time_card_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="play_timing_text_view,play_time_card,play_time_divider_view"
+                app:visibleWhen="@{viewModel.profile.profileDetail.gameSchedule != null &amp;&amp; viewModel.profile.profileDetail.gameSchedule.startTime != null}" />
+
+            <TextView
+                android:id="@+id/play_timing_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_40"
+                android:fontFamily="sans-serif"
+                android:text="@string/i_play_game_from"
+                android:textColor="#aeaeb2"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/game_user_recycler_view" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/play_time_card"
+                android:layout_width="0dp"
+                android:layout_height="118dp"
+                android:layout_marginTop="@dimen/margin_16"
+                app:cardBackgroundColor="@color/tinted_blue"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/play_timing_text_view">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/play_day_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/play_days_time_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_28"
+                        android:layout_marginTop="@dimen/margin_28"
+                        android:layout_marginEnd="@dimen/margin_16"
+                        android:fontFamily="sans-serif"
+                        android:text="@{viewModel.gameDaysPreview}"
+                        android:textColor="#aeaeb2"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="Mon, Tue, Wed, Sat, Sun" />
+
+                    <TextView
+                        android:id="@+id/play_duration_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_4"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{viewModel.gameTimeSpannable}"
+                        android:textColor="#a8a8af"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/play_days_time_view"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/play_days_time_view"
+                        app:layout_constraintTop_toBottomOf="@id/play_days_time_view"
+                        app:layout_constraintVertical_bias="0"
+                        tools:text="06:00pm - 12:30am" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/set_reminder_button"
+                style="@style/MaterialButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:backgroundTint="@color/game_tag_bg_color"
+                android:text="@{viewModel.profile.profileDetail.liveReminderAdded ? @string/reminder_added : @string/set_reminder}"
+                android:textColor="@{viewModel.profile.profileDetail.liveReminderAdded ? @color/clip_upload_selector_color : @color/white}"
+                android:visibility="gone"
+                app:cornerRadius="@dimen/size_20"
+                app:icon="@{viewModel.profile.profileDetail.liveReminderAdded ? @drawable/avd_tick : @drawable/avd_notification}"
+                app:iconGravity="textStart"
+                app:iconTint="@{viewModel.profile.profileDetail.liveReminderAdded ? @color/clip_upload_selector_color : @color/white}"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/play_time_card"
+                tools:text="@string/set_reminder" />
+
+            <View
+                android:id="@+id/play_time_divider_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_40"
+                android:background="@color/color_gray_divider"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/set_reminder_button" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/game_rule_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="game_rule_text_view,game_rule_recycler_view,game_rule_divider_view"
+                app:visibleWhen="@{!viewModel.profile.profileDetail.gameRules.empty}" />
+
+            <TextView
+                android:id="@+id/game_rule_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_40"
+                android:fontFamily="sans-serif"
+                android:text="@string/game_rules"
+                android:textColor="#aeaeb2"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/play_time_divider_view" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/game_rule_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/game_rule_text_view"
+                tools:itemCount="4"
+                tools:listitem="@layout/list_item_game_rule" />
+
+            <View
+                android:id="@+id/game_rule_divider_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_40"
+                android:background="@color/color_gray_divider"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/game_rule_recycler_view" />
+
+            <Space
+                android:id="@+id/bottom_space"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_120"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/game_rule_divider_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

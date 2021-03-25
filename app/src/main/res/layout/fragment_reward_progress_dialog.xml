@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="reward"
+            type="com.rheotv.android.data.network.models.gamify.Reward" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:padding="@dimen/margin_20">
+
+        <ImageView
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avd_back_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bonus_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_6"
+            android:fontFamily="sans-serif"
+            android:gravity="start"
+            android:text="@string/login_streak_bonus"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_20"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/streak_title_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/streak_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_6"
+            android:gravity="start"
+            android:text="@string/your_current_login_streak"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/gift_image_view"
+            app:layout_constraintEnd_toEndOf="@+id/bonus_title_text_view"
+            app:layout_constraintStart_toStartOf="@+id/bonus_title_text_view" />
+
+        <TextView
+            android:id="@+id/current_stream_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:text='@{(reward.daysCompleted == null ? "0" : reward.daysCompleted) + "/" + (reward.totalDays == null ? "0" : reward.totalDays) + " Days"}'
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_20"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/streak_progress_bar"
+            app:layout_constraintStart_toStartOf="@+id/bonus_title_text_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="3/7 Days" />
+
+        <ProgressBar
+            android:id="@+id/streak_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/streak_progress_height_xlarge"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:progress="@{reward.progressPercent()}"
+            android:progressDrawable="@drawable/linear_gradient_progress"
+            app:layout_constraintBottom_toBottomOf="@id/gift_image_view"
+            app:layout_constraintEnd_toStartOf="@id/gift_image_view"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:progress="45" />
+
+        <ImageView
+            android:id="@+id/gift_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:src="@drawable/ic_streak_reward"
+            app:layout_constraintBottom_toTopOf="@id/streak_subtitle_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/current_stream_text_view"
+            app:layout_constraintVertical_bias="1" />
+
+        <TextView
+            android:id="@+id/streak_subtitle_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:lineSpacingMultiplier="1.1"
+            android:text="Keep using Rheo Tv daily to maintain your Streak!"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_12"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/view_details_button"
+            app:layout_constraintEnd_toEndOf="@id/bonus_title_text_view"
+            app:layout_constraintStart_toStartOf="@id/bonus_title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/gift_image_view" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/view_details_button"
+            style="@style/BaseButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:backgroundTint="@color/color_accent"
+            android:fontFamily="sans-serif-medium"
+            android:text="View Details"
+            android:textColor="#fbfbfb"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

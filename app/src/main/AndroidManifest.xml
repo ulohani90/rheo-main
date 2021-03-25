@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rheotv.android">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--    For devices running Android 10.0 or later, you also need to add the following permission:-->
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.google.android.providers.gosf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Required by mixpanel optional thi=ough -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Required for getting device connection type -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission
+        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+
+
+    <application
+        android:name=".app.RheoTvApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+        <activity android:name=".ui.activities.inAppBilling.BillingActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity android:name=".ui.activities.player.activity.newPlayer.FullscreenAlarmNotificationActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activities.player.activity.streamplayer.view.StreamPlayerActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppThemeTransparent"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".ui.activities.profile.editprofile.view.ProfileEditActivity" />
+        <activity android:name=".ui.activities.tabcontainer.profile.wallet.WalletDetailsInputActivity" />
+        <activity
+            android:name=".ui.activities.player.activity.PlayerTutorialActivity"
+            android:theme="@style/AppTheme.TransparentBackground" /> <!-- <activity -->
+        <!-- android:name=".ui.activities.player.activity.StreamPlayerContainerFragment" -->
+        <!-- android:configChanges="screenSize|orientation" -->
+        <!-- android:launchMode="singleTop" -->
+        <!-- android:theme="@style/AppThemeTransparent" -->
+        <!-- android:windowSoftInputMode="stateHidden|adjustResize" /> -->
+        <activity
+            android:name=".ui.activities.streamEnd.StreamEndActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.follower.FollowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.trim.TrimVideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.story.CreateStoryTemplateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.crop.CropImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.story.CreateStoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.story.StoryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.selectGame.GameSelectionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activities.rank.RankActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.splash.SplashActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <data
+                    android:host="rheotv.com"
+                    android:scheme="http" />
+                <data
+                    android:host="rheotv.com"
+                    android:scheme="https" />
+                <data
+                    android:host="www.rheotv.com"
+                    android:scheme="http" />
+                <data
+                    android:host="www.rheotv.com"
+                    android:scheme="https" />
+
+                <!-- note that the leading "/" is required for pathPrefix -->
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <data
+                    android:host="rheo.com"
+                    android:scheme="http" />
+                <data
+                    android:host="rheo.com"
+                    android:scheme="https" />
+                <data
+                    android:host="www.rheo.com"
+                    android:scheme="http" />
+                <data
+                    android:host="www.rheo.com"
+                    android:scheme="https" />
+
+                <!-- note that the leading "/" is required for pathPrefix -->
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <data android:scheme="rheotv" />
+                <data android:scheme="rheo" />
+
+                <!-- note that the leading "/" is required for pathPrefix -->
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
+                <data
+                    android:host="open"
+                    android:scheme="rheotv" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
+                <data
+                    android:host="open"
+                    android:scheme="rheo" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+            <!-- Branch App Links (optional) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="applink.rheotv.com"
+                    android:scheme="https" />
+                <data
+                    android:host="rheotv-alternate-app.link"
+                    android:scheme="https" />
+                <data
+                    android:host="rheotv.test-app.link"
+                    android:scheme="https" />
+                <data
+                    android:host="rheotv-alternate.test-app.link"
+                    android:scheme="https" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="applink.rheo.com"
+                    android:scheme="https" />
+                <data
+                    android:host="rheo-alternate-app.link"
+                    android:scheme="https" />
+                <data
+                    android:host="rheo.test-app.link"
+                    android:scheme="https" />
+                <data
+                    android:host="rheo-alternate.test-app.link"
+                    android:scheme="https" />
+            </intent-filter>
+            <!-- Firebase App Links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="rheotv.page.link"
+                    android:scheme="https" />
+                <data
+                    android:host="rheotv.page.link"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app.rheotv.com"
+                    android:scheme="https" />
+                <data
+                    android:host="app.rheotv.com"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="app.rheo.com"
+                    android:scheme="https" />
+                <data
+                    android:host="app.rheo.com"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activities.tabcontainer.TabContainerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <service android:name=".helpers.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".ui.activities.player.activity.PlayerActivity"
+            android:configChanges="screenSize|orientation"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".ui.activities.profile.viewprofile.view.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activities.profile.editprofile.view.EditProfileActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activities.moderators.AddModeratorsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity android:name=".ui.activities.alertInformation.AlertInformationActivity" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activities.leaderboard.LeaderBoardActivity" />
+        <activity android:name=".ui.activities.universalActivity.UniversalActivity" />
+        <activity
+            android:name=".ui.customViews.WebviewActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".ui.activities.search.SearchActivity" />
+        <activity android:name=".ui.activities.clips.ClipsActivity" />
+        <activity android:name=".ui.activities.onboarding.OnBoardingActivity" />
+        <activity
+            android:name=".ui.activities.gamify.RewardsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activities.gamify.RedeemActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".ui.activities.home.view.HomeActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activities.audioroom.view.AudioChatRoomActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
+
+        <activity
+            android:name=".ui.activities.player.activity.newPlayer.VideoChatViewActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activities.player.activity.newPlayer.CallReceivingActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activities.player.activity.newPlayer.activities.FullScreenVideoActivity"
+            android:screenOrientation="sensorLandscape" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider475789009899810"
+            android:exported="true" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.rheotv.android.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/freshchat_file_provider_paths" />
+        </provider>
+        <provider
+            android:name=".utils.CustomFileProvider"
+            android:authorities="com.rheotv.android.app.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="true" />
+
+        <receiver android:name=".helpers.AlarmReceiver">
+            <intent-filter>
+                <action android:name="com.example.action.ALARM" />
+            </intent-filter>
+        </receiver> <!-- Branch init -->
+        <meta-data
+            android:name="io.branch.sdk.BranchKey"
+            android:value="key_live_clTA4fEmLYH7pft2G9NX6locAxhS8zHU" />
+        <meta-data
+            android:name="io.branch.sdk.BranchKey.test"
+            android:value="key_test_flGC7izgTZM2djA9MZ8nwdmfyCfQ7rGW" /> <!-- Branch testing (TestMode "true" to simulate fresh installs on dev environment) -->
+        <meta-data
+            android:name="io.branch.sdk.TestMode"
+            android:value="false" /> <!-- Branch install referrer tracking -->
+        <!-- deprecated in v4.3.2 -->
+        <!-- <receiver -->
+        <!-- android:name="io.branch.referral.InstallListener" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.android.vending.INSTALL_REFERRER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <service android:name=".services.PlayerHeadService" />
+        <service android:name=".helpers.FileUploadServiceHelper" />
+        <service android:name=".services.PlaybackService" />
+        <!--
+ register AnalyticsReceiver and AnalyticsService to support background
+      dispatching on non-Google Play devices
+        -->
+        <receiver
+            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".services.AudioRoomService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!--
+ register CampaignTrackingReceiver and CampaignTrackingService to enable
+             installation campaign reporting
+        -->
+        <receiver
+            android:name=".helpers.CustomCampaignTrackingReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
+        <service android:name=".services.UploadContactsIntentService" />
+        <service
+            android:name=".helpers.AlarmService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".ui.activities.player.activity.newPlayer.VideoCallJobIntentService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name=".helpers.WakefulAlarmReceiver" />
+
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove" />
+
+        <activity
+            android:name="com.moe.pushlibrary.activities.MoEActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".ui.activities.home.view.HomeActivity"/>
+        <activity android:name=".ui.activities.moments.view.activities.MomentsActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppThemeTransparent"/>
+
+    </application>
+
+</manifest>

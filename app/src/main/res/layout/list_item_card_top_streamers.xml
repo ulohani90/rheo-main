@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="topStreamerObject"
+            type="com.rheotv.android.data.network.models.TopStreamerObject" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_view_background"
+        android:backgroundTint="@{isSelected ? @color/selected_card_bg : @color/streamer_card_bg,default=@color/streamer_card_bg}"
+        android:padding="@dimen/margin_12">
+
+        <ImageView
+            android:id="@+id/profile_image_view"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:scaleType="centerCrop"
+            app:imageUrlCircular="@{topStreamerObject.profilePic}"
+            app:height="@{96}"
+            app:width="@{96}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/username_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{topStreamerObject.user.username}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image_view"
+            tools:text="@tools:sample/first_names" />
+
+        <TextView
+            android:id="@+id/tags_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:text="@{topStreamerObject.commaSeparatedTags}"
+            android:textColor="@color/color_accent"
+            android:textSize="14sp"
+            android:visibility="@{topStreamerObject.tags.size() &gt; 0? View.VISIBLE:View.GONE,default=gone}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/username_text_view" />
+
+        <androidx.emoji.widget.EmojiTextView
+            android:id="@+id/info_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="@{topStreamerObject.user.description}"
+            android:textColor="#FbFbfb"
+            android:textSize="@dimen/text_13"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tags_tv"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@tools:sample/lorem" />
+
+        <ImageView
+            android:id="@+id/selected_image_view2"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="@dimen/margin_6"
+            android:layout_marginEnd="@dimen/margin_6"
+            android:src="@drawable/avd_correct"
+            android:visibility="@{isSelected ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

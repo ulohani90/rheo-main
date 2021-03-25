@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/remote_video_view_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#33FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/center_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/user_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_login_white_outline_102dp"
+            app:layout_constraintBottom_toBottomOf="@id/remote_video_view_container"
+            app:layout_constraintEnd_toEndOf="@id/remote_video_view_container"
+            app:layout_constraintStart_toStartOf="@id/remote_video_view_container"
+            app:layout_constraintTop_toTopOf="@id/remote_video_view_container" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="Connecting hurricane01212..."
+            android:textColor="#fbfbfb"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/remote_video_view_container"
+            app:layout_constraintEnd_toEndOf="@id/remote_video_view_container"
+            app:layout_constraintStart_toStartOf="@id/remote_video_view_container"
+            app:layout_constraintTop_toBottomOf="@id/user_icon"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <FrameLayout
+            android:id="@+id/local_video_view_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#33000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/center_guideline">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_app_logo_transparent_bg_42" />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/chat_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/chat_window_gradient_bg"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/action_button_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="btn_call,btn_mute,btn_switch_camera" />
+
+        <ImageView
+            android:id="@+id/btn_mute"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="24dp"
+            android:layout_toStartOf="@id/btn_call"
+            android:elevation="4dp"
+            android:onClick="onLocalAudioMuteClicked"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_unmute"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_call"
+            app:layout_constraintEnd_toStartOf="@id/btn_call"
+            app:layout_constraintTop_toTopOf="@id/btn_call" />
+
+        <ImageView
+            android:id="@+id/btn_call"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="@dimen/margin_36"
+            android:elevation="4dp"
+            android:onClick="onCallClicked"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_endcall"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_switch_camera"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:layout_toEndOf="@id/btn_call"
+            android:elevation="4dp"
+            android:onClick="onSwitchCameraClicked"
+            android:scaleType="centerCrop"
+            android:src="@drawable/btn_switch_camera"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_call"
+            app:layout_constraintStart_toEndOf="@id/btn_call"
+            app:layout_constraintTop_toTopOf="@id/btn_call" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/chat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_12"
+            android:backgroundTint="@color/color_accent"
+            android:elevation="0dp"
+            android:outlineProvider="none"
+            android:scaleType="center"
+            android:src="@drawable/avd_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:useCompatPadding="true" />
+
+        <TextView
+            android:id="@+id/chat_btn_unread_count"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/red_dot_bg"
+            android:gravity="center"
+            android:text='@{(viewModel.unreadChatCount > 99 ? "99+" : viewModel.unreadChatCount+"")}'
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.unreadChatCount > 0 &amp;&amp; !viewModel.chatListShown? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintEnd_toEndOf="@id/chat_button"
+            app:layout_constraintTop_toTopOf="@id/chat_button"
+            tools:text="99+" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_2"
+            android:clickable="true"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:descendantFocusability="afterDescendants"
+            android:focusable="true"
+            android:layoutAnimation="@anim/chat_item_animation"
+            android:nestedScrollingEnabled="false"
+            android:paddingStart="@dimen/margin_6"
+            android:paddingEnd="@dimen/margin_6"
+            android:scrollbars="none"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/chat_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/center_guideline"
+            app:reverseLayout="true"
+            app:stackFromEnd="false"
+            tools:itemCount="4"
+            tools:listitem="@layout/chat_item_v2" />
+
+        <!-- <View
+             android:id="@+id/chat_background"
+             android:layout_width="0dp"
+             android:layout_height="0dp"
+             android:background="@drawable/chat_window_gradient_bg"
+             android:visibility="gone"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toStartOf="@id/center_guideline"
+             app:layout_constraintStart_toStartOf="@id/recyclerView"
+             app:layout_constraintTop_toTopOf="@id/recyclerView" />
+
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/recyclerView"
+             android:layout_width="0dp"
+             android:layout_height="0dp"
+             android:layout_marginBottom="@dimen/margin_2"
+             android:clickable="true"
+             android:clipChildren="false"
+             android:clipToPadding="false"
+             android:descendantFocusability="afterDescendants"
+             android:focusable="true"
+             android:layoutAnimation="@anim/chat_item_animation"
+             android:nestedScrollingEnabled="false"
+             android:paddingStart="@dimen/margin_6"
+             android:paddingEnd="@dimen/margin_6"
+             android:scrollbars="none"
+             android:visibility="gone"
+             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+             app:layout_constraintBottom_toTopOf="@id/chat_button"
+             app:layout_constraintEnd_toStartOf="@id/center_guideline"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             app:reverseLayout="true"
+             app:stackFromEnd="false"
+             tools:itemCount="4"
+             tools:listitem="@layout/chat_item_v2" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/unread_button"
+             style="@style/BaseButtonStyle"
+             android:layout_width="wrap_content"
+             android:layout_height="@dimen/margin_36"
+             android:layout_gravity="bottom|center"
+             android:layout_margin="@dimen/margin_8"
+             android:backgroundTint="@color/color_accent"
+             android:fontFamily="sans-serif-medium"
+             android:text='@{(viewModel.unreadChatCount > 99 ? "99+" : viewModel.unreadChatCount+"") + " " + (viewModel.unreadChatCount > 1 ? @string/comments : @string/comment)}'
+             android:textSize="@dimen/text_12"
+             android:visibility="@{viewModel.unreadChatCount > 0 &amp;&amp; viewModel.chatListShown? View.VISIBLE : View.GONE,default=gone}"
+             app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+             app:layout_constraintEnd_toEndOf="@id/recyclerView"
+             app:layout_constraintStart_toStartOf="@id/recyclerView"
+             tools:text="10 Comment" />
+
+         <com.getbase.floatingactionbutton.FloatingActionButton
+             android:id="@+id/chat_button"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="@dimen/margin_12"
+             android:backgroundTint="@color/color_accent"
+             android:src="@drawable/avd_chat"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintStart_toStartOf="parent" />
+
+         <TextView
+             android:id="@+id/chat_btn_unread_count"
+             android:layout_width="28dp"
+             android:layout_height="28dp"
+             android:background="@drawable/red_dot_bg"
+             android:gravity="center"
+             android:text='@{(viewModel.unreadChatCount > 99 ? "99+" : viewModel.unreadChatCount+"")}'
+             android:textColor="@color/white"
+             android:textSize="12sp"
+             android:visibility="@{viewModel.unreadChatCount > 0 &amp;&amp; !viewModel.chatListShown? View.VISIBLE : View.GONE,default=gone}"
+             app:layout_constraintEnd_toEndOf="@id/chat_button"
+             app:layout_constraintTop_toTopOf="@id/chat_button"
+             tools:text="99+" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

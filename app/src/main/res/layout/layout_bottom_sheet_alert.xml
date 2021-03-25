@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="gameName"
+            type="String" />
+
+        <variable
+            name="userName"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/verification_user_name_title_view"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:fontFamily="sans-serif"
+            android:text="@string/alert_title"
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_17"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/user_name_text_view"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4"
+            android:fontFamily="sans-serif"
+            android:text="Please verify your username before proceeding."
+            android:textColor="@color/white_text_color"
+            android:textSize="@dimen/text_14"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/verification_user_name_title_view"
+            app:layout_constraintTop_toBottomOf="@id/verification_user_name_title_view" />
+
+        <TextView
+            android:id="@+id/title_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:text='@{gameName + " username"}'
+            android:textColor="@color/light_grey_text_color"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/verification_user_name_title_view"
+            app:layout_constraintStart_toStartOf="@id/user_name_text_view"
+            app:layout_constraintTop_toBottomOf="@id/user_name_text_view"
+            tools:text="Free Fire username" />
+
+        <TextView
+            android:id="@+id/user_id_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@{userName}"
+            android:textColor="#fbfbfb"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@id/title_user_name"
+            app:layout_constraintStart_toStartOf="@id/title_user_name"
+            app:layout_constraintTop_toBottomOf="@id/title_user_name"
+            tools:text="UmeshLohani11" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/margin_4"
+            android:background="#66767680"
+            app:layout_constraintEnd_toEndOf="@id/user_id_text_view"
+            app:layout_constraintStart_toStartOf="@id/user_id_text_view"
+            app:layout_constraintTop_toBottomOf="@id/user_id_text_view" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/negative_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:text="@string/cancel"
+            app:backgroundTint="@color/color_progress_background"
+            app:cornerRadius="@dimen/size_20"
+            app:layout_constraintBottom_toBottomOf="@id/positive_button"
+            app:layout_constraintEnd_toStartOf="@id/positive_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/positive_button"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/positive_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:text="@string/accept"
+            app:backgroundTint="@color/color_accent"
+            app:cornerRadius="@dimen/size_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/user_name_text_view"
+            app:layout_constraintStart_toEndOf="@id/negative_button"
+            app:layout_constraintTop_toBottomOf="@id/user_id_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

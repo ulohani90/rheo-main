@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="imageUrl"
+            type="String" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/game_icon_image_view"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_margin="@dimen/margin_4"
+            app:imageUrl="@{imageUrl}"
+            app:srcCompat="@drawable/ic_facebook" />
+
+    </FrameLayout>
+
+</layout>

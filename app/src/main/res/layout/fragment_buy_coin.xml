@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.inAppBilling.BuyCoinFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title_text_view"
+            style="@style/PrimaryTitleTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginEnd="@dimen/margin_20"
+            app:layout_constraintHorizontal_bias="0"
+            android:text="@string/buy_coins"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/buy_coins" />
+
+        <TextView
+            android:id="@+id/subtitle_text_view"
+            style="@style/SecondaryTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/buy_coin_description"
+            app:layout_constraintEnd_toEndOf="@+id/title_text_view"
+            app:layout_constraintStart_toStartOf="@+id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_text_view"
+            tools:text="@string/buy_coin_description" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/continue_button"
+            style="@style/BaseButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_36"
+            android:layout_marginTop="@dimen/margin_40"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:backgroundTint="@color/color_accent"
+            android:text="@string/buy"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/subtitle_text_view"
+            app:layout_constraintStart_toStartOf="@+id/subtitle_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package goChat;
+
+// Defines the service between client and server.
+service Chat {
+    rpc RouteChat(stream ChatMessage) returns (stream ChatMessage) {}
+
+    rpc LeaveRoom(GroupInfo) returns (Empty) {}
+
+    rpc GetGroupClientCount(GroupInfo) returns (ClientCount) {}
+
+    rpc UnRegister(ClientInfo) returns (Empty) {}
+
+    rpc Register(ClientInfo) returns (Empty) {}
+
+    rpc CreateGroup(GroupInfo) returns (Empty) {}
+
+    rpc JoinGroup(GroupInfo) returns (Empty) {}
+
+    rpc GetGroupList(Empty) returns (GroupList) {}
+
+    rpc GetGroupClientList(GroupInfo) returns (ClientList) {}
+
+    rpc GetClientList(Empty) returns (ClientList) {}
+}
+
+message Empty {
+
+}
+
+message ChatMessage {
+    string sender = 1;
+    string profile_pic = 2;
+    string message = 3;
+    string receiver = 4;
+    string timestamp = 5;
+    string version_code = 6;
+    string msg_type = 7;
+    string device_id = 8;
+    string is_content_moderator = 9;
+}
+
+message ClientInfo {
+    string sender = 1;
+}
+
+message GroupInfo {
+    string client = 1;
+    string groupName = 2;
+    string device_id = 3;
+}
+
+message GroupList {
+    repeated string groups = 1;
+}
+
+message ClientCount {
+    string count = 1;
+}
+
+message ClientList {
+    repeated string clients = 1;
+}

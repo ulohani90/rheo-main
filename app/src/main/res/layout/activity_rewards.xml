@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.gamify.RewardsActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.gamify.RewardsViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background_color"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_48"
+            android:background="@color/app_background_color"
+            app:navigationIcon="@drawable/avd_back_arrow"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="My Rewards" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar_layout_movie_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_20"
+
+                        android:layout_marginTop="@dimen/margin_4"
+                        android:layout_marginEnd="@dimen/margin_20"
+                        android:layout_marginBottom="@dimen/margin_8"
+                        app:cardCornerRadius="@dimen/margin_8"
+                        app:layout_collapseMode="pin">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/avd_reward_bg"
+                            app:layout_scrollFlags="scroll|enterAlways">
+
+                            <ImageView
+                                android:id="@+id/coin_image_view"
+                                android:layout_width="74dp"
+                                android:layout_height="74dp"
+                                android:layout_marginStart="@dimen/margin_20"
+                                android:layout_marginTop="@dimen/margin_55"
+                                android:layout_marginBottom="@dimen/margin_55"
+                                android:padding="@dimen/margin_4"
+                                android:src="@drawable/avd_rheo_coin"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/coin_text_view"
+                                app:layout_constraintHorizontal_bias="0.35"
+                                app:layout_constraintHorizontal_chainStyle="packed"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/coin_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_20"
+                                android:fontFamily="sans-serif-condensed"
+                                android:text="@{viewModel.totalCoins}"
+                                android:textColor="@color/white_text_color"
+                                android:textSize="@dimen/text_44"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toTopOf="@id/my_points_text_view"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/coin_image_view"
+                                app:layout_constraintTop_toTopOf="@id/coin_image_view"
+                                tools:text="249" />
+
+                            <TextView
+                                android:id="@+id/my_points_text_view"
+                                style="@style/TextAppearance.AppCompat.Subhead"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-condensed"
+                                android:text="@string/rheo_coins"
+                                android:textColor="@color/white_text_color"
+                                android:textSize="@dimen/text_16"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@id/coin_image_view"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="@+id/coin_text_view"
+                                app:layout_constraintTop_toBottomOf="@id/coin_text_view"
+                                app:layout_constraintVertical_chainStyle="packed" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    style="@style/TabLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_marginEnd="@dimen/margin_16" />
+
+                <View
+                    android:id="@+id/divider_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:background="#32425c" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_reward"
+                android:visibility="@{viewModel.showLoading?View.GONE:View.VISIBLE}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <ProgressBar
+                android:id="@+id/progress_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/color_accent"
+                android:layout_gravity="center"
+                android:visibility="@{viewModel.showLoading?View.VISIBLE:View.GONE,default=visible}" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
+
+</layout>

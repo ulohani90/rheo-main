@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activities.gamify.RewardHistoryFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rheotv.android.ui.activities.gamify.RewardHistoryViewModel" />
+
+        <import type="com.rheotv.android.utils.Status" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/history_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_reward_history" />
+
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/history_recycler_view"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:padding="@dimen/margin_4"-->
+    <!--            android:visibility="@{viewModel.observableStatus == Status.SUCCESS ? View.VISIBLE : View.GONE}"-->
+    <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+    <!--            tools:listitem="@layout/list_item_reward_history" />-->
+
+    <!--        <androidx.core.widget.NestedScrollView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:fillViewport="true">-->
+
+    <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:visibility="@{viewModel.observableStatus == Status.SUCCESS ? View.GONE : View.VISIBLE}">-->
+
+    <!--                <androidx.constraintlayout.widget.Guideline-->
+    <!--                    android:id="@+id/guideline"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:orientation="horizontal"-->
+    <!--                    app:layout_constraintGuide_percent="0.7" />-->
+
+    <!--                <ImageView-->
+    <!--                    android:layout_width="@dimen/size_120"-->
+    <!--                    android:layout_height="@dimen/size_120"-->
+    <!--                    android:src="@drawable/no_wifi2"-->
+    <!--                    android:visibility="@{viewModel.observableStatus == Status.LOADING ? View.GONE : View.VISIBLE}"-->
+    <!--                    app:layout_constraintBottom_toTopOf="@id/guideline"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--                <ProgressBar-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:visibility="@{viewModel.observableStatus == Status.LOADING ? View.VISIBLE : View.GONE}"-->
+    <!--                    app:layout_constraintBottom_toTopOf="@id/guideline"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--                <TextView-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:text="@{viewModel.observableStatus == Status.LOADING ? @string/loading_message : (viewModel.observableStatus == Status.EMPTY ? @string/empty_message : @string/error_retry_text)}"-->
+    <!--                    android:textColor="@color/white"-->
+    <!--                    android:textSize="@dimen/text_18"-->
+    <!--                    android:onClick="@{() -> viewModel.loadInitialRewards()}"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintBottom_toTopOf="@id/guideline"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--        </androidx.core.widget.NestedScrollView>-->
+
+    <!--    </FrameLayout>-->
+
+</layout>
