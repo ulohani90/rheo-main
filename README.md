@@ -1,151 +1,102 @@
-# RheoTV Android App
+# RheoTV — Live Streaming & Social Gaming Platform
 
-An Android application for the RheoTV platform — a live streaming and social video experience for gaming and entertainment communities.
+**RheoTV is a live streaming platform built for gaming and entertainment communities.** It lets anyone go live, interact with their audience in real time, play games together, earn rewards, and build a fanbase — all from their Android phone.
 
-## Overview
+Think of it as the intersection of Twitch, Clubhouse, and TikTok, purpose-built for mobile-first emerging markets.
 
-RheoTV is a feature-rich Android app (package: `com.rheotv.android`) built with Java and Kotlin. The app provides a comprehensive live streaming experience with features including live stream playback, content creation, social interactions, gamification, and monetization.
+---
 
-**Current Version:** 4.6.1 (Version Code: 461)
+## What is RheoTV?
 
-## Features
+RheoTV is a mobile-first live streaming and social entertainment app. Streamers can broadcast live video or host audio rooms, while viewers can watch, chat, send gifts, play mini-games with the streamer, and earn rewards for engaging.
 
-- **Live Streaming** — Watch and host live streams with a dedicated stream player and fullscreen support
-- **Stories** — Create and view ephemeral story content with templates and customization tools
-- **Audio Rooms** — Join and host audio-only live rooms
-- **Clips** — Short-form video content creation and viewing
-- **Moments** — Capture and share special in-stream moments
-- **Video Trimmer** — Built-in video trimming tool for content editing
-- **Image Cropper** — Crop and edit images before posting
-- **Social Features** — Follow/follower system, user profiles, and social interactions
-- **Gamification** — Leaderboards, rankings, scoreboards, and game selection
-- **In-App Billing** — Subscription and purchase support via Google Play Billing
-- **Wallet** — In-app wallet for virtual currency and transactions
-- **Search** — Discover content and users
-- **Push Notifications** — Real-time notifications via Firebase Cloud Messaging
-- **Onboarding** — Guided first-run experience for new users
+The platform is built around a core insight: **watching someone stream is more fun when you can actually participate** — not just comment, but play, compete, and connect.
 
-## Tech Stack
+---
 
-- **Languages:** Java & Kotlin
-- **Architecture:** MVVM with Repository pattern
-- **Dependency Injection:** Dagger 2
-- **Networking:** Retrofit + gRPC (Protocol Buffers)
-- **Database:** Room (local persistence)
-- **Image Loading:** Glide, Picasso
-- **Video Playback:** ExoPlayer (custom player implementation)
-- **Navigation:** Jetpack Navigation Component
-- **Analytics:** Mixpanel, Segment, Firebase Analytics, Firebase Performance
-- **Crash Reporting:** Firebase Crashlytics
-- **Push Notifications:** Firebase Cloud Messaging (FCM)
-- **Charts & Graphs:** MPAndroidChart
-- **Deep Linking:** Branch.io
-- **Customer Support:** Freshchat
-- **Engagement:** MoEngage
+## Who is it for?
 
-## Project Structure
+- **Streamers & Creators** — Anyone who wants to build an audience by going live, sharing clips, or posting stories
+- - **Viewers & Fans** — People who want to watch live content, interact with creators, and participate in on-stream games
+  - - **Gaming Communities** — Groups that want to watch, discuss, and play casual games together in real time
+   
+    - ---
 
-```
-rheo-main/
-├── app/                          # Main application module
-│   └── src/main/java/com/rheotv/android/
-│       ├── app/                  # Application class (RheoTvApp)
-│       ├── data/                 # Data sources and repositories
-│       ├── db/                   # Room database and DAOs
-│       ├── di/                   # Dagger dependency injection modules
-│       ├── factories/            # ViewModelFactory and other factories
-│       ├── helpers/              # Helper classes and utilities
-│       ├── model/                # Data models and entities
-│       ├── player/               # Custom video player implementation
-│       ├── services/             # Background services
-│       ├── ui/                   # UI layer
-│       │   ├── activities/       # Activities (home, player, profile, etc.)
-│       │   ├── adapters/         # RecyclerView adapters
-│       │   ├── base/             # Base classes
-│       │   ├── customViews/      # Custom UI components
-│       │   ├── decorators/       # RecyclerView item decorators
-│       │   └── fragments/        # Fragments
-│       └── utils/                # Utility classes
-├── story/                        # Story feature module
-├── doubletapplayerview/          # Custom double-tap player view library
-├── ffmpeg/                       # FFmpeg integration module
-├── video_trimmer_library/        # Video trimming library module
-└── chillingvanlib/               # Auxiliary library module
-```
+    ## Core Features
 
-## Prerequisites
+    ### 🎥 Live Streaming
+    Streamers can go live instantly from their phone. Viewers join the stream, watch in fullscreen or portrait mode, and interact in real time. The platform supports high-quality adaptive video streaming so content loads smoothly regardless of network conditions.
 
-- **Android Studio** Arctic Fox or newer
-- **JDK** 8 or higher
-- **Android SDK** with API level 21+ (Android 5.0 Lollipop and above)
-- **Google Services** — A valid `google-services.json` file placed in `app/`
-- **Firebase** project configured with Analytics, Crashlytics, and Performance Monitoring enabled
+    ### 🎙️ Audio Rooms
+    Not every conversation needs a camera. Creators can host public or private audio rooms — similar to Clubhouse — where participants can speak, listen, and engage without turning on video. Great for discussions, Q&As, and community hangouts.
 
-## Getting Started
+    ### 💬 Live Chat & Reactions
+    Every live stream has a real-time chat where viewers can send messages, reactions, and stickers. Streamers can moderate their chat, pin messages, and interact directly with their audience during a broadcast.
 
-1. **Clone the repository:**
-   ```bash
-      git clone https://github.com/ulohani90/rheo-main.git
-         cd rheo-main
-            ```
+    ### 🎮 Interactive Games (Play Requests)
+    One of RheoTV's most unique features: viewers can **request to play a game with the streamer live on stream**. The streamer accepts or rejects the request, and they play a casual game together — visible to the entire audience. This turns passive viewers into active participants.
 
-            2. **Add configuration files:**
-               - Place your `google-services.json` in the `app/` directory
-                  - Update `BASE_URL` in `app/build.gradle` to point to your API server
+    ### 🏆 Gamification & Rewards
+    The platform uses a deep rewards engine to drive engagement on both sides:
+    - **Viewers** earn rewards for watching streams, maintaining daily streaks, and engaging with content
+    - - **Creators** earn based on viewership, engagement, and gifts received
+      - - **Leaderboards & Rankings** show top streamers and top fans, creating healthy competition
+        - - **Scratch cards, reward milestones, and streaks** keep users coming back daily
+         
+          - ### 🎁 Virtual Gifts & Coins
+          - Viewers can purchase virtual coins and send gifts to their favourite streamers during a live broadcast. Gifts are visible to the entire stream audience, making generosity a public, social act. Creators can redeem their earned coins for real value.
+         
+          - ### 📱 Stories
+          - Creators can post short-form Stories that disappear after 24 hours — similar to Instagram Stories. Stories can include images or short videos, with template-based tools to make creation quick and expressive.
+         
+          - ### ✂️ Clips & Moments
+          - - **Clips** are short highlight videos that creators and viewers can capture and share from live streams
+            - - **Moments** let users capture specific in-stream events and replay them, turning great gaming highlights or funny stream moments into shareable content
+             
+              - ### 👤 Creator Profiles & Analytics
+              - Every creator has a public profile with their live and past content, follower count, and bio. Creators can view detailed analytics — viewership trends, top fans, engagement data — to understand and grow their audience.
+             
+              - ### 🔍 Discovery & Search
+              - Users can browse a live feed of active streams, search for specific creators or games, and discover trending content. The app surfaces recommended streamers during onboarding to help new users find creators they'll love immediately.
+             
+              - ### 💰 In-App Wallet & Redemption
+              - The platform has a full virtual economy. Users accumulate coins through engagement and purchases, and creators can redeem their earnings. The wallet system tracks balances, transaction history, and redemption status.
+             
+              - ### 🔔 Notifications & Alerts
+              - Users get notified when a followed creator goes live, when someone sends them a gift, or when their play request is accepted. Notifications are designed to bring users back to the right moment in the right stream.
+             
+              - ---
 
-                  3. **Open in Android Studio:**
-                     - Open Android Studio and select **Open an existing project**
-                        - Navigate to the cloned `rheo-main` directory
+              ## The User Journey
 
-                        4. **Build the project:**
-                           ```bash
-                              ./gradlew assembleDebug
-                                 ```
+              **For a viewer:** Open the app → browse the live feed → tap a stream → watch, chat, send stickers → request to play a game with the streamer → earn rewards for time spent → follow the creator → get notified next time they go live.
 
-                                 5. **Run on a device or emulator** using Android Studio, or via:
-                                    ```bash
-                                       ./gradlew installDebug
-                                          ```
+              **For a creator:** Tap "Go Live" → stream to your audience → interact via live chat → accept game requests from fans → see your top fans in the leaderboard → grow your follower count → redeem your earned coins.
 
-                                          ## Build Variants
+              ---
 
-                                          | Variant | Description |
-                                          |---------|-------------|
-                                          | `debug`   | Development build pointing to the production API |
-                                          | `release` | Production build with ProGuard/R8 minification and obfuscation |
+              ## Platform Highlights
 
-                                          ## Permissions
+              - **Mobile-first** — designed for Android, optimised for low-bandwidth environments
+              - - **Real-time interactivity** — live chat, gift animations, and game requests happen instantly
+                - - **Creator monetisation** — gifts, coins, and a redemption system give creators real earning potential
+                  - - **Social loops** — follower system, leaderboards, and streaks drive daily retention on both sides
+                    - - **Content formats** — live video, audio rooms, clips, stories, and moments cover the full content spectrum
+                     
+                      - ---
 
-                                          The app requires the following Android permissions:
+                      ## Technology
 
-                                          - `INTERNET` — Network access for streaming and API calls
-                                          - `FOREGROUND_SERVICE` — Background playback and audio room services
-                                          - `READ_PHONE_STATE` / `MODIFY_AUDIO_SETTINGS` — Audio management
-                                          - `BLUETOOTH` — Bluetooth audio device support
-                                          - `ACCESS_WIFI_STATE` — Network state detection
-                                          - `VIBRATE` — Haptic notification feedback
-                                          - `CAMERA` / `RECORD_AUDIO` — Live stream broadcasting
-                                          - `READ_EXTERNAL_STORAGE` / `WRITE_EXTERNAL_STORAGE` — Media access
+                      The app is built natively for Android using Java and Kotlin, with a robust backend powered by REST APIs and real-time gRPC streams. Video delivery is handled via ExoPlayer with adaptive quality switching. Firebase powers notifications, crash reporting, and performance monitoring. The app integrates analytics tools (Mixpanel, Segment) and user engagement tools (MoEngage) to enable data-driven growth.
 
-                                          ## Deep Linking
+                      ---
 
-                                          The app supports deep links using the following URI schemes:
+                      ## Status
 
-                                          - `rheo://open/...`
-                                          - `rheotv://open/...`
+                      - **Current Version:** 4.6.1
+                      - - **Platform:** Android (iOS coming soon)
+                        - - **API:** `rheotv.com/api`
+                         
+                          - ---
 
-                                          ## Contributing
-
-                                          1. Fork the repository
-                                          2. Create a feature branch: `git checkout -b feature/your-feature-name`
-                                          3. Commit your changes: `git commit -m 'Add some feature'`
-                                          4. Push to the branch: `git push origin feature/your-feature-name`
-                                          5. Open a Pull Request
-
-                                          ## License
-
-                                          This project is proprietary software. All rights reserved.
-
-                                          ---
-
-                                          *Built with love by the RheoTV team*
+                          *RheoTV — Watch together. Play together. Grow together.*
